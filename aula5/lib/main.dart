@@ -17,15 +17,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pfe',
       routes: {
+
         '/': (context) => const DepartamentoPage(),
         '/departamento': (context) => const DepartamentoPage(),
         '/funcionario': (context) => const FuncionarioPage(),
-        
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      //home: ProdutoCRUDPage(),
+      //home: ProdutoCRUDPage()43222fc051d8ac7ada9a209f6dcc02a161cd9d68
     );
   }
 }
