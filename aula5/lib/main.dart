@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'features/produtos/crud/crud.dart';
+import 'pages/departamento_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,12 +17,13 @@ class MyApp extends StatelessWidget {
       title: 'Pfe',
       routes: {
         '/': (context) => ProdutoCRUDPage(),
-        '/home': (context) => Text()
+        '/departamento': (context) => const DepartamentoPage(),
+        
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ProdutoCRUDPage(),
+      //home: ProdutoCRUDPage(),
     );
   }
 }
