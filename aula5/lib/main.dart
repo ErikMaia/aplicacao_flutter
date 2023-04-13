@@ -16,12 +16,12 @@ class MyApp extends StatelessWidget {
       title: 'Pfe',
       routes: {
         '/': (context) => ProdutoCRUDPage(),
-        '/home': (context) => Text()
+        // '/home': (context) => Text('')
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ProdutoCRUDPage(),
+      // home: ProdutoCRUDPage(),
     );
   }
 }
