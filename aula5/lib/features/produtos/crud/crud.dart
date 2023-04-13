@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProdutoCRUDPage extends StatefulWidget {
-  ProdutoCRUDPage();
+  const ProdutoCRUDPage({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -14,7 +14,7 @@ class _ProdutoCRUDPageState extends State<ProdutoCRUDPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Dados de Produto')),
+        appBar: AppBar(title: const Text('Dados de Produto')),
         body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Column(
