@@ -14,6 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pfe',
+      routes: {
+        '/': (context) => ProdutoCRUDPage(),
+        '/home': (context) => Text()
+      },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
