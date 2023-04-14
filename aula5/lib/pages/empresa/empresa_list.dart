@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/drawer_pages.dart';
 
-class FuncionarioList extends StatelessWidget {
-  const FuncionarioList({super.key});
+class EmpresaList extends StatelessWidget {
+  const EmpresaList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Funcionarios'),
+        title: const Text('Empresas'),
         centerTitle: true,
       ),
       body: Center(
