@@ -28,7 +28,6 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void _onSaveButtonPressed() {
-    // Salva as configurações
     _prefs.setBool('darkModeEnabled', _isDarkModeEnabled);
     _prefs.setString('language', _language);
 
