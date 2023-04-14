@@ -16,11 +16,15 @@ class _DepartamentoListState extends State<DepartamentoList> {
     {'nome': 'Nome', 'descricao': 'Descricao'},
   ];
 
-  void getNotes() async {
+  void getDepartamentos() async {
     var notesFuture = Departamento.readAll();
-    await notesFuture.then((data) {
-      setState(() {});
-    });
+    await notesFuture.then((data) {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getDepartamentos();
   }
 
   @override

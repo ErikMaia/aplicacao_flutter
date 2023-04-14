@@ -17,6 +17,17 @@ class Projeto {
 
   static const String table = 'projetos';
 
+  static Future<Database> openDb() async {
+    final db = await openDatabase(
+      'projetos.db',
+      version: 1,
+      onCreate: (db, version) {
+        return Projeto.createTable(db);
+      },
+    );
+    return db;
+  }
+
   static Future<void> createTable(Database db) async {
     await db.execute('''
       CREATE TABLE $table (
@@ -30,10 +41,12 @@ class Projeto {
   }
 
   static Future<int> create(Projeto projeto, Database db) async {
+    final db = await openDb();
     return await db.insert(table, projeto.toMap());
   }
 
   static Future<List<Projeto>> readAll(Database db) async {
+    final db = await openDb();
     final List<Map<String, dynamic>> maps = await db.query(table);
     return List.generate(maps.length, (i) {
       return Projeto.fromMap(maps[i]);
@@ -41,6 +54,7 @@ class Projeto {
   }
 
   static Future<Projeto?> read(int id, Database db) async {
+    final db = await openDb();
     final List<Map<String, dynamic>> maps =
         await db.query(table, where: 'id = ?', whereArgs: [id], limit: 1);
     if (maps.isNotEmpty) {
@@ -51,11 +65,13 @@ class Projeto {
   }
 
   static Future<int> update(Projeto projeto, Database db) async {
+    final db = await openDb();
     return await db.update(table, projeto.toMap(),
         where: 'id = ?', whereArgs: [projeto.id]);
   }
 
   static Future<int> delete(int id, Database db) async {
+    final db = await openDb();
     return await db.delete(table, where: 'id = ?', whereArgs: [id]);
   }
 
