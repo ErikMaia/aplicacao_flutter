@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
         '/cliente': (context) => ClienteList(),
         '/tarefa': (context) => TarefaList(),
         '/empresa': (context) => EmpresaList(),
-        '/configuracao': (context) => SettingsPage(),
+        '/configuracao': (context) => SettingsPage(load: _loadDarkModeEnabled),
       },
       theme: _isDarkModeEnabled ? ThemeData.dark() : ThemeData.light(),
     );
