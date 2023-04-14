@@ -15,7 +15,7 @@ class EmpresaList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Empresa'),
+        title: const Text('Empresas'),
         centerTitle: true,
       ),
       body: ListView.builder(
@@ -35,8 +35,7 @@ class EmpresaList extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const departamentoEdit()),
+                MaterialPageRoute(builder: (context) => const EmpresaEdit()),
               );
             },
           );

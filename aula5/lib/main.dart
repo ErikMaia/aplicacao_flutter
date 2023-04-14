@@ -1,4 +1,8 @@
+import 'package:aula5/pages/cliente/cliente_list.dart';
+import 'package:aula5/pages/configuracoes/configuracoes.dart';
 import 'package:aula5/pages/empresa/empresa_list.dart';
+import 'package:aula5/pages/projeto/projeto_list.dart';
+import 'package:aula5/pages/tarefa/tarefa_list.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/departamento/departamento_list.dart';
@@ -16,13 +20,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pfe',
       routes: {
-        '/': (context) => DepartamentoList(),
+        '/': (context) => FuncionarioPage(),
         '/funcionario': (context) => FuncionarioPage(),
         '/departamento': (context) => DepartamentoList(),
-        '/projeto': (context) => FuncionarioPage(),
-        '/cliente': (context) => FuncionarioPage(),
-        '/tarefa': (context) => FuncionarioPage(),
+        '/projeto': (context) => ProjetoList(),
+        '/cliente': (context) => ClienteList(),
+        '/tarefa': (context) => TarefaList(),
         '/empresa': (context) => EmpresaList(),
+        '/configuracao': (context) => const SettingsPage(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

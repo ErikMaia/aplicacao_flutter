@@ -1,4 +1,4 @@
-import 'package:aula5/features/welcome/SharedDataSource.dart';
+import 'package:aula5/pages/configuracoes/SharedDataSource.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -1,6 +1,4 @@
-import 'package:aula5/features/welcome/SharedDataSource.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class FuncionarioEdit extends StatefulWidget {
   const FuncionarioEdit({super.key});

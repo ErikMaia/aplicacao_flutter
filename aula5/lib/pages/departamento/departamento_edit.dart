@@ -1,16 +1,14 @@
-import 'package:aula5/features/welcome/SharedDataSource.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class departamentoEdit extends StatefulWidget {
-  const departamentoEdit({super.key});
+class DepartamentoEdit extends StatefulWidget {
+  const DepartamentoEdit({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
   _ProdutoCRUDPageState createState() => _ProdutoCRUDPageState();
 }
 
-class _ProdutoCRUDPageState extends State<departamentoEdit> {
+class _ProdutoCRUDPageState extends State<DepartamentoEdit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

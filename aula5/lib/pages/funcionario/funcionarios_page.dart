@@ -1,11 +1,12 @@
 import 'package:aula5/pages/departamento/departamento_edit.dart';
 import 'package:aula5/pages/empresa/empresa_edit.dart';
+import 'package:aula5/pages/funcionario/funcionario_edit.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/drawer_pages.dart';
 
 class FuncionarioPage extends StatelessWidget {
-  final List<Map<String, String>> _empresas = [
+  final List<Map<String, String>> _funci = [
     {
       'nome': 'Nome',
       'descricao': 'Descricao',
@@ -20,30 +21,30 @@ class FuncionarioPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Empresa'),
+        title: const Text('Funcionarios'),
         centerTitle: true,
       ),
       body: ListView.builder(
-        itemCount: _empresas.length,
+        itemCount: _funci.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(_empresas[index]['nome'] ?? ''),
+                Text(_funci[index]['nome'] ?? ''),
                 const SizedBox(width: 5),
-                Text(_empresas[index]['descricao'] ?? ''),
+                Text(_funci[index]['descricao'] ?? ''),
                 const SizedBox(width: 5),
-                Text(_empresas[index]['endereco'] ?? ''),
+                Text(_funci[index]['endereco'] ?? ''),
                 const SizedBox(width: 5),
-                Text(_empresas[index]['telefone'] ?? ''),
+                Text(_funci[index]['telefone'] ?? ''),
               ],
             ),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const departamentoEdit()),
+                    builder: (context) => const FuncionarioEdit()),
               );
             },
           );
@@ -53,7 +54,7 @@ class FuncionarioPage extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const EmpresaEdit()),
+            MaterialPageRoute(builder: (context) => const FuncionarioEdit()),
           );
         },
         backgroundColor: Colors.blue,

@@ -1,40 +1,54 @@
+import 'package:aula5/pages/cliente/cliente_edit.dart';
 import 'package:aula5/pages/departamento/departamento_edit.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/drawer_pages.dart';
 
-class DepartamentoList extends StatelessWidget {
-  final List<Map<String, String>> _departamentos = [
-    {'nome': 'Nome', 'descricao': 'Descricao'},
-    {'nome': 'Nome', 'descricao': 'Descricao'},
+class ClienteList extends StatelessWidget {
+  final List<Map<String, String>> _clientes = [
+    {
+      'nome': 'Nome',
+      'sobrenome': 'sobrenome',
+      'endereco': 'endereco',
+      'telefone': 'telefone'
+    },
+    {
+      'nome': 'Nome',
+      'sobrenome': 'sobrenome',
+      'endereco': 'endereco',
+      'telefone': 'telefone'
+    },
   ];
 
-  DepartamentoList({super.key});
+  ClienteList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Departamentos'),
+        title: const Text('Clientes'),
         centerTitle: true,
       ),
       body: ListView.builder(
-        itemCount: _departamentos.length,
+        itemCount: _clientes.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(_departamentos[index]['nome'] ?? ''),
+                Text(_clientes[index]['nome'] ?? ''),
                 const SizedBox(width: 5),
-                Text(_departamentos[index]['descricao'] ?? ''),
+                Text(_clientes[index]['sobrenome'] ?? ''),
+                const SizedBox(width: 5),
+                Text(_clientes[index]['endereco'] ?? ''),
+                const SizedBox(width: 5),
+                Text(_clientes[index]['telefone'] ?? ''),
               ],
             ),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const DepartamentoEdit()),
+                MaterialPageRoute(builder: (context) => const ClienteEdit()),
               );
             },
           );
@@ -44,7 +58,7 @@ class DepartamentoList extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const DepartamentoEdit()),
+            MaterialPageRoute(builder: (context) => const ClienteEdit()),
           );
         },
         backgroundColor: Colors.blue,

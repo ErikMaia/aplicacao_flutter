@@ -9,7 +9,7 @@ class DrawerPage {
             decoration: BoxDecoration(
               color: Colors.blue,
             ),
-            child: Text('Drawer Header'),
+            child: Text(''),
           ),
           ListTile(
             title: const Text('Funcionario'),
@@ -45,6 +45,12 @@ class DrawerPage {
             title: const Text('Empresa'),
             onTap: () {
               Navigator.of(context).pushNamed('/empresa');
+            },
+          ),
+          ListTile(
+            title: const Text('Configurações'),
+            onTap: () {
+              Navigator.of(context).pushNamed('/configuracao');
             },
           ),
         ],

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class EmpresaEdit extends StatefulWidget {
-  const EmpresaEdit({super.key});
+class ClienteEdit extends StatefulWidget {
+  const ClienteEdit({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _EmpresaPageState createState() => _EmpresaPageState();
+  _ClientePageState createState() => _ClientePageState();
 }
 
-class _EmpresaPageState extends State<EmpresaEdit> {
+class _ClientePageState extends State<ClienteEdit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Criar Empresa')),
+        appBar: AppBar(title: const Text('Criar cliente')),
         body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Column(
@@ -24,7 +24,7 @@ class _EmpresaPageState extends State<EmpresaEdit> {
                       decoration: const InputDecoration(labelText: 'Nome'),
                     ),
                     TextFormField(
-                      decoration: const InputDecoration(labelText: 'Descricao'),
+                      decoration: const InputDecoration(labelText: 'Sobrenome'),
                     ),
                     TextFormField(
                       decoration: const InputDecoration(labelText: 'Endereco'),
