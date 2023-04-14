@@ -1,15 +1,27 @@
-import 'package:aula5/pages/departamento/departamento_edit.dart';
 import 'package:flutter/material.dart';
-
 import '../../widgets/drawer_pages.dart';
+import 'departamento_edit.dart';
+import 'package:aula5/models/departamento.dart';
 
-class DepartamentoList extends StatelessWidget {
+class DepartamentoList extends StatefulWidget {
+  const DepartamentoList({Key? key}) : super(key: key);
+
+  @override
+  _DepartamentoListState createState() => _DepartamentoListState();
+}
+
+class _DepartamentoListState extends State<DepartamentoList> {
   final List<Map<String, String>> _departamentos = [
     {'nome': 'Nome', 'descricao': 'Descricao'},
     {'nome': 'Nome', 'descricao': 'Descricao'},
   ];
 
-  DepartamentoList({super.key});
+  void getNotes() async {
+    var notesFuture = Departamento.readAll();
+    await notesFuture.then((data) {
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

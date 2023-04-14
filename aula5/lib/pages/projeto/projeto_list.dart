@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/drawer_pages.dart';
 
-class ProjetoList extends StatelessWidget {
+class ProjetoList extends StatefulWidget {
+  ProjetoList({Key? key}) : super(key: key);
+
+  @override
+  _ProjetoListState createState() => _ProjetoListState();
+}
+
+class _ProjetoListState extends State<ProjetoList> {
   final List<Map<String, String>> _projetos = [
     {
       'nome': 'Nome',
@@ -18,8 +25,6 @@ class ProjetoList extends StatelessWidget {
       'dataFim': 'dataFim'
     },
   ];
-
-  ProjetoList({super.key});
 
   @override
   Widget build(BuildContext context) {

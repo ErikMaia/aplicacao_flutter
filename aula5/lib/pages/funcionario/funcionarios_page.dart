@@ -1,11 +1,14 @@
-import 'package:aula5/pages/departamento/departamento_edit.dart';
-import 'package:aula5/pages/empresa/empresa_edit.dart';
 import 'package:aula5/pages/funcionario/funcionario_edit.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/drawer_pages.dart';
 
-class FuncionarioPage extends StatelessWidget {
+class FuncionarioPage extends StatefulWidget {
+  @override
+  _FuncionarioPageState createState() => _FuncionarioPageState();
+}
+
+class _FuncionarioPageState extends State<FuncionarioPage> {
   final List<Map<String, String>> _funci = [
     {
       'nome': 'Nome',
@@ -14,8 +17,6 @@ class FuncionarioPage extends StatelessWidget {
       'telefone': 'Telefone'
     },
   ];
-
-  FuncionarioPage({super.key});
 
   @override
   Widget build(BuildContext context) {

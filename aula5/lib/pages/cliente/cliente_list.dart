@@ -1,10 +1,16 @@
 import 'package:aula5/pages/cliente/cliente_edit.dart';
-import 'package:aula5/pages/departamento/departamento_edit.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/drawer_pages.dart';
 
-class ClienteList extends StatelessWidget {
+class ClienteList extends StatefulWidget {
+  const ClienteList({Key? key}) : super(key: key);
+
+  @override
+  _ClienteListState createState() => _ClienteListState();
+}
+
+class _ClienteListState extends State<ClienteList> {
   final List<Map<String, String>> _clientes = [
     {
       'nome': 'Nome',
@@ -19,8 +25,6 @@ class ClienteList extends StatelessWidget {
       'telefone': 'telefone'
     },
   ];
-
-  ClienteList({super.key});
 
   @override
   Widget build(BuildContext context) {

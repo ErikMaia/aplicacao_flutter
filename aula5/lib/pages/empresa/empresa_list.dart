@@ -1,15 +1,19 @@
-import 'package:aula5/pages/departamento/departamento_edit.dart';
 import 'package:aula5/pages/empresa/empresa_edit.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/drawer_pages.dart';
 
-class EmpresaList extends StatelessWidget {
+class EmpresaList extends StatefulWidget {
+  const EmpresaList({Key? key}) : super(key: key);
+
+  @override
+  _EmpresaListState createState() => _EmpresaListState();
+}
+
+class _EmpresaListState extends State<EmpresaList> {
   final List<Map<String, String>> _empresas = [
     {'nome': 'Nome', 'endereco': 'endereco', 'telefone': 'Telefone'},
   ];
-
-  EmpresaList({super.key});
 
   @override
   Widget build(BuildContext context) {

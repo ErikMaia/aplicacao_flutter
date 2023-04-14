@@ -1,9 +1,15 @@
-import 'package:aula5/pages/tarefa/tarefa_edit.dart';
 import 'package:flutter/material.dart';
-
 import '../../widgets/drawer_pages.dart';
+import 'tarefa_edit.dart';
 
-class TarefaList extends StatelessWidget {
+class TarefaList extends StatefulWidget {
+  const TarefaList({Key? key}) : super(key: key);
+
+  @override
+  _TarefaListState createState() => _TarefaListState();
+}
+
+class _TarefaListState extends State<TarefaList> {
   final List<Map<String, String>> _tarefas = [
     {
       'descricao': 'descricao',
@@ -18,8 +24,6 @@ class TarefaList extends StatelessWidget {
       'status': 'status'
     },
   ];
-
-  TarefaList({super.key});
 
   @override
   Widget build(BuildContext context) {
