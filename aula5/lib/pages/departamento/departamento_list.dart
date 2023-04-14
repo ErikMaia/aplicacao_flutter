@@ -17,14 +17,14 @@ class DepartamentoList extends StatelessWidget {
           children: [
             ListTile(
               title: Row(
-                children: const [Text('Nome'), Text('Descrição')],
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: const [Text('Nome'), Text('Descrição')],
               ),
             ),
             ListTile(
               title: Row(
-                children: const [Text('CC'), Text('Ciencias da computação')],
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: const [Text('CC'), Text('Ciencias da computação')],
               ),
               onTap: () {},
             ),
@@ -35,8 +35,8 @@ class DepartamentoList extends StatelessWidget {
         onPressed: () {
           // Lógica para adicionar algo aqui
         },
-        child: const Icon(Icons.add),
         backgroundColor: Colors.blue,
+        child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       drawer: DrawerPage.getWidget(context),

@@ -1,14 +1,14 @@
 import 'package:aula5/widgets/drawer_pages.dart';
 import 'package:flutter/material.dart';
 
-class DepartamentoEdit extends StatefulWidget {
-  const DepartamentoEdit({super.key});
+class DepartamentoCreate extends StatefulWidget {
+  const DepartamentoCreate({super.key});
 
   @override
-  State<DepartamentoEdit> createState() => _DepartamentoEditState();
+  State<DepartamentoCreate> createState() => _DepartamentoCreateState();
 }
 
-class _DepartamentoEditState extends State<DepartamentoEdit> {
+class _DepartamentoCreateState extends State<DepartamentoCreate> {
   final List<String> _formValues = ['', ''];
   @override
   Widget build(BuildContext context) {
@@ -39,25 +39,13 @@ class _DepartamentoEditState extends State<DepartamentoEdit> {
                 _formValues[1] = value ?? '';
               },
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.redAccent, padding: const EdgeInsets.all(20)),
-                    child: const Text('Deletar')),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green, padding: const EdgeInsets.all(20)),
-                    child: const Text('Atualizar'))
-              ],
-            )
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(20)),
+                child: const Text('Criar'))
           ],
         ),
       ),
