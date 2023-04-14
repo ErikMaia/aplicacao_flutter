@@ -44,12 +44,14 @@ class Funcionario {
     ''');
   }
 
-  static Future<int> create(Funcionario funcionario, Database db) async {
+  static Future<int> create(
+    Funcionario funcionario,
+  ) async {
     final db = await openDb();
     return await db.insert(table, funcionario.toMap());
   }
 
-  static Future<List<Funcionario>> readAll(Database db) async {
+  static Future<List<Funcionario>> readAll() async {
     final db = await openDb();
     final List<Map<String, dynamic>> maps = await db.query(table);
     return List.generate(maps.length, (i) {
@@ -57,7 +59,9 @@ class Funcionario {
     });
   }
 
-  static Future<Funcionario?> read(int id, Database db) async {
+  static Future<Funcionario?> read(
+    int id,
+  ) async {
     final db = await openDb();
     final List<Map<String, dynamic>> maps =
         await db.query(table, where: 'id = ?', whereArgs: [id], limit: 1);
@@ -68,7 +72,9 @@ class Funcionario {
     }
   }
 
-  static Future<int> update(Funcionario funcionario, Database db) async {
+  static Future<int> update(
+    Funcionario funcionario,
+  ) async {
     final db = await openDb();
     return await db.update(table, funcionario.toMap(),
         where: 'id = ?', whereArgs: [funcionario.id]);

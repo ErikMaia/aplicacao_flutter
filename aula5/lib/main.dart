@@ -7,7 +7,7 @@ import 'pages/empresa/empresa_list.dart';
 import 'pages/projeto/projeto_list.dart';
 import 'pages/tarefa/tarefa_list.dart';
 import 'pages/departamento/departamento_list.dart';
-import 'pages/funcionario/funcionarios_page.dart';
+import 'pages/funcionario/funcionarios_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,8 +41,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Pfe',
       routes: {
-        '/': (context) => FuncionarioPage(),
-        '/funcionario': (context) => FuncionarioPage(),
+        '/': (context) => FuncionarioList(),
+        '/funcionario': (context) => FuncionarioList(),
         '/departamento': (context) => DepartamentoList(),
         '/projeto': (context) => ProjetoList(),
         '/cliente': (context) => ClienteList(),
