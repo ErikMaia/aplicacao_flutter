@@ -2,19 +2,19 @@ import 'package:aula5/features/welcome/SharedDataSource.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class departamentoEdit extends StatefulWidget {
-  const departamentoEdit({super.key});
+class FuncionarioEdit extends StatefulWidget {
+  const FuncionarioEdit({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _ProdutoCRUDPageState createState() => _ProdutoCRUDPageState();
+  _FuncionarioPageState createState() => _FuncionarioPageState();
 }
 
-class _ProdutoCRUDPageState extends State<departamentoEdit> {
+class _FuncionarioPageState extends State<FuncionarioEdit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Criar departamento')),
+        appBar: AppBar(title: const Text('Criar Funcionario')),
         body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Column(
@@ -24,6 +24,9 @@ class _ProdutoCRUDPageState extends State<departamentoEdit> {
                   children: [
                     TextFormField(
                       decoration: const InputDecoration(labelText: 'Nome'),
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(labelText: 'Descricao'),
                     ),
                     TextFormField(
                       decoration: const InputDecoration(labelText: 'Endereco'),

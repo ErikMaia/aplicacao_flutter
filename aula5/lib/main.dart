@@ -1,6 +1,6 @@
+import 'package:aula5/pages/empresa/empresa_list.dart';
 import 'package:flutter/material.dart';
 
-import 'features/produtos/crud/crud.dart';
 import 'pages/departamento/departamento_list.dart';
 import 'pages/funcionario/funcionarios_page.dart';
 
@@ -11,16 +11,18 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pfe',
       routes: {
-
-        '/': (context) => const DepartamentoList(),
-        '/departamento': (context) => const DepartamentoList(),
-        '/funcionario': (context) => const FuncionarioPage(),
+        '/': (context) => DepartamentoList(),
+        '/funcionario': (context) => FuncionarioPage(),
+        '/departamento': (context) => DepartamentoList(),
+        '/projeto': (context) => FuncionarioPage(),
+        '/cliente': (context) => FuncionarioPage(),
+        '/tarefa': (context) => FuncionarioPage(),
+        '/empresa': (context) => EmpresaList(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

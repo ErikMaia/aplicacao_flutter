@@ -1,9 +1,13 @@
+import 'package:aula5/pages/departamento/departamento_edit.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/drawer_pages.dart';
 
 class DepartamentoList extends StatelessWidget {
-  const DepartamentoList({super.key});
+  final List<Map<String, String>> _departamentos = [
+    {'nome': 'Nome', 'descricao': 'Descricao'},
+    {'nome': 'Nome', 'descricao': 'Descricao'},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -12,31 +16,37 @@ class DepartamentoList extends StatelessWidget {
         title: const Text('Departamentos'),
         centerTitle: true,
       ),
-      body: Center(
-        child: ListView(
-          children: [
-            ListTile(
-              title: Row(
-                children: const [Text('Nome'), Text('Descrição')],
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-              ),
+      body: ListView.builder(
+        itemCount: _departamentos.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(_departamentos[index]['nome'] ?? ''),
+                const SizedBox(width: 5),
+                Text(_departamentos[index]['descricao'] ?? ''),
+              ],
             ),
-            ListTile(
-              title: Row(
-                children: const [Text('CC'), Text('Ciencias da computação')],
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-              ),
-              onTap: () {},
-            ),
-          ],
-        ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const departamentoEdit()),
+              );
+            },
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Lógica para adicionar algo aqui
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const departamentoEdit()),
+          );
         },
-        child: const Icon(Icons.add),
         backgroundColor: Colors.blue,
+        child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       drawer: DrawerPage.getWidget(context),

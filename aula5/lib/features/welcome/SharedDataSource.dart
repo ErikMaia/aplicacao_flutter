@@ -14,6 +14,5 @@ class SharedDataSource {
       required String valor}) async {
     await sharedPreferences.setString('Nome', Nome);
     await sharedPreferences.setString('Descricao', Descricao);
-    await sharedPreferences.setString('valor', valor);
   }
 }
