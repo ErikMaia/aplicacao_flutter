@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'features/produtos/crud/crud.dart';
+import 'pages/departamento/departamento_create.dart';
 import 'pages/departamento/departamento_list.dart';
-import 'pages/funcionario/funcionarios_page.dart';
+import 'pages/empresa/empresa_list.dart';
+import 'pages/funcionario/funcionario_list.dart';
+import 'pages/projeto/projeto_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,9 +19,11 @@ class MyApp extends StatelessWidget {
       title: 'Pfe',
       routes: {
 
-        '/': (context) => const DepartamentoList(),
+        '/': (context) => const DepartamentoCreate(),
         '/departamento': (context) => const DepartamentoList(),
-        '/funcionario': (context) => const FuncionarioPage(),
+        '/funcionario': (context) => const FuncionarioList(),
+        '/empresa': (context) => const EmpresaList(),
+        '/projeto': (context) => const ProjetoList(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

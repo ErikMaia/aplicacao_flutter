@@ -23,6 +23,18 @@ class DrawerPage {
               Navigator.of(context).pushNamed('/funcionario');
             },
           ),
+          ListTile(
+            title: const Text('Empresa'),
+            onTap: () {
+              Navigator.of(context).pushNamed('/empresa');
+            },
+          ),
+          ListTile(
+            title: const Text('Projetos'),
+            onTap: () {
+              Navigator.of(context).pushNamed('/projeto');
+            },
+          ),
         ],
       ),
     );
