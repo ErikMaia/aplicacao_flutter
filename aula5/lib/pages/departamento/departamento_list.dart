@@ -11,14 +11,13 @@ class DepartamentoList extends StatefulWidget {
 }
 
 class _DepartamentoListState extends State<DepartamentoList> {
-  final List<Map<String, String>> _departamentos = [
-    {'nome': 'Nome', 'descricao': 'Descricao'},
-    {'nome': 'Nome', 'descricao': 'Descricao'},
-  ];
+  List<Departamento> _departamentos = [];
 
   void getDepartamentos() async {
-    var notesFuture = Departamento.readAll();
-    await notesFuture.then((data) {});
+    var departamentos = await Departamento.readAll();
+    setState(() {
+      _departamentos = departamentos;
+    });
   }
 
   @override
@@ -41,17 +40,20 @@ class _DepartamentoListState extends State<DepartamentoList> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(_departamentos[index]['nome'] ?? ''),
+                Text(_departamentos[index].nome ?? ''),
                 const SizedBox(width: 5),
-                Text(_departamentos[index]['descricao'] ?? ''),
+                Text(_departamentos[index].descricao ?? ''),
               ],
             ),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const DepartamentoEdit()),
-              );
+                  builder: (context) => DepartamentoEdit(),
+                ),
+              ).then((value) {
+                getDepartamentos();
+              });
             },
           );
         },
@@ -60,8 +62,12 @@ class _DepartamentoListState extends State<DepartamentoList> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const DepartamentoEdit()),
-          );
+            MaterialPageRoute(
+              builder: (context) => DepartamentoEdit(),
+            ),
+          ).then((value) {
+            getDepartamentos();
+          });
         },
         backgroundColor: Colors.blue,
         child: const Icon(Icons.add),
