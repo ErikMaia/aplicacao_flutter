@@ -1,47 +1,65 @@
+import 'package:aula5/models/departamento.dart';
 import 'package:flutter/material.dart';
 
 class DepartamentoEdit extends StatefulWidget {
-  const DepartamentoEdit({super.key});
+  final Departamento departamento;
+
+  const DepartamentoEdit({Key? key, required this.departamento})
+      : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _ProdutoCRUDPageState createState() => _ProdutoCRUDPageState();
+  _DepartamentoEditState createState() => _DepartamentoEditState();
 }
 
-class _ProdutoCRUDPageState extends State<DepartamentoEdit> {
+class _DepartamentoEditState extends State<DepartamentoEdit> {
+  final _nomeController = TextEditingController();
+  final _descricaoController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _nomeController.text = widget.departamento.nome!;
+    _descricaoController.text = widget.departamento.descricao!;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Criar departamento')),
-        body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      appBar: AppBar(title: const Text('Editar Departamento')),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
               children: [
-                Column(
-                  children: [
-                    TextFormField(
-                      decoration: const InputDecoration(labelText: 'Nome'),
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(labelText: 'Endereco'),
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(labelText: 'Telefone'),
-                    ),
-                  ],
+                TextFormField(
+                  controller: _nomeController,
+                  decoration: const InputDecoration(labelText: 'Nome'),
                 ),
-                ElevatedButton(
-                    onPressed: () async {
-                      // var sp = await SharedPreferences.getInstance();
-                      // var ds = SharedDataSource(
-                      //   sharedPreferences: sp,
-                      // );
-
-                      // ds.register(Nome: 'Nome', Descricao: 'Descricao');
-                    },
-                    child: const Text('Gravar'))
+                TextFormField(
+                  controller: _descricaoController,
+                  decoration: const InputDecoration(labelText: 'Descricao'),
+                ),
               ],
-            )));
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                final departamento = Departamento(
+                  id: widget.departamento.id,
+                  nome: _nomeController.text,
+                  descricao: _descricaoController.text,
+                );
+
+                // Aqui deve ser realizada a atualização do departamento no banco de dados
+
+                Navigator.of(context).pop();
+              },
+              child: const Text('Gravar'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

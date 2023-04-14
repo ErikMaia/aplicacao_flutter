@@ -1,6 +1,8 @@
 import 'package:aula5/pages/empresa/empresa_edit.dart';
+import 'package:aula5/pages/empresa/empresa_new.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/empresa.dart';
 import '../../widgets/drawer_pages.dart';
 
 class EmpresaList extends StatefulWidget {
@@ -11,9 +13,20 @@ class EmpresaList extends StatefulWidget {
 }
 
 class _EmpresaListState extends State<EmpresaList> {
-  final List<Map<String, String>> _empresas = [
-    {'nome': 'Nome', 'endereco': 'endereco', 'telefone': 'Telefone'},
-  ];
+  List<Empresa> _empresas = [];
+
+  void getEmpreasas() async {
+    var empresas = await Empresa.readAll();
+    setState(() {
+      _empresas = empresas;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getEmpreasas();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +38,24 @@ class _EmpresaListState extends State<EmpresaList> {
       body: ListView.builder(
         itemCount: _empresas.length,
         itemBuilder: (BuildContext context, int index) {
+          final empresa = _empresas[index];
+
           return ListTile(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(_empresas[index]['nome'] ?? ''),
+                Text(empresa.nome),
                 const SizedBox(width: 5),
-                Text(_empresas[index]['endereco'] ?? ''),
+                Text(empresa.endereco),
                 const SizedBox(width: 5),
-                Text(_empresas[index]['telefone'] ?? ''),
+                Text(empresa.telefone),
               ],
             ),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const EmpresaEdit()),
+                MaterialPageRoute(
+                    builder: (context) => EmpresaEdit(empresa: empresa)),
               );
             },
           );
@@ -49,7 +65,7 @@ class _EmpresaListState extends State<EmpresaList> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const EmpresaEdit()),
+            MaterialPageRoute(builder: (context) => const EmpresaNew()),
           );
         },
         backgroundColor: Colors.blue,

@@ -39,6 +39,8 @@ class _SettingsPageState extends State<SettingsPage> {
     setState(() {
       _isDarkModeEnabled = _prefs.getBool('darkModeEnabled') ?? false;
     });
+
+    widget.load();
   }
 
   @override

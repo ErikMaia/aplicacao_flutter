@@ -1,7 +1,8 @@
+import 'package:aula5/pages/cliente/cliente_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:aula5/models/cliente.dart';
 import '../../widgets/drawer_pages.dart';
-import 'cliente_edit.dart';
+import 'cliente_new.dart';
 
 class ClienteList extends StatefulWidget {
   const ClienteList({Key? key}) : super(key: key);
@@ -54,7 +55,8 @@ class _ClienteListState extends State<ClienteList> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ClienteEdit()),
+                MaterialPageRoute(
+                    builder: (context) => ClienteEdit(cliente: cliente)),
               ).then((value) {
                 if (value != null && value) {
                   _loadClientes();
@@ -68,7 +70,7 @@ class _ClienteListState extends State<ClienteList> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const ClienteEdit()),
+            MaterialPageRoute(builder: (context) => const ClienteNew()),
           ).then((value) {
             if (value != null && value) {
               _loadClientes();

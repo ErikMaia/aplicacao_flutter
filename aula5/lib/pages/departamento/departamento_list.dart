@@ -1,3 +1,4 @@
+import 'package:aula5/pages/departamento/departamento_new.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/drawer_pages.dart';
 import 'departamento_edit.dart';
@@ -36,20 +37,22 @@ class _DepartamentoListState extends State<DepartamentoList> {
       body: ListView.builder(
         itemCount: _departamentos.length,
         itemBuilder: (BuildContext context, int index) {
+          final departamento = _departamentos[index];
           return ListTile(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(_departamentos[index].nome ?? ''),
+                Text(departamento.nome ?? ''),
                 const SizedBox(width: 5),
-                Text(_departamentos[index].descricao ?? ''),
+                Text(departamento.descricao ?? ''),
               ],
             ),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DepartamentoEdit(),
+                  builder: (context) =>
+                      DepartamentoEdit(departamento: departamento),
                 ),
               ).then((value) {
                 getDepartamentos();
@@ -63,7 +66,7 @@ class _DepartamentoListState extends State<DepartamentoList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DepartamentoEdit(),
+              builder: (context) => DepartamentoNew(),
             ),
           ).then((value) {
             getDepartamentos();

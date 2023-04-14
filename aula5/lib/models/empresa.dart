@@ -38,12 +38,12 @@ class Empresa {
     ''');
   }
 
-  static Future<int> create(Empresa empresa, Database db) async {
+  static Future<int> create(Empresa empresa) async {
     final db = await openDb();
     return await db.insert(table, empresa.toMap());
   }
 
-  static Future<List<Empresa>> readAll(Database db) async {
+  static Future<List<Empresa>> readAll() async {
     final db = await openDb();
     final List<Map<String, dynamic>> maps = await db.query(table);
     return List.generate(maps.length, (i) {
@@ -51,7 +51,7 @@ class Empresa {
     });
   }
 
-  static Future<Empresa?> read(int id, Database db) async {
+  static Future<Empresa?> read(int id) async {
     final db = await openDb();
     final List<Map<String, dynamic>> maps =
         await db.query(table, where: 'id = ?', whereArgs: [id], limit: 1);
@@ -62,13 +62,17 @@ class Empresa {
     }
   }
 
-  static Future<int> update(Empresa empresa, Database db) async {
+  static Future<int> update(
+    Empresa empresa,
+  ) async {
     final db = await openDb();
     return await db.update(table, empresa.toMap(),
         where: 'id = ?', whereArgs: [empresa.id]);
   }
 
-  static Future<int> delete(int id, Database db) async {
+  static Future<int> delete(
+    int id,
+  ) async {
     final db = await openDb();
     return await db.delete(table, where: 'id = ?', whereArgs: [id]);
   }
