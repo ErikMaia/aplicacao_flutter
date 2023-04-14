@@ -1,51 +1,78 @@
+import 'package:aula5/models/tarefa.dart';
 import 'package:flutter/material.dart';
 
 class TarefaEdit extends StatefulWidget {
-  const TarefaEdit({super.key});
+  final Tarefa tarefa;
+
+  const TarefaEdit({Key? key, required this.tarefa}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _TarefaPageState createState() => _TarefaPageState();
+  _TarefaListState createState() => _TarefaListState();
 }
 
-class _TarefaPageState extends State<TarefaEdit> {
+class _TarefaListState extends State<TarefaEdit> {
+  final _descricaoController = TextEditingController();
+  final _dataInicialController = TextEditingController();
+  final _dataFinalController = TextEditingController();
+  final _statusController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _descricaoController.text = widget.tarefa.descricao;
+    _dataInicialController.text = widget.tarefa.dataInicio as String;
+    _dataFinalController.text = widget.tarefa.status;
+    _statusController.text = widget.tarefa.status;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Criar Tarefa')),
-        body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      appBar: AppBar(title: const Text('Editar Tarefa')),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
               children: [
-                Column(
-                  children: [
-                    TextFormField(
-                      decoration: const InputDecoration(labelText: 'Descricao'),
-                    ),
-                    TextFormField(
-                      decoration:
-                          const InputDecoration(labelText: 'Data Inicio'),
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(labelText: 'Data Fim'),
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(labelText: 'Status'),
-                    ),
-                  ],
+                TextFormField(
+                  controller: _descricaoController,
+                  decoration: const InputDecoration(labelText: 'Descricao'),
                 ),
-                ElevatedButton(
-                    onPressed: () async {
-                      // var sp = await SharedPreferences.getInstance();
-                      // var ds = SharedDataSource(
-                      //   sharedPreferences: sp,
-                      // );
-
-                      // ds.register(Nome: 'Nome', Descricao: 'Descricao');
-                    },
-                    child: const Text('Gravar'))
+                TextFormField(
+                  controller: _dataInicialController,
+                  decoration: const InputDecoration(labelText: 'Data Inicial'),
+                ),
+                TextFormField(
+                  controller: _dataFinalController,
+                  decoration: const InputDecoration(labelText: 'Data final'),
+                ),
+                TextFormField(
+                  controller: _statusController,
+                  decoration: const InputDecoration(labelText: 'Status'),
+                ),
               ],
-            )));
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                // final tarefa = Tarefa(
+                //   id: widget.tarefa.id,
+                //   descricao: _descricaoController.text,
+                //   dataInicio: _dataInicialController.text,
+                //   dataTermino: _dataFinalController.text,
+                // );
+
+                // Aqui deve ser realizada a atualização do cliente no banco de dados
+
+                Navigator.of(context).pop();
+              },
+              child: const Text('Gravar'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

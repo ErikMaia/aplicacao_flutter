@@ -6,10 +6,7 @@ class DrawerPage {
       child: ListView(
         children: [
           const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: Text(''),
+            child: Text('Tarefa #01'),
           ),
           ListTile(
             title: const Text('Funcionario'),

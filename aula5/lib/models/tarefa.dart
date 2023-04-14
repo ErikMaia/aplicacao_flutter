@@ -10,6 +10,7 @@ class Tarefa {
   String descricao;
   DateTime dataInicio;
   DateTime dataTermino;
+  String status;
   Funcionario funcionario;
   Cliente cliente;
   Departamento? departamento;
@@ -20,6 +21,7 @@ class Tarefa {
     required this.descricao,
     required this.dataInicio,
     required this.dataTermino,
+    required this.status,
     required this.funcionario,
     required this.cliente,
     this.departamento,
@@ -46,6 +48,7 @@ class Tarefa {
         descricao TEXT,
         data_inicio INTEGER,
         data_termino INTEGER,
+        status TEXT,
         funcionario_id INTEGER,
         cliente_id INTEGER,
         departamento_id INTEGER,
@@ -58,12 +61,14 @@ class Tarefa {
     ''');
   }
 
-  static Future<int> create(Tarefa tarefa, Database db) async {
+  static Future<int> create(
+    Tarefa tarefa,
+  ) async {
     final db = await openDb();
     return await db.insert(table, tarefa.toMap());
   }
 
-  static Future<List<Tarefa>> readAll(Database db) async {
+  static Future<List<Tarefa>> readAll() async {
     final db = await openDb();
     final List<Map<String, dynamic>> maps = await db.query(table);
     return List.generate(maps.length, (i) {
@@ -71,7 +76,9 @@ class Tarefa {
     });
   }
 
-  static Future<Tarefa?> read(int id, Database db) async {
+  static Future<Tarefa?> read(
+    int id,
+  ) async {
     final db = await openDb();
     final List<Map<String, dynamic>> maps =
         await db.query(table, where: 'id = ?', whereArgs: [id], limit: 1);
@@ -82,13 +89,17 @@ class Tarefa {
     }
   }
 
-  static Future<int> update(Tarefa tarefa, Database db) async {
+  static Future<int> update(
+    Tarefa tarefa,
+  ) async {
     final db = await openDb();
     return await db
         .update(table, tarefa.toMap(), where: 'id = ?', whereArgs: [tarefa.id]);
   }
 
-  static Future<int> delete(int id, Database db) async {
+  static Future<int> delete(
+    int id,
+  ) async {
     final db = await openDb();
     return await db.delete(table, where: 'id = ?', whereArgs: [id]);
   }
@@ -99,6 +110,7 @@ class Tarefa {
       'descricao': descricao,
       'data_inicio': dataInicio.millisecondsSinceEpoch,
       'data_termino': dataTermino.millisecondsSinceEpoch,
+      'status': status,
       'funcionario_id': funcionario.id,
       'cliente_id': cliente.id,
       'departamento_id': departamento?.id,
@@ -110,6 +122,7 @@ class Tarefa {
     return Tarefa(
       id: map['id'],
       descricao: map['descricao'],
+      status: map['status'],
       dataInicio: DateTime.fromMillisecondsSinceEpoch(map['data_inicio']),
       dataTermino: DateTime.fromMillisecondsSinceEpoch(map['data_termino']),
       funcionario:

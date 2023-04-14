@@ -1,4 +1,6 @@
+import 'package:aula5/pages/tarefa/tarefa_new.dart';
 import 'package:flutter/material.dart';
+import '../../models/tarefa.dart';
 import '../../widgets/drawer_pages.dart';
 import 'tarefa_edit.dart';
 
@@ -10,20 +12,20 @@ class TarefaList extends StatefulWidget {
 }
 
 class _TarefaListState extends State<TarefaList> {
-  final List<Map<String, String>> _tarefas = [
-    {
-      'descricao': 'descricao',
-      'dataInicio': 'dataInicio',
-      'dataFim': 'dataFim',
-      'status': 'status'
-    },
-    {
-      'descricao': 'descricao',
-      'dataInicio': 'dataInicio',
-      'dataFim': 'dataFim',
-      'status': 'status'
-    },
-  ];
+  List<Tarefa> _tarefas = [];
+
+  void getTarefas() async {
+    var tarefas = await Tarefa.readAll();
+    setState(() {
+      _tarefas = tarefas;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getTarefas();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,23 +37,27 @@ class _TarefaListState extends State<TarefaList> {
       body: ListView.builder(
         itemCount: _tarefas.length,
         itemBuilder: (BuildContext context, int index) {
+          final tarefa = _tarefas[index];
+
           return ListTile(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(_tarefas[index]['descricao'] ?? ''),
+                Text(tarefa.descricao),
                 const SizedBox(width: 5),
-                Text(_tarefas[index]['dataInicio'] ?? ''),
+                Text(tarefa.dataInicio as String),
                 const SizedBox(width: 5),
-                Text(_tarefas[index]['dataFim'] ?? ''),
+                Text(tarefa.dataTermino as String),
                 const SizedBox(width: 5),
-                Text(_tarefas[index]['status'] ?? ''),
+                Text(tarefa.status),
+                const SizedBox(width: 5),
               ],
             ),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const TarefaEdit()),
+                MaterialPageRoute(
+                    builder: (context) => TarefaEdit(tarefa: tarefa)),
               );
             },
           );
@@ -61,7 +67,7 @@ class _TarefaListState extends State<TarefaList> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const TarefaEdit()),
+            MaterialPageRoute(builder: (context) => const TarefaNew()),
           );
         },
         backgroundColor: Colors.blue,
