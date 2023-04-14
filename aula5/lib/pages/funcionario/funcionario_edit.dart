@@ -9,7 +9,7 @@ class FuncionarioEdit extends StatefulWidget {
 }
 
 class _FuncionarioEditState extends State<FuncionarioEdit> {
-  final List<String> _formValues = ['', '',''];
+  final List<String> _formValues = ['', '','',''];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,15 +34,21 @@ class _FuncionarioEditState extends State<FuncionarioEdit> {
               },
             ),
             TextFormField(
-              decoration: const InputDecoration(labelText: 'Telefone'),
+              decoration: const InputDecoration(labelText: 'Sobrenome'),
               onChanged: (String? value) {
                 _formValues[1] = value ?? '';
               },
             ),
             TextFormField(
-              decoration: const InputDecoration(labelText: 'Endereço'),
+              decoration: const InputDecoration(labelText: 'Telefone'),
               onChanged: (String? value) {
                 _formValues[2] = value ?? '';
+              },
+            ),
+            TextFormField(
+              decoration: const InputDecoration(labelText: 'Endereço'),
+              onChanged: (String? value) {
+                _formValues[3] = value ?? '';
               },
             ),
             Row(
