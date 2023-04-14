@@ -40,12 +40,14 @@ class Projeto {
     ''');
   }
 
-  static Future<int> create(Projeto projeto, Database db) async {
+  static Future<int> create(
+    Projeto projeto,
+  ) async {
     final db = await openDb();
     return await db.insert(table, projeto.toMap());
   }
 
-  static Future<List<Projeto>> readAll(Database db) async {
+  static Future<List<Projeto>> readAll() async {
     final db = await openDb();
     final List<Map<String, dynamic>> maps = await db.query(table);
     return List.generate(maps.length, (i) {
@@ -53,7 +55,9 @@ class Projeto {
     });
   }
 
-  static Future<Projeto?> read(int id, Database db) async {
+  static Future<Projeto?> read(
+    int id,
+  ) async {
     final db = await openDb();
     final List<Map<String, dynamic>> maps =
         await db.query(table, where: 'id = ?', whereArgs: [id], limit: 1);
@@ -64,13 +68,17 @@ class Projeto {
     }
   }
 
-  static Future<int> update(Projeto projeto, Database db) async {
+  static Future<int> update(
+    Projeto projeto,
+  ) async {
     final db = await openDb();
     return await db.update(table, projeto.toMap(),
         where: 'id = ?', whereArgs: [projeto.id]);
   }
 
-  static Future<int> delete(int id, Database db) async {
+  static Future<int> delete(
+    int id,
+  ) async {
     final db = await openDb();
     return await db.delete(table, where: 'id = ?', whereArgs: [id]);
   }

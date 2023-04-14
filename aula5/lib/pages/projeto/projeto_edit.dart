@@ -1,51 +1,78 @@
+import 'package:aula5/models/projeto.dart';
 import 'package:flutter/material.dart';
 
 class ProjetoEdit extends StatefulWidget {
-  const ProjetoEdit({super.key});
+  final Projeto projeto;
+
+  const ProjetoEdit({Key? key, required this.projeto}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _ProjetoPageState createState() => _ProjetoPageState();
+  _ProjetoListState createState() => _ProjetoListState();
 }
 
-class _ProjetoPageState extends State<ProjetoEdit> {
+class _ProjetoListState extends State<ProjetoEdit> {
+  final _nomeController = TextEditingController();
+  final _descricaoController = TextEditingController();
+  final _dataInicialController = TextEditingController();
+  final _dataFinalController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _nomeController.text = widget.projeto.nome!;
+    _descricaoController.text = widget.projeto.descricao!;
+    _dataInicialController.text = widget.projeto.dataInicio!;
+    _dataFinalController.text = widget.projeto.dataTermino!;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Criar Projeto')),
-        body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      appBar: AppBar(title: const Text('Editar projeto')),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
               children: [
-                Column(
-                  children: [
-                    TextFormField(
-                      decoration: const InputDecoration(labelText: 'Nome'),
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(labelText: 'Descricao'),
-                    ),
-                    TextFormField(
-                      decoration:
-                          const InputDecoration(labelText: 'Data Inicio'),
-                    ),
-                    TextFormField(
-                      decoration: const InputDecoration(labelText: 'Data Fim'),
-                    ),
-                  ],
+                TextFormField(
+                  controller: _nomeController,
+                  decoration: const InputDecoration(labelText: 'Nome'),
                 ),
-                ElevatedButton(
-                    onPressed: () async {
-                      // var sp = await SharedPreferences.getInstance();
-                      // var ds = SharedDataSource(
-                      //   sharedPreferences: sp,
-                      // );
-
-                      // ds.register(Nome: 'Nome', Descricao: 'Descricao');
-                    },
-                    child: const Text('Gravar'))
+                TextFormField(
+                  controller: _descricaoController,
+                  decoration: const InputDecoration(labelText: 'Descricao'),
+                ),
+                TextFormField(
+                  controller: _dataInicialController,
+                  decoration: const InputDecoration(labelText: 'Data Inicial'),
+                ),
+                TextFormField(
+                  controller: _dataFinalController,
+                  decoration: const InputDecoration(labelText: 'Data final'),
+                ),
               ],
-            )));
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                final projeto = Projeto(
+                  id: widget.projeto.id,
+                  nome: _nomeController.text,
+                  descricao: _descricaoController.text,
+                  dataInicio: _dataInicialController.text,
+                  dataTermino: _dataFinalController.text,
+                );
+
+                // Aqui deve ser realizada a atualização do cliente no banco de dados
+
+                Navigator.of(context).pop();
+              },
+              child: const Text('Gravar'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

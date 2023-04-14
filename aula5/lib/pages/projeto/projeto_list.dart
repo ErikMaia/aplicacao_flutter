@@ -1,6 +1,8 @@
 import 'package:aula5/pages/projeto/projeto_edit.dart';
+import 'package:aula5/pages/projeto/projeto_new.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/projeto.dart';
 import '../../widgets/drawer_pages.dart';
 
 class ProjetoList extends StatefulWidget {
@@ -11,48 +13,52 @@ class ProjetoList extends StatefulWidget {
 }
 
 class _ProjetoListState extends State<ProjetoList> {
-  final List<Map<String, String>> _projetos = [
-    {
-      'nome': 'Nome',
-      'descricao': 'descricao',
-      'dataInicio': 'dataInicio',
-      'dataFim': 'dataFim'
-    },
-    {
-      'nome': 'Nome',
-      'descricao': 'descricao',
-      'dataInicio': 'dataInicio',
-      'dataFim': 'dataFim'
-    },
-  ];
+  List<Projeto> _projetos = [];
+
+  void getProjetos() async {
+    var projetos = await Projeto.readAll();
+    setState(() {
+      _projetos = projetos;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getProjetos();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Projeto'),
+        title: const Text('Projetos'),
         centerTitle: true,
       ),
       body: ListView.builder(
         itemCount: _projetos.length,
         itemBuilder: (BuildContext context, int index) {
+          final projeto = _projetos[index];
+
           return ListTile(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(_projetos[index]['nome'] ?? ''),
+                Text(projeto.nome ?? ''),
                 const SizedBox(width: 5),
-                Text(_projetos[index]['descricao'] ?? ''),
+                Text(projeto.descricao ?? ''),
                 const SizedBox(width: 5),
-                Text(_projetos[index]['dataInicio'] ?? ''),
+                Text(projeto.dataInicio ?? ''),
                 const SizedBox(width: 5),
-                Text(_projetos[index]['dataFim'] ?? ''),
+                Text(projeto.dataTermino ?? ''),
+                const SizedBox(width: 5),
               ],
             ),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ProjetoEdit()),
+                MaterialPageRoute(
+                    builder: (context) => ProjetoEdit(projeto: projeto)),
               );
             },
           );
@@ -62,7 +68,7 @@ class _ProjetoListState extends State<ProjetoList> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const ProjetoEdit()),
+            MaterialPageRoute(builder: (context) => const ProjetoNew()),
           );
         },
         backgroundColor: Colors.blue,
