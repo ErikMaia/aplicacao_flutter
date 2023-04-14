@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/drawer_pages.dart';
+import '../../widgets/drawer_pages.dart';
 
 class FuncionarioPage extends StatelessWidget {
   const FuncionarioPage({super.key});
@@ -8,7 +8,7 @@ class FuncionarioPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Departamentos')),
+      appBar: AppBar(title: const Text('Funcionario')),
 
       body: Container(),
       drawer: DrawerPage.getWidget(context),
