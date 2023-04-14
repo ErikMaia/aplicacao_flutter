@@ -1,10 +1,11 @@
-import 'package:aula5/pages/cliente/cliente_list.dart';
-import 'package:aula5/pages/configuracoes/configuracoes.dart';
-import 'package:aula5/pages/empresa/empresa_list.dart';
-import 'package:aula5/pages/projeto/projeto_list.dart';
-import 'package:aula5/pages/tarefa/tarefa_list.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'pages/cliente/cliente_list.dart';
+import 'pages/configuracoes/configuracoes.dart';
+import 'pages/empresa/empresa_list.dart';
+import 'pages/projeto/projeto_list.dart';
+import 'pages/tarefa/tarefa_list.dart';
 import 'pages/departamento/departamento_list.dart';
 import 'pages/funcionario/funcionarios_page.dart';
 
@@ -12,8 +13,28 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _isDarkModeEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDarkModeEnabled();
+  }
+
+  void _loadDarkModeEnabled() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isDarkModeEnabled = prefs.getBool('darkModeEnabled') ?? false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +48,9 @@ class MyApp extends StatelessWidget {
         '/cliente': (context) => ClienteList(),
         '/tarefa': (context) => TarefaList(),
         '/empresa': (context) => EmpresaList(),
-        '/configuracao': (context) => const SettingsPage(),
+        '/configuracao': (context) => SettingsPage(),
       },
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      //home: ProdutoCRUDPage()43222fc051d8ac7ada9a209f6dcc02a161cd9d68
+      theme: _isDarkModeEnabled ? ThemeData.dark() : ThemeData.light(),
     );
   }
 }
