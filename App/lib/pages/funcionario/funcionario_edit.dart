@@ -26,6 +26,10 @@ class _FuncionarioPageState extends State<FuncionarioEdit> {
     _telefoneController.text = widget.funcionario.telefone!;
   }
 
+  Future<void> _salvar(data) async {
+    final retorno = await Funcionario.update(data);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,9 +69,7 @@ class _FuncionarioPageState extends State<FuncionarioEdit> {
                   telefone: _telefoneController.text,
                 );
 
-                // Aqui deve ser realizada a atualização do departamento no banco de dados
-
-                Navigator.of(context).pop();
+                _salvar(funcionario);
               },
               child: const Text('Gravar'),
             ),

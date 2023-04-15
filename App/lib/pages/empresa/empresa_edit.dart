@@ -23,6 +23,10 @@ class _EmpresaPageState extends State<EmpresaEdit> {
     _telefoneController.text = widget.empresa.telefone;
   }
 
+  Future<void> _salvarEmpresa(data) async {
+    final retorno = await Empresa.update(data);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,9 +61,7 @@ class _EmpresaPageState extends State<EmpresaEdit> {
                   telefone: _telefoneController.text,
                 );
 
-                // Aqui deve ser realizada a atualização do departamento no banco de dados
-
-                Navigator.of(context).pop();
+                _salvarEmpresa(empresa);
               },
               child: const Text('Gravar'),
             ),

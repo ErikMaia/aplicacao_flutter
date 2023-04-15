@@ -82,11 +82,7 @@ class _ClienteNewState extends State<ClienteNew> {
                       telefone: _telefoneController.text,
                     );
 
-                    final db = await Cliente.openDb();
-                    await Cliente.create(cliente, db);
-                    await db.close();
-
-                    Navigator.pop(context);
+                    await Cliente.create(cliente);
                   }
                 },
                 child: const Text('Gravar'),

@@ -25,6 +25,10 @@ class _ProjetoListState extends State<ProjetoEdit> {
     _dataFinalController.text = widget.projeto.dataTermino!;
   }
 
+  Future<void> _salvar(data) async {
+    final retorno = await Projeto.update(data);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,9 +68,7 @@ class _ProjetoListState extends State<ProjetoEdit> {
                   dataTermino: _dataFinalController.text,
                 );
 
-                // Aqui deve ser realizada a atualização do cliente no banco de dados
-
-                Navigator.of(context).pop();
+                _salvar(projeto);
               },
               child: const Text('Gravar'),
             ),

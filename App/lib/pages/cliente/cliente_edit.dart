@@ -25,6 +25,10 @@ class _ClienteEditState extends State<ClienteEdit> {
     _telefoneController.text = widget.cliente.telefone!;
   }
 
+  Future<void> _salvar(data) async {
+    final retorno = await Cliente.update(data);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,9 +68,7 @@ class _ClienteEditState extends State<ClienteEdit> {
                   telefone: _telefoneController.text,
                 );
 
-                // Aqui deve ser realizada a atualização do cliente no banco de dados
-
-                Navigator.of(context).pop();
+                _salvar(cliente);
               },
               child: const Text('Gravar'),
             ),

@@ -22,7 +22,7 @@ class _ClienteListState extends State<ClienteList> {
 
   Future<void> _loadClientes() async {
     final db = await Cliente.openDb();
-    final List<Cliente> clientes = await Cliente.readAll(db);
+    final List<Cliente> clientes = await Cliente.readAll();
     setState(() {
       _clientes = clientes;
     });

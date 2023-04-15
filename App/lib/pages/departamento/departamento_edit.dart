@@ -22,6 +22,10 @@ class _DepartamentoEditState extends State<DepartamentoEdit> {
     _descricaoController.text = widget.departamento.descricao!;
   }
 
+  Future<void> _salvarDepartamento(depar) async {
+    final retorno = await depar.update(depar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,9 +55,7 @@ class _DepartamentoEditState extends State<DepartamentoEdit> {
                   descricao: _descricaoController.text,
                 );
 
-                // Aqui deve ser realizada a atualização do departamento no banco de dados
-
-                Navigator.of(context).pop();
+                _salvarDepartamento(departamento);
               },
               child: const Text('Gravar'),
             ),

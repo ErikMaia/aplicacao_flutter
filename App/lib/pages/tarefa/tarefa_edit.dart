@@ -26,6 +26,10 @@ class _TarefaListState extends State<TarefaEdit> {
     _statusController.text = widget.tarefa.status;
   }
 
+  Future<void> _salvar(data) async {
+    final retorno = await Tarefa.update(data);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,9 +68,7 @@ class _TarefaListState extends State<TarefaEdit> {
                 //   dataTermino: _dataFinalController.text,
                 // );
 
-                // Aqui deve ser realizada a atualização do cliente no banco de dados
-
-                Navigator.of(context).pop();
+                // _salvar(tarefa);
               },
               child: const Text('Gravar'),
             ),
