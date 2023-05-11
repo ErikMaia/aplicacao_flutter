@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+//fabiano
 import '../departamento/presentation/list.dart';
-import '../pages/cliente/cliente_list.dart';
-import '../pages/empresa/empresa_list.dart';
 import '../funcionario/presentation/list.dart';
+import '../pages/cliente/cliente_list.dart';
+
+// falta fazer
+import '../pages/empresa/empresa_list.dart';
 import '../pages/projeto/projeto_list.dart';
 import '../pages/tarefa/tarefa_list.dart';
+
+//nao mecher
 import '../settings/presentation/configuracoes.dart';
 import '../shared/functions/dark_mode_control.dart';
 
