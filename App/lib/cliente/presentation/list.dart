@@ -1,6 +1,7 @@
+import 'package:aula5/cliente/data/model/cliente.dart';
 import 'package:aula5/funcionario/data/datasources/delete.dart';
 import 'package:aula5/funcionario/data/model/funcionario.dart';
-import 'package:aula5/models/funcionario.dart';
+import 'package:aula5/models/cliente.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -9,48 +10,48 @@ import '../../widgets/drawer_pages.dart';
 import '../data/datasources/list.dart';
 import 'crud/crud.dart';
 
-class FuncionarioList extends StatefulWidget {
-  const FuncionarioList({super.key});
+class ClienteList extends StatefulWidget {
+  const ClienteList({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _FuncionarioPageState createState() => _FuncionarioPageState();
+  _ClientePageState createState() => _ClientePageState();
 }
 
-class _FuncionarioPageState extends State<FuncionarioList> {
+class _ClientePageState extends State<ClienteList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.indigo,
       appBar: AppBar(
-        title: const Text('Funcionarios'),
+        title: const Text('Clientes'),
         centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 2),
-        child: FutureBuilder<List<FuncionarioModel>>(
-          future: FuncionarioListDataSource().getAll(),
+        child: FutureBuilder<List<ClienteModel>>(
+          future: ClienteListDataSource().getAll(),
           initialData: const [],
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
                 return const CircularProgressIndicator();
               case ConnectionState.done:
-                final List<FuncionarioModel> funcionarios = snapshot.data;
-                if (funcionarios.isEmpty) {
+                final List<ClienteModel> clientes = snapshot.data;
+                if (clientes.isEmpty) {
                   return const Center(
-                    child: Text('Ainda não foi registrado nenhum funcionário.'),
+                    child: Text('Ainda não foi registrado nenhum Cliente.'),
                   );
                 }
                 return ListView.builder(
-                  itemCount: funcionarios.length,
+                  itemCount: clientes.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final FuncionarioModel funcionario = funcionarios[index];
+                    final ClienteModel cliente = clientes[index];
 
                     return Dismissible(
                       onDismissed: (direction) {
                         FuncionarioDeleteDataSource()
-                            .delete(id: funcionario.funcionarioID!);
+                            .delete(id: cliente.clienteID!);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             showCloseIcon: true,
@@ -70,7 +71,7 @@ class _FuncionarioPageState extends State<FuncionarioList> {
                               return AlertDialog(
                                 title: const Text('Confirma remover?'),
                                 content: Text(
-                                    'Remover ${funcionario.nome.toUpperCase()}?'),
+                                    'Remover ${cliente.nome.toUpperCase()}?'),
                                 actions: [
                                   TextButton(
                                     onPressed: () {
@@ -113,17 +114,17 @@ class _FuncionarioPageState extends State<FuncionarioList> {
                       key: Key('$index'),
                       child: AppListTile(
                         isOdd: index.isOdd,
-                        title: funcionario.nomeCompleto,
-                        line01Text: funcionario.endereco,
-                        line02Text: funcionario.telefone,
+                        title: cliente.nomeCompleto,
+                        line01Text: cliente.endereco,
+                        line02Text: cliente.telefone,
                         imageURL:
                             'https://tudocommoda.com/wp-content/uploads/2022/01/pessoa-interessante.png',
                         onEditPressed: () async {
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => FuncionarioForm(
-                                funcionarioModel: funcionario,
+                              builder: (context) => ClienteForm(
+                                clienteModel: cliente,
                               ),
                             ),
                           );
@@ -145,7 +146,7 @@ class _FuncionarioPageState extends State<FuncionarioList> {
         onPressed: () async {
           await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const FuncionarioForm()),
+            MaterialPageRoute(builder: (context) => const ClienteForm()),
           );
           setState(() {});
         },

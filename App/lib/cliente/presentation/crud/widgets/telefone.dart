@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class TelefoneFuncionarioField extends StatelessWidget {
+class TelefoneClienteField extends StatelessWidget {
   final TextEditingController controller;
 
-  const TelefoneFuncionarioField({
+  const TelefoneClienteField({
     super.key,
     required this.controller,
   });

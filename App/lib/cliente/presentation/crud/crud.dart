@@ -1,4 +1,4 @@
-import 'package:aula5/funcionario/data/model/funcionario.dart';
+import 'package:aula5/cliente/data/model/cliente.dart';
 import 'package:aula5/funcionario/presentation/crud/widgets/botao_gravar.dart';
 import 'package:aula5/funcionario/presentation/crud/widgets/sobrenome.dart';
 import 'package:aula5/funcionario/presentation/crud/widgets/telefone.dart';
@@ -6,23 +6,26 @@ import 'package:flutter/material.dart';
 
 import '../../data/datasources/insert.dart';
 import '../../data/datasources/update.dart';
+import 'widgets/botao_gravar.dart';
 import 'widgets/endereco.dart';
 import 'widgets/nome.dart';
+import 'widgets/sobrenome.dart';
+import 'widgets/telefone.dart';
 
-class FuncionarioForm extends StatefulWidget {
-  final FuncionarioModel? funcionarioModel;
+class ClienteForm extends StatefulWidget {
+  final ClienteModel? clienteModel;
 
-  const FuncionarioForm({
+  const ClienteForm({
     Key? key,
-    this.funcionarioModel,
+    this.clienteModel,
   }) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _FuncionarioPageState createState() => _FuncionarioPageState();
+  _ClientePageState createState() => _ClientePageState();
 }
 
-class _FuncionarioPageState extends State<FuncionarioForm> {
+class _ClientePageState extends State<ClienteForm> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _nomeController = TextEditingController();
@@ -32,11 +35,11 @@ class _FuncionarioPageState extends State<FuncionarioForm> {
 
   @override
   void initState() {
-    if (widget.funcionarioModel != null) {
-      _nomeController.text = widget.funcionarioModel!.nome;
-      _sobrenomeController.text = widget.funcionarioModel!.sobrenome;
-      _enderecoController.text = widget.funcionarioModel!.endereco;
-      _telefoneController.text = widget.funcionarioModel!.telefone;
+    if (widget.clienteModel != null) {
+      _nomeController.text = widget.clienteModel!.nome;
+      _sobrenomeController.text = widget.clienteModel!.sobrenome;
+      _enderecoController.text = widget.clienteModel!.endereco;
+      _telefoneController.text = widget.clienteModel!.telefone;
     }
     super.initState();
   }
@@ -44,7 +47,7 @@ class _FuncionarioPageState extends State<FuncionarioForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Criar Funcionario')),
+      appBar: AppBar(title: const Text('Criar Cliente')),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Form(
@@ -55,13 +58,13 @@ class _FuncionarioPageState extends State<FuncionarioForm> {
             children: [
               Column(
                 children: [
-                  NomeFuncionarioField(controller: _nomeController),
-                  SobrenomeFuncionarioField(controller: _sobrenomeController),
-                  EnderecoFuncionarioField(
+                  NomeClienteField(controller: _nomeController),
+                  SobrenomeClienteField(controller: _sobrenomeController),
+                  EnderecoClienteField(
                     controller: _enderecoController,
                   ),
-                  TelefoneFuncionarioField(controller: _telefoneController),
-                  FuncionarioBotaoGravar(onPressedNovo: () {
+                  TelefoneClienteField(controller: _telefoneController),
+                  ClienteBotaoGravar(onPressedNovo: () {
                     _nomeController.clear();
                     _sobrenomeController.clear();
                     _enderecoController.clear();
@@ -70,9 +73,9 @@ class _FuncionarioPageState extends State<FuncionarioForm> {
                     FocusScope.of(context).unfocus();
 
                     if (_formKey.currentState!.validate()) {
-                      if (widget.funcionarioModel!.funcionarioID == null) {
-                        await FuncionarioInsertDataSource().insert(
-                          funcionario: FuncionarioModel(
+                      if (widget.clienteModel!.clienteID == null) {
+                        await ClienteInsertDataSource().insert(
+                          cliente: ClienteModel(
                             nome: _nomeController.text,
                             sobrenome: _sobrenomeController.text,
                             endereco: _enderecoController.text,
@@ -80,10 +83,9 @@ class _FuncionarioPageState extends State<FuncionarioForm> {
                           ),
                         );
                       } else {
-                        await FuncionarioUpdateDataSource().update(
-                          funcionarioModel: FuncionarioModel(
-                            funcionarioID:
-                                widget.funcionarioModel!.funcionarioID,
+                        await ClienteUpdateDataSource().update(
+                          clienteModel: ClienteModel(
+                            clienteID: widget.clienteModel!.clienteID,
                             nome: _nomeController.text,
                             sobrenome: _sobrenomeController.text,
                             endereco: _enderecoController.text,

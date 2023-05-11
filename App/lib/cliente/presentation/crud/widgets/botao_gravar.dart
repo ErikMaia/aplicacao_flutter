@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class FuncionarioBotaoGravar extends StatelessWidget {
+class ClienteBotaoGravar extends StatelessWidget {
   final Function() onPressed;
   final VoidCallback onPressedNovo;
 
-  const FuncionarioBotaoGravar({
+  const ClienteBotaoGravar({
     super.key,
     required this.onPressed,
     required this.onPressedNovo,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class EnderecoFuncionarioField extends StatelessWidget {
+class EnderecoClienteField extends StatelessWidget {
   final TextEditingController controller;
 
-  const EnderecoFuncionarioField({
+  const EnderecoClienteField({
     super.key,
     required this.controller,
   });

@@ -1,15 +1,14 @@
-import 'package:aula5/funcionario/data/model/funcionario.dart';
-
+import 'package:aula5/cliente/data/model/cliente.dart';
 import '../../../core/database/sqflite_database.dart';
 
-class FuncionarioUpdateDataSource {
-  Future<int> update({required FuncionarioModel funcionarioModel}) async {
+class ClienteUpdateDataSource {
+  Future<int> update({required ClienteModel clienteModel}) async {
     final db = await SqfliteDatabase.openDb();
     return await db.update(
-      funcionarioTableName,
-      funcionarioModel.toJson(),
-      where: 'funcionarioID = ?',
-      whereArgs: [funcionarioModel.funcionarioID],
+      clienteTableName,
+      clienteModel.toJson(),
+      where: 'clienteID = ?',
+      whereArgs: [clienteModel.clienteID],
     );
   }
 }

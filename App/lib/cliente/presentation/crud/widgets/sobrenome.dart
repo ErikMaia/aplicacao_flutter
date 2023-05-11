@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class SobrenomeFuncionarioField extends StatelessWidget {
+class SobrenomeClienteField extends StatelessWidget {
   final TextEditingController controller;
 
-  const SobrenomeFuncionarioField({super.key, required this.controller});
+  const SobrenomeClienteField({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
