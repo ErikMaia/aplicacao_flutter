@@ -1,5 +1,5 @@
+import 'package:aula5/departamento/data/datasources/delete.dart';
 import 'package:aula5/departamento/data/model/departamento.dart';
-import 'package:aula5/funcionario/data/model/funcionario.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -7,6 +7,7 @@ import '../../pages/departamento/departamento_new.dart';
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';
 import '../data/datasources/list.dart';
+import 'crud/crud.dart';
 
 class DepartamentoList extends StatefulWidget {
   const DepartamentoList({super.key});
@@ -47,15 +48,92 @@ class _FuncionarioPageState extends State<DepartamentoList> {
                   itemBuilder: (BuildContext context, int index) {
                     final DepartamentoModel departamento = departamentos[index];
 
-                    return AppListTile(
-                      isOdd: index.isOdd,
-                      title: departamento.nome,
-                      line01Text: departamento.descricao,
-                      imageURL:
-                          'https://unicardio.com.br/wp-content/uploads/2020/11/4-cuidados-com-o-coracao-das-criancas.png',
+                    return Dismissible(
+                      onDismissed: (direction) {
+                        DepartamentoDeleteDataSource()
+                            .delete(id: departamento.departamentoID!);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            showCloseIcon: true,
+                            closeIconColor: Colors.white,
+                            backgroundColor: Colors.indigo,
+                            content: Text(
+                              'Remoção bem sucedida',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        );
+                      },
+                      confirmDismiss: (direction) async {
+                        return showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text('Confirma remover?'),
+                                content: Text(
+                                    'Remover ${departamento.nome.toUpperCase()}?'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(false);
+                                    },
+                                    child: const Text('Cancelar'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(true);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              );
+                            });
+                      },
+                      direction: DismissDirection.endToStart,
+                      background: Container(
+                        color: Colors.red,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: const [
+                            Text(
+                              'Remover',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                              size: 32,
+                            ),
+                          ],
+                        ),
+                      ),
+                      key: Key('$index'),
+                      child: AppListTile(
+                        isOdd: index.isOdd,
+                        title: departamento.nome,
+                        line01Text: departamento.descricao,
+                        imageURL:
+                            'https://unicardio.com.br/wp-content/uploads/2020/11/4-cuidados-com-o-coracao-das-criancas.png',
+                        onEditPressed: () async {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DepartamentoForm(
+                                departamentoModel: departamento,
+                              ),
+                            ),
+                          );
+                          setState(() {});
+                        },
+                      ),
                     );
                   },
                 );
+
               default:
                 return Container(
                   color: Colors.red,
