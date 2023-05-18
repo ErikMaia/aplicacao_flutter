@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class dataInicioTarefaField extends StatelessWidget {
-  // TextEditingController dateInput = TextEditingController();
+class DataTarefaField extends StatelessWidget {
+  final TextEditingController dateInput;
+  final Function salvarDateInicio;
+  final String text;
 
-  final TextEditingController controller;
+  const DataTarefaField(
+      {super.key,
+      required this.dateInput,
+      required this.salvarDateInicio,
+      required this.text});
 
-  const dataInicioTarefaField({
-    super.key,
-    required this.controller,
-  });
+  void initState() {
+    dateInput.text = "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +23,15 @@ class dataInicioTarefaField extends StatelessWidget {
         height: MediaQuery.of(context).size.width / 3,
         child: Center(
             child: TextField(
-          controller: controller,
-          //editing controller of this TextField
-          decoration: const InputDecoration(
-              icon: Icon(Icons.calendar_today), //icon of text field
-              labelText: "Enter Date" //label text of field
-              ),
+          controller: dateInput,
+          decoration: InputDecoration(
+              icon: const Icon(Icons.calendar_today), labelText: text),
           readOnly: true,
-          //set it true, so that user will not able to edit text
           onTap: () async {
             DateTime? pickedDate = await showDatePicker(
                 context: context,
                 initialDate: DateTime.now(),
                 firstDate: DateTime(1950),
-                //DateTime.now() - not to allow to choose before today.
                 lastDate: DateTime(2100));
 
             if (pickedDate != null) {
@@ -39,8 +39,8 @@ class dataInicioTarefaField extends StatelessWidget {
                   pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
               String formattedDate =
                   DateFormat('yyyy-MM-dd').format(pickedDate);
-              print(
-                  formattedDate); //formatted date output using intl package =>  2021-03-16
+
+              salvarDateInicio(formattedDate);
             } else {}
           },
         )));

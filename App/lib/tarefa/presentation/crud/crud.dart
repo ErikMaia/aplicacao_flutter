@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../data/datasources/insert.dart';
 import '../../data/datasources/update.dart';
 
-import 'widgets/dataInicio.dart';
+import 'widgets/data.dart';
 import 'widgets/descricao.dart';
 import 'widgets/status.dart';
 
@@ -41,6 +41,18 @@ class _TarefaPageState extends State<TarefaForm> {
     super.initState();
   }
 
+  Future<void> _salvarDateInicio(formattedDate) async {
+    setState(() {
+      _dataInicioController.text = formattedDate;
+    });
+  }
+
+  Future<void> _salvarDateTermino(formattedDate) async {
+    setState(() {
+      _dataTerminoController.text = formattedDate;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +68,14 @@ class _TarefaPageState extends State<TarefaForm> {
               Column(
                 children: [
                   DescricaoTarefaField(controller: _descricaoController),
-                  dataInicioTarefaField(controller: _dataInicioController),
+                  DataTarefaField(
+                      dateInput: _dataInicioController,
+                      salvarDateInicio: _salvarDateInicio,
+                      text: 'Data Inicial'),
+                  DataTarefaField(
+                      dateInput: _dataTerminoController,
+                      salvarDateInicio: _salvarDateTermino,
+                      text: 'Data Termino'),
                   StatusTarefaField(controller: _statusController),
                   FuncionarioBotaoGravar(onPressedNovo: () {
                     _descricaoController.clear();
