@@ -3,16 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-//fabiano
 import '../cliente/presentation/list.dart';
 import '../departamento/presentation/list.dart';
 import '../empresa/presentation/list.dart';
 import '../funcionario/presentation/list.dart';
 import '../tarefa/presentation/list.dart';
-
-// falta fazer
-
-import '../pages/projeto/projeto_list.dart';
+import '../projeto/presentation/list.dart';
 
 //nao mecher
 import '../settings/presentation/configuracoes.dart';

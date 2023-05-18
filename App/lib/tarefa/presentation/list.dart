@@ -1,9 +1,7 @@
 import 'package:aula5/funcionario/data/datasources/delete.dart';
-import 'package:aula5/funcionario/data/model/funcionario.dart';
-import 'package:aula5/models/funcionario.dart';
+
 import 'package:aula5/tarefa/data/model/tarefa.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';

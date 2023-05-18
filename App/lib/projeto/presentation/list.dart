@@ -1,11 +1,12 @@
 import 'package:aula5/departamento/data/datasources/delete.dart';
-import 'package:aula5/departamento/data/model/departamento.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../pages/departamento/departamento_new.dart';
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';
 import '../data/datasources/list.dart';
+import '../data/model/projeto.dart';
 import 'crud/crud.dart';
 
 class ProjetoList extends StatefulWidget {
@@ -20,37 +21,35 @@ class _ProjetoPageState extends State<ProjetoList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.indigo,
       appBar: AppBar(
         title: const Text('Projetos'),
         centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 2),
-        child: FutureBuilder<List<DepartamentoModel>>(
-          future: DepartamentoListDataSource().getAll(),
+        child: FutureBuilder<List<ProjetoModel>>(
+          future: ProjetoListDataSource().getAll(),
           initialData: const [],
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
                 return const CircularProgressIndicator();
               case ConnectionState.done:
-                final List<DepartamentoModel> departamentos = snapshot.data;
-                if (departamentos.isEmpty) {
+                final List<ProjetoModel> projetos = snapshot.data;
+                if (projetos.isEmpty) {
                   return const Center(
-                    child:
-                        Text('Ainda não foi registrado nenhum departamento.'),
+                    child: Text('Ainda não foi registrado nenhum projeto.'),
                   );
                 }
                 return ListView.builder(
-                  itemCount: departamentos.length,
+                  itemCount: projetos.length,
                   itemBuilder: (BuildContext context, int index) {
-                    final DepartamentoModel departamento = departamentos[index];
+                    final ProjetoModel projeto = projetos[index];
 
                     return Dismissible(
                       onDismissed: (direction) {
                         DepartamentoDeleteDataSource()
-                            .delete(id: departamento.departamentoID!);
+                            .delete(id: projeto.projetoID!);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             showCloseIcon: true,
@@ -70,7 +69,7 @@ class _ProjetoPageState extends State<ProjetoList> {
                               return AlertDialog(
                                 title: const Text('Confirma remover?'),
                                 content: Text(
-                                    'Remover ${departamento.nome.toUpperCase()}?'),
+                                    'Remover ${projeto.nome.toUpperCase()}?'),
                                 actions: [
                                   TextButton(
                                     onPressed: () {
@@ -113,16 +112,16 @@ class _ProjetoPageState extends State<ProjetoList> {
                       key: Key('$index'),
                       child: AppListTile(
                         isOdd: index.isOdd,
-                        title: departamento.nome,
-                        line01Text: departamento.descricao,
+                        title: projeto.nome,
+                        line01Text: projeto.descricao,
                         imageURL:
                             'https://unicardio.com.br/wp-content/uploads/2020/11/4-cuidados-com-o-coracao-das-criancas.png',
                         onEditPressed: () async {
                           await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DepartamentoForm(
-                                departamentoModel: departamento,
+                              builder: (context) => ProjetoForm(
+                                projetoModel: projeto,
                               ),
                             ),
                           );

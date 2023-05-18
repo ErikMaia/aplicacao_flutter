@@ -1,10 +1,7 @@
-import 'package:aula5/cliente/data/model/cliente.dart';
 import 'package:aula5/empresa/data/model/empresa.dart';
 import 'package:aula5/funcionario/data/datasources/delete.dart';
 
-import 'package:aula5/models/empresa.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';

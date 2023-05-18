@@ -5,6 +5,7 @@ const String funcionarioTableName = 'funcionarios';
 const String departamentoTableName = 'departamentos';
 const String empresaTableName = 'empresa';
 const String tarefaTableName = 'tarefa';
+const String projetoTableName = 'projeto';
 
 class SqfliteDatabase {
   static Future<Database> openDb() async {
