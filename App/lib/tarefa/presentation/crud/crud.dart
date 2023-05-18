@@ -1,4 +1,3 @@
-import 'package:aula5/funcionario/data/model/funcionario.dart';
 import 'package:aula5/funcionario/presentation/crud/widgets/botao_gravar.dart';
 import 'package:aula5/tarefa/data/model/tarefa.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +5,9 @@ import 'package:flutter/material.dart';
 import '../../data/datasources/insert.dart';
 import '../../data/datasources/update.dart';
 
+import 'widgets/dataInicio.dart';
 import 'widgets/descricao.dart';
+import 'widgets/status.dart';
 
 class TarefaForm extends StatefulWidget {
   final TarefaModel? tarefaModel;
@@ -55,9 +56,8 @@ class _TarefaPageState extends State<TarefaForm> {
               Column(
                 children: [
                   DescricaoTarefaField(controller: _descricaoController),
-                  DescricaoTarefaField(controller: _descricaoController),
-                  DescricaoTarefaField(controller: _descricaoController),
-                  DescricaoTarefaField(controller: _descricaoController),
+                  dataInicioTarefaField(controller: _dataInicioController),
+                  StatusTarefaField(controller: _statusController),
                   FuncionarioBotaoGravar(onPressedNovo: () {
                     _descricaoController.clear();
                     _dataInicioController.clear();
