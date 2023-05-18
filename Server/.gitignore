@@ -1,0 +1,190 @@
+# .NET build output
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.cache
+*.sln.docstates
+*.userprefs
+
+# Resharper files
+_ReSharper*/
+*.resharper
+*.DotSettings.user
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+build/
+*.msi
+*.zip
+*.rar
+
+# NuGet
+*.nuget.props
+*.nuget.targets
+packages/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUNIT
+TestResult.xml
+*.VisualState.xml
+TestResult.xml
+
+# Build Results of an ATL Project
+[Dd]ebugPS/
+[Rr]eleasePS/
+dlldata.c
+
+# BenchmarkDotNet artifacts
+BenchmarkDotNet.Artifacts/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# StyleCop
+StyleCopReport.xml
+
+# Files built by Visual Studio
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.opendb
+*.manifest
+*.tlog
+*.log
+*.vspx
+*.vsps
+*.vssscc
+*.rptproj.bak
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+*.saz
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+*.sln.iml
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build and Release Management
+_Branches/
+_Releases/
+
+# Azure Service Fabric
+pkg/
+pkgDebug/
+pkgRelease/
+ServiceFabricBackup/
+ServiceFabricDebugBackup/
+ServiceFabricDeletionBackup/
+*.cspkg
+*.csxpkg
+
+# Others
+ClientBin/
+~$*
+*~
+*.dbmdl
+*.dbproj.schemaview
+*.pfx
+*.publishsettings
+node_modules/
+orleans.codegen.cs
+
+# RIA/Silverlight projects
+Generated_Code/
+
+# Backup & report files from converting an old project file
+UpgradeLog*.XML
+UpgradeLog*.htm
+_UpgradeReport_Files/
+Backup*/
+
+# SQL Server files
+App_Data/*.mdf
+App_Data/*.ldf
+
+# LightSwitch generated files
+GeneratedArtifacts/
+_Pvt_Extensions/
+ModelManifest.xml
+
+# Dynamics CRM
+crmaddin
+*.htm
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+*.saz
+
+# TFS 2012 Local Workspace
+$tf/
+
+# Guidance Automation Toolkit
+*.gpState
+
+# ReSharper is a .NET coding add-in
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# JustCode is a .NET coding add-in
+.JustCode
+
+# TeamCity is a build add-in
+_TeamCity*
+
+# DotCover is a Code Coverage Tool
+*.dotCover
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+
+# MightyMoose
+*.mm.*
+AutoTest.Net/
+
+# Web workbench (sass)
+.sass-cache/
+
+# Installshield output folder
+[Ee]xpress/
+
+# DocProject is a documentation generator add-in
+DocProject/buildhelp/
+DocProject/Help/*.HxT
+DocProject/Help/*.HxC
+DocProject/Help/*.hhc
+DocProject/Help/*.hhk
