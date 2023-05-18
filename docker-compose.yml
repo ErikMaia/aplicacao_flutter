@@ -1,0 +1,19 @@
+version: '3'
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrongPassword
+    volumes:
+      - dbdata:/var/opt/mssql
+  app:
+    build:
+      context: ./Server
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - db
