@@ -6,7 +6,7 @@ import '../../models/projeto.dart';
 import '../../widgets/drawer_pages.dart';
 
 class ProjetoList extends StatefulWidget {
-  ProjetoList({Key? key}) : super(key: key);
+  const ProjetoList({Key? key}) : super(key: key);
 
   @override
   _ProjetoListState createState() => _ProjetoListState();

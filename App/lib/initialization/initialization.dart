@@ -6,8 +6,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 //fabiano
 import '../departamento/presentation/list.dart';
 import '../funcionario/presentation/list.dart';
-import '../cliente/presentation/list.dart';
 import '../empresa/presentation/list.dart';
+import '../pages/empresa/empresa_list.dart';
 import '../tarefa/presentation/list.dart';
 
 // falta fazer
@@ -35,10 +35,10 @@ class TaskManagerApp extends StatelessWidget {
       return MaterialApp(
         title: 'Pfe',
         routes: {
-          '/': (context) => FuncionarioList(),
-          '/funcionario': (context) => FuncionarioList(),
+          '/': (context) => const FuncionarioList(),
+          '/funcionario': (context) => const FuncionarioList(),
           '/departamento': (context) => const DepartamentoList(),
-          '/projeto': (context) => ProjetoList(),
+          '/projeto': (context) => const ProjetoList(),
           '/cliente': (context) => const ClienteList(),
           '/tarefa': (context) => const TarefaList(),
           '/empresa': (context) => const EmpresaList(),

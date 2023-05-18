@@ -8,6 +8,7 @@ class TarefaList extends StatefulWidget {
   const TarefaList({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _TarefaListState createState() => _TarefaListState();
 }
 
