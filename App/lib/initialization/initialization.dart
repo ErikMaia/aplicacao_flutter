@@ -6,13 +6,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 //fabiano
 import '../departamento/presentation/list.dart';
 import '../funcionario/presentation/list.dart';
-import '../pages/cliente/cliente_list.dart';
-import '../pages/empresa/empresa_list.dart';
+import '../cliente/presentation/list.dart';
+import '../empresa/presentation/list.dart';
+import '../tarefa/presentation/list.dart';
 
 // falta fazer
 
 import '../pages/projeto/projeto_list.dart';
-import '../pages/tarefa/tarefa_list.dart';
 
 //nao mecher
 import '../settings/presentation/configuracoes.dart';
