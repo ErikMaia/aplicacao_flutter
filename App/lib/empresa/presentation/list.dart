@@ -11,15 +11,15 @@ import '../../widgets/drawer_pages.dart';
 import '../data/datasources/list.dart';
 import 'crud/crud.dart';
 
-class ClienteList extends StatefulWidget {
-  const ClienteList({super.key});
+class EmpresaList extends StatefulWidget {
+  const EmpresaList({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _ClientePageState createState() => _ClientePageState();
+  _EmpresaPageState createState() => _EmpresaPageState();
 }
 
-class _ClientePageState extends State<ClienteList> {
+class _EmpresaPageState extends State<EmpresaList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
