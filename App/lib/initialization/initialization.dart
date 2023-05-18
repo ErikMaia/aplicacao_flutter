@@ -7,9 +7,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../departamento/presentation/list.dart';
 import '../funcionario/presentation/list.dart';
 import '../pages/cliente/cliente_list.dart';
+import '../pages/empresa/empresa_list.dart';
 
 // falta fazer
-import '../pages/empresa/empresa_list.dart';
+
 import '../pages/projeto/projeto_list.dart';
 import '../pages/tarefa/tarefa_list.dart';
 

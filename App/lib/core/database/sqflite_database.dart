@@ -3,6 +3,8 @@ import 'package:sqflite/sqflite.dart';
 const String clienteTableName = 'clientes';
 const String funcionarioTableName = 'funcionarios';
 const String departamentoTableName = 'departamentos';
+const String empresaTableName = 'empresa';
+const String tarefaTableName = 'tarefa';
 
 class SqfliteDatabase {
   static Future<Database> openDb() async {
