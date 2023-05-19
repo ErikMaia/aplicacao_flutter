@@ -8,7 +8,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<Db>(options =>
-        options.UseSqlServer("Server=db;Database=gamificacao;User=sa;Password=SenhaDoSqlServer;"));
+        options.UseSqlServer("Server=db;Database=gamificacao;User=sa;Password=YourStrongPassword;"));
 
 var app = builder.Build();
 
