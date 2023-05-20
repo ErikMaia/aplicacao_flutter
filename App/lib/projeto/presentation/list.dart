@@ -1,11 +1,10 @@
-import 'package:aula5/departamento/data/datasources/delete.dart';
-
+import 'package:aula5/projeto/data/datasources/delete.dart';
+import 'package:aula5/projeto/data/model/projeto.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';
 import '../data/datasources/list.dart';
-import '../data/model/projeto.dart';
 import 'crud/crud.dart';
 
 class ProjetoList extends StatefulWidget {
@@ -21,7 +20,7 @@ class _ProjetoPageState extends State<ProjetoList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Projetos'),
+        title: const Text('Funcionarios'),
         centerTitle: true,
       ),
       body: Padding(
@@ -37,7 +36,7 @@ class _ProjetoPageState extends State<ProjetoList> {
                 final List<ProjetoModel> projetos = snapshot.data;
                 if (projetos.isEmpty) {
                   return const Center(
-                    child: Text('Ainda não foi registrado nenhum projeto.'),
+                    child: Text('Ainda não foi registrado nenhum funcionário.'),
                   );
                 }
                 return ListView.builder(
@@ -47,7 +46,7 @@ class _ProjetoPageState extends State<ProjetoList> {
 
                     return Dismissible(
                       onDismissed: (direction) {
-                        DepartamentoDeleteDataSource()
+                        ProjetoDeleteDataSource()
                             .delete(id: projeto.projetoID!);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -113,6 +112,7 @@ class _ProjetoPageState extends State<ProjetoList> {
                         isOdd: index.isOdd,
                         title: projeto.nome,
                         line01Text: projeto.descricao,
+                        line02Text: projeto.dataInicio,
                         imageURL:
                             'https://static.thenounproject.com/png/340719-200.png',
                         onEditPressed: () async {
@@ -130,7 +130,6 @@ class _ProjetoPageState extends State<ProjetoList> {
                     );
                   },
                 );
-
               default:
                 return Container(
                   color: Colors.red,
@@ -140,11 +139,12 @@ class _ProjetoPageState extends State<ProjetoList> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          await Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const ProjetoForm()),
           );
+          setState(() {});
         },
         backgroundColor: Colors.blue,
         child: const Icon(Icons.add),

@@ -68,6 +68,7 @@ class _TarefaPageState extends State<TarefaForm> {
               Column(
                 children: [
                   DescricaoTarefaField(controller: _descricaoController),
+                  StatusTarefaField(controller: _statusController),
                   DataTarefaField(
                       dateInput: _dataInicioController,
                       salvarDateInicio: _salvarDateInicio,
@@ -76,7 +77,6 @@ class _TarefaPageState extends State<TarefaForm> {
                       dateInput: _dataTerminoController,
                       salvarDateInicio: _salvarDateTermino,
                       text: 'Data Termino'),
-                  StatusTarefaField(controller: _statusController),
                   FuncionarioBotaoGravar(onPressedNovo: () {
                     _descricaoController.clear();
                     _dataInicioController.clear();

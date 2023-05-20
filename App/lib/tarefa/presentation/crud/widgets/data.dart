@@ -19,8 +19,8 @@ class DataTarefaField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(15),
-        height: MediaQuery.of(context).size.width / 3,
+        padding: const EdgeInsets.all(2),
+        height: MediaQuery.of(context).size.width / 4,
         child: Center(
             child: TextField(
           controller: dateInput,

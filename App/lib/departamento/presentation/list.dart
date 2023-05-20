@@ -12,16 +12,15 @@ class DepartamentoList extends StatefulWidget {
 
   @override
   // ignore: library_private_types_in_public_api
-  _ProjetoPageState createState() => _ProjetoPageState();
+  _DepartamentoPageState createState() => _DepartamentoPageState();
 }
 
-class _ProjetoPageState extends State<DepartamentoList> {
+class _DepartamentoPageState extends State<DepartamentoList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.indigo,
       appBar: AppBar(
-        title: const Text('Departamentos'),
+        title: const Text('Funcionarios'),
         centerTitle: true,
       ),
       body: Padding(
@@ -131,7 +130,6 @@ class _ProjetoPageState extends State<DepartamentoList> {
                     );
                   },
                 );
-
               default:
                 return Container(
                   color: Colors.red,
@@ -141,11 +139,12 @@ class _ProjetoPageState extends State<DepartamentoList> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          await Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const DepartamentoForm()),
           );
+          setState(() {});
         },
         backgroundColor: Colors.blue,
         child: const Icon(Icons.add),
