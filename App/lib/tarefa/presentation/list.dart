@@ -113,8 +113,8 @@ class _TarefaPageState extends State<TarefaList> {
                       child: AppListTile(
                         isOdd: index.isOdd,
                         title: tarefa.descricao,
-                        line01Text: tarefa.dataInicio,
-                        line02Text: tarefa.dataTermino,
+                        line01Text: 'Inicio: ${tarefa.dataInicio}',
+                        line02Text: 'Fim: ${tarefa.dataTermino}',
                         imageURL:
                             'https://static.thenounproject.com/png/340719-200.png',
                         onEditPressed: () async {

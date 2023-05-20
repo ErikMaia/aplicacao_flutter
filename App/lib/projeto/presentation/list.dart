@@ -20,7 +20,7 @@ class _ProjetoPageState extends State<ProjetoList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Funcionarios'),
+        title: const Text('Projetos'),
         centerTitle: true,
       ),
       body: Padding(
@@ -111,8 +111,8 @@ class _ProjetoPageState extends State<ProjetoList> {
                       child: AppListTile(
                         isOdd: index.isOdd,
                         title: projeto.nome,
-                        line01Text: projeto.descricao,
-                        line02Text: projeto.dataInicio,
+                        line01Text: 'Inicio: ${projeto.dataInicio}',
+                        line02Text: 'Fim: ${projeto.dataTermino}',
                         imageURL:
                             'https://static.thenounproject.com/png/340719-200.png',
                         onEditPressed: () async {

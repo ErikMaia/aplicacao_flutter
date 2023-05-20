@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/datasources/insert.dart';
 import '../../data/datasources/update.dart';
+import 'widgets/data.dart';
 import 'widgets/descricao.dart';
 import 'widgets/nome.dart';
 
@@ -70,6 +71,14 @@ class _ProjetoPageState extends State<ProjetoForm> {
                 children: [
                   NomeFuncionarioField(controller: _nomeController),
                   DescricaoFuncionarioField(controller: _descricaoController),
+                  DataProjetoField(
+                      dateInput: _dataInicioController,
+                      salvarDateInicio: _salvarDateInicio,
+                      text: 'Data Inicial'),
+                  DataProjetoField(
+                      dateInput: _dataTerminoController,
+                      salvarDateInicio: _salvarDateTermino,
+                      text: 'Data Termino'),
                   FuncionarioBotaoGravar(onPressedNovo: () {
                     _nomeController.clear();
                     _descricaoController.clear();
