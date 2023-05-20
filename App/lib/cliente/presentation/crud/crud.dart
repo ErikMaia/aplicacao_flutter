@@ -1,7 +1,4 @@
 import 'package:aula5/cliente/data/model/cliente.dart';
-import 'package:aula5/funcionario/presentation/crud/widgets/botao_gravar.dart';
-import 'package:aula5/funcionario/presentation/crud/widgets/sobrenome.dart';
-import 'package:aula5/funcionario/presentation/crud/widgets/telefone.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/datasources/insert.dart';
@@ -73,7 +70,8 @@ class _ClientePageState extends State<ClienteForm> {
                     FocusScope.of(context).unfocus();
 
                     if (_formKey.currentState!.validate()) {
-                      if (widget.clienteModel!.clienteID == null) {
+                      if (widget.clienteModel == null ||
+                          widget.clienteModel!.clienteID == null) {
                         await ClienteInsertDataSource().insert(
                           cliente: ClienteModel(
                             nome: _nomeController.text,

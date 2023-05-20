@@ -2,7 +2,6 @@ import 'package:aula5/departamento/data/datasources/delete.dart';
 
 import 'package:flutter/material.dart';
 
-import '../../pages/departamento/departamento_new.dart';
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';
 import '../data/datasources/list.dart';
@@ -115,7 +114,7 @@ class _ProjetoPageState extends State<ProjetoList> {
                         title: projeto.nome,
                         line01Text: projeto.descricao,
                         imageURL:
-                            'https://unicardio.com.br/wp-content/uploads/2020/11/4-cuidados-com-o-coracao-das-criancas.png',
+                            'https://static.thenounproject.com/png/340719-200.png',
                         onEditPressed: () async {
                           await Navigator.push(
                             context,
@@ -144,7 +143,7 @@ class _ProjetoPageState extends State<ProjetoList> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const DepartamentoNew()),
+            MaterialPageRoute(builder: (context) => const ProjetoForm()),
           );
         },
         backgroundColor: Colors.blue,

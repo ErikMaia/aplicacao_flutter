@@ -2,27 +2,26 @@ import 'package:aula5/departamento/data/datasources/delete.dart';
 import 'package:aula5/departamento/data/model/departamento.dart';
 import 'package:flutter/material.dart';
 
-import '../../pages/departamento/departamento_new.dart';
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';
 import '../data/datasources/list.dart';
 import 'crud/crud.dart';
 
-class ProjetoList extends StatefulWidget {
-  const ProjetoList({super.key});
+class DepartamentoList extends StatefulWidget {
+  const DepartamentoList({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
   _ProjetoPageState createState() => _ProjetoPageState();
 }
 
-class _ProjetoPageState extends State<ProjetoList> {
+class _ProjetoPageState extends State<DepartamentoList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.indigo,
       appBar: AppBar(
-        title: const Text('Projetos'),
+        title: const Text('Departamentos'),
         centerTitle: true,
       ),
       body: Padding(
@@ -116,7 +115,7 @@ class _ProjetoPageState extends State<ProjetoList> {
                         title: departamento.nome,
                         line01Text: departamento.descricao,
                         imageURL:
-                            'https://unicardio.com.br/wp-content/uploads/2020/11/4-cuidados-com-o-coracao-das-criancas.png',
+                            'https://static.thenounproject.com/png/340719-200.png',
                         onEditPressed: () async {
                           await Navigator.push(
                             context,
@@ -145,7 +144,7 @@ class _ProjetoPageState extends State<ProjetoList> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const DepartamentoNew()),
+            MaterialPageRoute(builder: (context) => const DepartamentoForm()),
           );
         },
         backgroundColor: Colors.blue,

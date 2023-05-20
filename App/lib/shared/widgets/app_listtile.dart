@@ -6,7 +6,6 @@ class AppListTile extends StatelessWidget {
   final String title;
   final String? line01Text;
   final String? line02Text;
-  final String? line03Text;
   final String? imageURL;
   final VoidCallback? onEditPressed;
 
@@ -16,7 +15,6 @@ class AppListTile extends StatelessWidget {
     required this.title,
     this.line01Text,
     this.line02Text,
-    this.line03Text,
     this.imageURL,
     this.onEditPressed,
   });
@@ -72,7 +70,6 @@ class AppListTile extends StatelessWidget {
                     ),
                     Text(line01Text ?? ''),
                     Text(line02Text ?? ''),
-                    Text(line03Text ?? ''),
                     InkWell(
                       onTap: onEditPressed,
                       child: Align(

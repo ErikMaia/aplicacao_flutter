@@ -70,7 +70,8 @@ class _EmpresaPageState extends State<EmpresaForm> {
                     FocusScope.of(context).unfocus();
 
                     if (_formKey.currentState!.validate()) {
-                      if (widget.empresaModel!.empresaID == null) {
+                      if (widget.empresaModel == null ||
+                          widget.empresaModel!.empresaID == null) {
                         await EmpresaInsertDataSource().insert(
                           empresa: EmpresaModel(
                             nome: _nomeController.text,

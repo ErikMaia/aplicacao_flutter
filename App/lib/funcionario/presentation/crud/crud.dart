@@ -70,7 +70,8 @@ class _FuncionarioPageState extends State<FuncionarioForm> {
                     FocusScope.of(context).unfocus();
 
                     if (_formKey.currentState!.validate()) {
-                      if (widget.funcionarioModel!.funcionarioID == null) {
+                      if (widget.funcionarioModel == null ||
+                          widget.funcionarioModel!.funcionarioID == null) {
                         await FuncionarioInsertDataSource().insert(
                           funcionario: FuncionarioModel(
                             nome: _nomeController.text,

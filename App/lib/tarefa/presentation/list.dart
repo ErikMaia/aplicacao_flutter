@@ -115,9 +115,8 @@ class _TarefaPageState extends State<TarefaList> {
                         title: tarefa.descricao,
                         line01Text: tarefa.dataInicio,
                         line02Text: tarefa.dataTermino,
-                        line03Text: tarefa.status,
                         imageURL:
-                            'https://tudocommoda.com/wp-content/uploads/2022/01/pessoa-interessante.png',
+                            'https://static.thenounproject.com/png/340719-200.png',
                         onEditPressed: () async {
                           await Navigator.push(
                             context,

@@ -77,21 +77,23 @@ class _ProjetoPageState extends State<ProjetoForm> {
                     FocusScope.of(context).unfocus();
 
                     if (_formKey.currentState!.validate()) {
-                      if (widget.projetoModel!.projetoID == null) {
+                      if (widget.projetoModel == null ||
+                          widget.projetoModel!.projetoID == null) {
                         await ProjetoInsertDataSource().insert(
                           projeto: ProjetoModel(
-                            nome: _nomeController.text,
-                            descricao: _descricaoController.text,
-                          ),
+                              nome: _nomeController.text,
+                              descricao: _descricaoController.text,
+                              dataInicio: _dataInicioController.text,
+                              dataTermino: _dataTerminoController.text),
                         );
                       } else {
-                        await DepartamentoUpdateDataSource().update(
-                          departamentoModel: DepartamentoModel(
-                            departamentoID:
-                                widget.departamentoModel!.departamentoID,
-                            nome: _nomeController.text,
-                            descricao: _descricaoController.text,
-                          ),
+                        await ProjetoUpdateDataSource().update(
+                          projetoModel: ProjetoModel(
+                              projetoID: widget.projetoModel!.projetoID,
+                              nome: _nomeController.text,
+                              descricao: _descricaoController.text,
+                              dataInicio: _dataInicioController.text,
+                              dataTermino: _dataTerminoController.text),
                         );
                       }
                     }

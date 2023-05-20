@@ -4,7 +4,6 @@ class FuncionarioEntity {
   final String sobrenome;
   final String endereco;
   final String telefone;
-  // List<Tarefa> tarefas;
 
   const FuncionarioEntity({
     this.funcionarioID,
@@ -12,7 +11,6 @@ class FuncionarioEntity {
     required this.sobrenome,
     required this.endereco,
     required this.telefone,
-    // this.tarefas = const [],
   });
 
   String get nomeCompleto => '$nome $sobrenome';

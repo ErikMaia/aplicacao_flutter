@@ -86,7 +86,8 @@ class _TarefaPageState extends State<TarefaForm> {
                     FocusScope.of(context).unfocus();
 
                     if (_formKey.currentState!.validate()) {
-                      if (widget.tarefaModel!.tarefaID == null) {
+                      if (widget.tarefaModel == null ||
+                          widget.tarefaModel!.tarefaID == null) {
                         await TarefaInsertDataSource().insert(
                           tarefa: TarefaModel(
                             descricao: _descricaoController.text,

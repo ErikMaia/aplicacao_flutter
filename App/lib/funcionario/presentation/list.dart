@@ -1,8 +1,6 @@
 import 'package:aula5/funcionario/data/datasources/delete.dart';
 import 'package:aula5/funcionario/data/model/funcionario.dart';
-import 'package:aula5/models/funcionario.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';
@@ -21,7 +19,6 @@ class _FuncionarioPageState extends State<FuncionarioList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.indigo,
       appBar: AppBar(
         title: const Text('Funcionarios'),
         centerTitle: true,
@@ -117,7 +114,7 @@ class _FuncionarioPageState extends State<FuncionarioList> {
                         line01Text: funcionario.endereco,
                         line02Text: funcionario.telefone,
                         imageURL:
-                            'https://tudocommoda.com/wp-content/uploads/2022/01/pessoa-interessante.png',
+                            'https://static.thenounproject.com/png/340719-200.png',
                         onEditPressed: () async {
                           await Navigator.push(
                             context,

@@ -1,7 +1,6 @@
 import 'package:aula5/cliente/data/model/cliente.dart';
 import 'package:aula5/funcionario/data/datasources/delete.dart';
 import 'package:aula5/funcionario/data/model/funcionario.dart';
-import 'package:aula5/models/cliente.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -118,7 +117,7 @@ class _ClientePageState extends State<ClienteList> {
                         line01Text: cliente.endereco,
                         line02Text: cliente.telefone,
                         imageURL:
-                            'https://tudocommoda.com/wp-content/uploads/2022/01/pessoa-interessante.png',
+                            'https://static.thenounproject.com/png/340719-200.png',
                         onEditPressed: () async {
                           await Navigator.push(
                             context,

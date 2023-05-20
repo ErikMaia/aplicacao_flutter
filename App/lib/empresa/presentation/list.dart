@@ -38,7 +38,7 @@ class _EmpresaPageState extends State<EmpresaList> {
                 final List<EmpresaModel> empresas = snapshot.data;
                 if (empresas.isEmpty) {
                   return const Center(
-                    child: Text('Ainda não foi registrado nenhum Cliente.'),
+                    child: Text('Ainda não foi registrado nenhum Empresa.'),
                   );
                 }
                 return ListView.builder(
@@ -116,7 +116,7 @@ class _EmpresaPageState extends State<EmpresaList> {
                         line01Text: empresa.endereco,
                         line02Text: empresa.telefone,
                         imageURL:
-                            'https://tudocommoda.com/wp-content/uploads/2022/01/pessoa-interessante.png',
+                            'https://static.thenounproject.com/png/340719-200.png',
                         onEditPressed: () async {
                           await Navigator.push(
                             context,

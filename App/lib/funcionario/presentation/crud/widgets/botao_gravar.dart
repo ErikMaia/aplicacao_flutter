@@ -43,7 +43,7 @@ class FuncionarioBotaoGravar extends StatelessWidget {
 
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       },
-      child: const Text('Gravar'),
+      child: const Text('Salvar'),
     );
   }
 }
