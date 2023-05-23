@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Desktop\\flutter\\aplicacao_flutter\\Server\\Server.csproj": {}
+    "E:\\Arquivos\\UTFPR\\Disciplinas\\Atuais\\DM\\Gamificacao\\aplicacao_flutter\\Server\\Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Desktop\\flutter\\aplicacao_flutter\\Server\\Server.csproj": {
+    "E:\\Arquivos\\UTFPR\\Disciplinas\\Atuais\\DM\\Gamificacao\\aplicacao_flutter\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\flutter\\aplicacao_flutter\\Server\\Server.csproj",
+        "projectUniqueName": "E:\\Arquivos\\UTFPR\\Disciplinas\\Atuais\\DM\\Gamificacao\\aplicacao_flutter\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\flutter\\aplicacao_flutter\\Server\\Server.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\flutter\\aplicacao_flutter\\Server\\obj\\",
+        "projectPath": "E:\\Arquivos\\UTFPR\\Disciplinas\\Atuais\\DM\\Gamificacao\\aplicacao_flutter\\Server\\Server.csproj",
+        "packagesPath": "C:\\Users\\nocma\\.nuget\\packages\\",
+        "outputPath": "E:\\Arquivos\\UTFPR\\Disciplinas\\Atuais\\DM\\Gamificacao\\aplicacao_flutter\\Server\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\nocma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -51,6 +58,16 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

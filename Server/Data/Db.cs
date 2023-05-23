@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 public class Db : DbContext
 {
@@ -9,5 +10,12 @@ public class Db : DbContext
     public DbSet<Empresa>? Empresa { get; set; }
     public DbSet<Funcionario>? Funcionario { get; set; }    
     public DbSet<Projeto>? Projeto { get; set; }
-    public DbSet<Tarefa>? Tarefa { get; set; }    
+    public DbSet<Tarefa>? Tarefa { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 31)); // Especifique a versÃ£o correta do servidor MySQL aqui
+
+            optionsBuilder.UseMySql("Server=database;Port=3306;Database=tarefas;User=root;Password=tarefas;", serverVersion);
+        }
 }
