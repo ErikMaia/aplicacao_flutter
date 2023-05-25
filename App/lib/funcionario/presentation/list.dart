@@ -88,9 +88,9 @@ class _FuncionarioPageState extends State<FuncionarioList> {
                       direction: DismissDirection.endToStart,
                       background: Container(
                         color: Colors.red,
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.end,
-                          children: const [
+                          children: [
                             Text(
                               'Remover',
                               style: TextStyle(

@@ -1,8 +1,6 @@
 import 'package:aula5/cliente/data/model/cliente.dart';
 import 'package:aula5/funcionario/data/datasources/delete.dart';
-import 'package:aula5/funcionario/data/model/funcionario.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';
@@ -91,9 +89,9 @@ class _ClientePageState extends State<ClienteList> {
                       direction: DismissDirection.endToStart,
                       background: Container(
                         color: Colors.red,
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.end,
-                          children: const [
+                          children: [
                             Text(
                               'Remover',
                               style: TextStyle(

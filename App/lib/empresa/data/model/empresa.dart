@@ -1,4 +1,3 @@
-import 'package:aula5/cliente/domain/entities/cliente.dart';
 import 'package:aula5/empresa/domain/entities/empresa.dart';
 import 'package:json_annotation/json_annotation.dart';
 

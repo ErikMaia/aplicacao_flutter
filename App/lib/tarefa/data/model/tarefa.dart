@@ -1,4 +1,3 @@
-import 'package:aula5/funcionario/domain/entities/funcionario.dart';
 import 'package:aula5/tarefa/domain/entities/tarefa.dart';
 import 'package:json_annotation/json_annotation.dart';
 

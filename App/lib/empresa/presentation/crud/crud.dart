@@ -1,16 +1,11 @@
-import 'package:aula5/cliente/data/model/cliente.dart';
 import 'package:aula5/cliente/presentation/crud/widgets/nome.dart';
 import 'package:aula5/empresa/data/model/empresa.dart';
-import 'package:aula5/funcionario/presentation/crud/widgets/botao_gravar.dart';
-import 'package:aula5/funcionario/presentation/crud/widgets/sobrenome.dart';
-import 'package:aula5/funcionario/presentation/crud/widgets/telefone.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/datasources/insert.dart';
 import '../../data/datasources/update.dart';
 import 'widgets/botao_gravar.dart';
 import 'widgets/endereco.dart';
-import 'widgets/nome.dart';
 import 'widgets/telefone.dart';
 
 class EmpresaForm extends StatefulWidget {
