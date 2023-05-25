@@ -6,6 +6,12 @@ WORKDIR /app
 COPY . ./
 RUN dotnet restore
 
+RUN dotnet tool install --global dotnet-ef --version 7.0.5
+
+ENV PATH="$PATH:/root/.dotnet/tools"
+
+RUN dotnet-ef migrations add InitialCreate
+
 # Publica a aplicação
 RUN dotnet publish -c Release -o out
 

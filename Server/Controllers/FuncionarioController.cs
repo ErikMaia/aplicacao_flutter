@@ -32,11 +32,11 @@ namespace Server.Controllers
             var funcionario = _context.Funcionario!.Find(dTO.id);
             if(funcionario == null)
                 return NotFound();
-            funcionario.endereco = dTO.endereco;
-            funcionario.nome = dTO.nome;
-            funcionario.sobrenome = dTO.sobrenome;
-            funcionario.telefone = dTO.telefone;
-            funcionario.tarefas = dTO.tarefas;
+            funcionario.Endereco = dTO.endereco;
+            funcionario.Nome = dTO.nome;
+            funcionario.Sobrenome = dTO.sobrenome;
+            funcionario.Telefone = dTO.telefone;
+            funcionario.Tarefas = dTO.tarefas;
             _context.SaveChanges();
             return Ok();
         }

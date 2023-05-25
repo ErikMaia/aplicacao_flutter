@@ -25,7 +25,7 @@ public class EmpresaController : ControllerBase
                 Endereco = dto.Endereco,
                 Nome = dto.Nome,
                 Telefone = dto.Nome,
-                id = _context.Empresa!.Max(table => table.id)+1 
+                Id = _context.Empresa!.Max(table => table.Id)+1 
             };
             _context.Empresa!.Add(Empresa);
             _context.SaveChanges();

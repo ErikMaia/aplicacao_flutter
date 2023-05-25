@@ -31,10 +31,10 @@ namespace Server.Controllers
             var projeto = _context.Projeto!.Find(dTO.id);
             if(projeto == null)
                 return NotFound();
-            projeto.nome = dTO.nome;
-            projeto.dataInicio = dTO.dataInicio;
-            projeto.dataTermino = dTO.dataTermino;
-            projeto.descricao = dTO.descricao;
+            projeto.Nome = dTO.nome;
+            projeto.DataInicio = dTO.dataInicio;
+            projeto.DataTermino = dTO.dataTermino;
+            projeto.Descricao = dTO.descricao;
             _context.SaveChanges();
             return Ok();
         }

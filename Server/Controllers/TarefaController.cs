@@ -31,7 +31,13 @@ namespace Server.Controllers
             var tarefa = _context.Tarefa!.Find(dTO.id);
             if(tarefa == null)
                 return NotFound();
-            // falta mudar aqui
+            tarefa.Descricao = dTO.descricao;
+            tarefa.DataInicio = dTO.dataInicio;
+            tarefa.DataTermino = dTO.dataTermino;
+            tarefa.Status = dTO.status;
+            tarefa.Cliente = dTO.cliente;
+            tarefa.Departamento = dTO.departamento;
+            tarefa.Projeto = dTO.projeto;
             _context.SaveChanges();
             return Ok();
         }

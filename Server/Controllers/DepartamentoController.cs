@@ -22,9 +22,9 @@ public class DepartamentoController : ControllerBase
     public IActionResult Create(DepartamentoDTO dto){
         try{
             var departamento = new Departamento(){
-                descricao = dto.descricao,
-                nome = dto.nome,
-                id = _context.Departamento!.Max(table => table.id)+1 
+                Descricao = dto.descricao,
+                Nome = dto.nome,
+                Id = _context.Departamento!.Max(table => table.Id)+1 
             };
             _context.Departamento!.Add(departamento);
             _context.SaveChanges();
@@ -39,8 +39,8 @@ public class DepartamentoController : ControllerBase
     public IActionResult Update(DepartamentoDTO dTO){
         try{
             var departamento = _context.Departamento!.Find(dTO.id)!;
-            departamento.descricao = dTO.descricao;
-            departamento.nome = dTO.nome;
+            departamento.Descricao = dTO.descricao;
+            departamento.Nome = dTO.nome;
             _context.SaveChanges();
             return Ok();
         }

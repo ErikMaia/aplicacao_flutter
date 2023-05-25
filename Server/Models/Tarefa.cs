@@ -1,14 +1,23 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
-public class Tarefa {
-  [Key]
-  int? id;
-  String? descricao;
-  DateTime dataInicio;
-  DateTime dataTermino;
-  String? status;
-  // Funcionario funcionario;
-  Cliente? cliente;
-  Departamento? departamento;
-  Projeto? projeto;
+
+public class Tarefa
+{
+    [Key]
+    public int ?Id { get; set; }
+
+    public string ?Descricao { get; set; }
+
+    public DateTime ?DataInicio { get; set; }
+
+    public DateTime ?DataTermino { get; set; }
+
+    public string ?Status { get; set; }
+
+    public Cliente ?Cliente { get; set; }
+
+    public Departamento ?Departamento { get; set; }
+
+    public Projeto ?Projeto { get; set; }
 }

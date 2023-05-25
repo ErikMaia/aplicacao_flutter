@@ -12,25 +12,25 @@ public class ClienteController : ControllerBase
 
     [HttpGet("/cliente/{id}")]
     public IActionResult Find(int id){
-        return Ok(_context.Clientes!.Find(id));
+        return Ok(_context.Cliente!.Find(id));
     }
 
     [HttpGet]
     public IActionResult GetAll(){
-        return Ok(_context.Clientes!.ToList());
+        return Ok(_context.Cliente!.ToList());
     }
 
     [HttpPost]
     public IActionResult Create(ClienteDTO dTO){
         var cliente = new Cliente(){
-            nome = dTO.nome,
-            sobrenome = dTO.sobrenome,    
-            endereco = dTO.endereco,
-            telefone = dTO.telefone,
-            id = _context.Clientes!.Max(table=>table.id)+1
+            Nome = dTO.nome,
+            Sobrenome = dTO.sobrenome,    
+            Endereco = dTO.endereco,
+            Telefone = dTO.telefone,
+            Id = _context.Cliente!.Max(table=>table.Id)+1
         };
         try{
-            _context.Clientes!.Add(cliente);
+            _context.Cliente!.Add(cliente);
             _context.SaveChanges();
             return Ok();
         }
@@ -42,8 +42,8 @@ public class ClienteController : ControllerBase
     [HttpPut]
     public IActionResult Update(ClienteDTO dTO){
         try{
-            var cliente = _context.Clientes!.Find(dTO.id)!;
-            cliente.endereco = dTO.endereco;
+            var cliente = _context.Cliente!.Find(dTO.id)!;
+            cliente.Endereco = dTO.endereco;
             _context.SaveChanges();
             return Ok();
         }

@@ -1,14 +1,14 @@
 version: '3'
 services:
   database:
-    build:
-      context: ./Database
-      dockerfile: Dockerfile
+    build: ./Database
+    container_name: database
     restart: always
     ports:
       - 3307:3306
-  app:
+  webapi:
     build: ./Server
+    container_name: webapi
     restart: always
     ports:
       - 80:80
