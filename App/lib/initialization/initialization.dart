@@ -38,7 +38,7 @@ class TaskManagerApp extends StatelessWidget {
           '/cliente': (context) => const ClienteList(),
           '/tarefa': (context) => const TarefaList(),
           '/empresa': (context) => const EmpresaList(),
-          '/configuracao': (context) => SettingsPage(),
+          '/configuracao': (context) => const SettingsPage(),
         },
         theme: _settingsStore.darkModeStatus
             ? ThemeData.dark()

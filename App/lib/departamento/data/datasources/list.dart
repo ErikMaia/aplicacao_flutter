@@ -2,7 +2,7 @@ import 'package:aula5/core/database/sqflite_database.dart';
 
 import '../model/departamento.dart';
 
-class DepartamentoListDataSource {
+class DepartamentoListDataSource2 {
   Future<List<DepartamentoModel>> getAll() async {
     final db = await SqfliteDatabase.openDb();
 

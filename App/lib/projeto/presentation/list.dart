@@ -88,9 +88,9 @@ class _ProjetoPageState extends State<ProjetoList> {
                       direction: DismissDirection.endToStart,
                       background: Container(
                         color: Colors.red,
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.end,
-                          children: const [
+                          children: [
                             Text(
                               'Remover',
                               style: TextStyle(

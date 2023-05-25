@@ -1,6 +1,4 @@
-import 'package:aula5/departamento/data/model/departamento.dart';
 import 'package:aula5/funcionario/presentation/crud/widgets/botao_gravar.dart';
-import 'package:aula5/projeto/data/datasources/list.dart';
 import 'package:aula5/projeto/data/model/projeto.dart';
 
 import 'package:flutter/material.dart';

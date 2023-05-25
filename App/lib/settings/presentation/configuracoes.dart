@@ -6,7 +6,7 @@ import 'mobx/configuracoes.dart';
 
 // ignore: must_be_immutable
 class SettingsPage extends StatelessWidget {
-  SettingsPage({
+  const SettingsPage({
     super.key,
   });
 

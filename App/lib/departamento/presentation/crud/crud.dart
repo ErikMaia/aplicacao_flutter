@@ -1,10 +1,8 @@
 import 'package:aula5/departamento/data/model/departamento.dart';
 import 'package:aula5/funcionario/presentation/crud/widgets/botao_gravar.dart';
-import 'package:aula5/funcionario/presentation/crud/widgets/sobrenome.dart';
-import 'package:aula5/funcionario/presentation/crud/widgets/telefone.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/datasources/insert.dart';
+import '../../data/datasources/remote_api/insert.dart';
 import '../../data/datasources/update.dart';
 import 'widgets/descricao.dart';
 import 'widgets/nome.dart';
@@ -62,7 +60,7 @@ class _DepartamentoPageState extends State<DepartamentoForm> {
                     if (_formKey.currentState!.validate()) {
                       if (widget.departamentoModel == null ||
                           widget.departamentoModel!.departamentoID == null) {
-                        await DepartamentoInsertDataSource().insert(
+                        await DepartamentoInsertDataSource().createDepartamento(
                           departamento: DepartamentoModel(
                             nome: _nomeController.text,
                             descricao: _descricaoController.text,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';
-import '../data/datasources/list.dart';
+import '../data/datasources/remote_api/list.dart';
 import 'crud/crud.dart';
 
 class DepartamentoList extends StatefulWidget {
@@ -26,7 +26,7 @@ class _DepartamentoPageState extends State<DepartamentoList> {
       body: Padding(
         padding: const EdgeInsets.only(top: 2),
         child: FutureBuilder<List<DepartamentoModel>>(
-          future: DepartamentoListDataSource().getAll(),
+          future: DepartamentoListDataSource().getDepartamentos(),
           initialData: const [],
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
@@ -89,9 +89,9 @@ class _DepartamentoPageState extends State<DepartamentoList> {
                       direction: DismissDirection.endToStart,
                       background: Container(
                         color: Colors.red,
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.end,
-                          children: const [
+                          children: [
                             Text(
                               'Remover',
                               style: TextStyle(

@@ -1,5 +1,4 @@
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 
 const String clienteTableName = 'clientes';
 const String funcionarioTableName = 'funcionarios';
