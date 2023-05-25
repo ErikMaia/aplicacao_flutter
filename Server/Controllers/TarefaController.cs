@@ -1,54 +1,83 @@
 using Microsoft.AspNetCore.Mvc;
+using Server.DTO;
+using Server.Models;
+namespace Server.Controllers;
 
-namespace Server.Controllers
+[ApiController]
+[Route("/tarefa")]
+public class TarefaController : ControllerBase
 {
-    [ApiController]
-    [Route("/tarefa")]
-    public class TarefaController : ControllerBase
+    private Db _context;
+
+    public TarefaController(Db context)
     {
-        private Db _context;
+        _context = context;
+    }
+    [HttpGet]
+    public IActionResult GetAll()
+    {
+        return Ok(_context.Tarefa!.ToArray());
+    }
 
-        public TarefaController(Db context)
+    [HttpGet("/tarefa/{id}")]
+    public IActionResult Find(int id)
+    {
+        var tarefa = _context.Tarefa!.Find(id);
+        if (tarefa == null)
         {
-            _context = context;
+            return NotFound();
         }
-        [HttpGet]
-        public IActionResult getAll(){
-            return Ok(_context.Tarefa!.ToArray());
-        }
+        return Ok(tarefa);
+    }
 
-        [HttpGet("/tarefa/{id}")]
-        public IActionResult find(int id){
-            var tarefa = _context.Tarefa!.Find(id);
-            if(tarefa == null){
-                return NotFound();
-            }
-            return Ok(tarefa);
-        }
+    [HttpPut]
+    public IActionResult Update(TarefaDTO dTO)
+    {
+        var tarefa = _context.Tarefa!.Find(dTO.TarefaId);
+        if (tarefa == null)
+            return NotFound();
+        tarefa.Descricao = dTO.Descricao;
+        tarefa.DataInicio = dTO.DataInicio;
+        tarefa.DataTermino = dTO.DataTermino;
+        tarefa.Status = dTO.Status;
+        tarefa.Cliente = _context.Cliente!.Find(dTO.Cliente!.ClienteId!);
+        tarefa.Departamento = _context.Departamento!.Find(dTO.Departamento!.DepartamentoId!)!;
+        tarefa.Projeto = _context.Projeto!.Find(dTO.Projeto!.ProjetoId!)!;
+        _context.SaveChanges();
+        return Ok();
+    }
 
-        [HttpPut]
-        public IActionResult update(TarefaDTO dTO){
-            var tarefa = _context.Tarefa!.Find(dTO.id);
-            if(tarefa == null)
-                return NotFound();
-            tarefa.Descricao = dTO.descricao;
-            tarefa.DataInicio = dTO.dataInicio;
-            tarefa.DataTermino = dTO.dataTermino;
-            tarefa.Status = dTO.status;
-            tarefa.Cliente = dTO.cliente;
-            tarefa.Departamento = dTO.departamento;
-            tarefa.Projeto = dTO.projeto;
-            _context.SaveChanges();
+    [HttpDelete("/tarefa/{id}")]
+    public IActionResult Remove(int id)
+    {
+        var tarefa = _context.Tarefa!.Find(id);
+        if (tarefa == null)
+            return NotFound();
+        _context.Tarefa.Remove(tarefa);
+        return Ok();
+    }
+
+    [HttpPost]
+    public IActionResult Create(TarefaDTO dto)
+    {
+        try
+        {
+            var tarefa = new TarefaModel()
+            {
+                TarefaId = _context.Tarefa!.Max(table => table.TarefaId) + 1,
+                Cliente = _context.Cliente!.Find(dto.Cliente!.ClienteId!),
+                Descricao = dto.Descricao,
+                DataInicio = dto.DataInicio,
+                DataTermino = dto.DataTermino,
+                Status = dto.Status,
+                Departamento = _context.Departamento!.Find(dto.Departamento!.DepartamentoId!),
+                Projeto = _context.Projeto!.Find(dto.Projeto!.ProjetoId!),
+            };
             return Ok();
         }
-
-        [HttpDelete("/tarefa/{id}")]
-        public IActionResult remove(int id){
-            var tarefa = _context.Tarefa!.Find(id);
-            if(tarefa == null)
-                return NotFound();
-            _context.Tarefa.Remove(tarefa);
-            return Ok();
+        catch (Exception e)
+        {
+            return BadRequest(e);
         }
     }
 }

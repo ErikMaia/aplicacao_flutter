@@ -1,45 +1,55 @@
 using Microsoft.AspNetCore.Mvc;
-
+using Server.DTO;
+using Server.Models;
 [ApiController]
 [Route("/empresa")]
 public class EmpresaController : ControllerBase
 {
     private Db _context;
-    public EmpresaController(Db context) {
+    public EmpresaController(Db context)
+    {
         _context = context;
     }
 
     [HttpGet("/empresa/{id}")]
-    public IActionResult Find(int id){
+    public IActionResult Find(int id)
+    {
         return Ok(_context.Empresa!.Find(id));
     }
     [HttpGet]
-    public IActionResult GetAll(){
+    public IActionResult GetAll()
+    {
         return Ok(_context.Empresa!.ToList());
     }
 
     [HttpPost]
-    public IActionResult Create(EmpresaDTO dto){
-        try{
-            var Empresa = new Empresa(){
+    public IActionResult Create(EmpresaDTO dto)
+    {
+        try
+        {
+            var Empresa = new EmpresaModel()
+            {
                 Endereco = dto.Endereco,
                 Nome = dto.Nome,
                 Telefone = dto.Nome,
-                Id = _context.Empresa!.Max(table => table.Id)+1 
+                EmpresaId = _context.Empresa!.Max(table => table.EmpresaId) + 1
             };
             _context.Empresa!.Add(Empresa);
             _context.SaveChanges();
             return Ok();
         }
-        catch(Exception e){
+        catch (Exception e)
+        {
             return BadRequest(e);
         }
     }
 
     [HttpPut]
-    public IActionResult Update(EmpresaDTO dTO){
-        try{
-            var empresa = _context.Empresa!.Find(dTO.id)!;
+    public IActionResult Update(EmpresaDTO dTO)
+    {
+        try
+        {
+            var empresa = _context.Empresa!.Find(dTO.EmpresaId)!;
             empresa.Nome = dTO.Nome;
             empresa.Endereco = dTO.Endereco;
             empresa.Telefone = dTO.Telefone;
@@ -47,8 +57,18 @@ public class EmpresaController : ControllerBase
             _context.SaveChanges();
             return Ok();
         }
-        catch(Exception e){
+        catch (Exception e)
+        {
             return BadRequest(e);
         }
+    }
+    [HttpDelete("/empresa/{id}")]
+    public IActionResult Delete(int id)
+    {
+        var empresa = _context.Empresa!.Find(id);
+        if (empresa == null)
+            return NotFound();
+        _context.Empresa!.Remove(empresa);
+        return Ok();
     }
 }

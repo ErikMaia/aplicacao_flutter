@@ -1,10 +1,13 @@
-namespace Server.DTO;
-
-public class EmpresaDTO
+using System.ComponentModel.DataAnnotations;
+namespace Server.Models;
+public class EmpresaModel
 {
+    [Key]
     public int? EmpresaId { get; set; }
+
     public string? Nome { get; set; }
+
     public string? Endereco { get; set; }
+
     public string? Telefone { get; set; }
 }
-

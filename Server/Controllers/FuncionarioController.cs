@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-
+using Server.DTO;
+using Server.Models;
 namespace Server.Controllers
 {
     [ApiController]
@@ -14,40 +15,61 @@ namespace Server.Controllers
         }
 
         [HttpGet]
-        public IActionResult getAll(){
+        public IActionResult getAll()
+        {
             return Ok(_context.Funcionario!.ToArray());
         }
 
         [HttpGet("/funcionario/{id}")]
-        public IActionResult find(int id){
+        public IActionResult find(int id)
+        {
             var funcionario = _context.Funcionario!.Find(id);
-            if(funcionario == null){
+            if (funcionario == null)
+            {
                 return NotFound();
             }
             return Ok(funcionario);
         }
 
         [HttpPut]
-        public IActionResult update(FuncionarioDTO dTO){
-            var funcionario = _context.Funcionario!.Find(dTO.id);
-            if(funcionario == null)
+        public IActionResult update(FuncionarioDTO dTO)
+        {
+            var funcionario = _context.Funcionario!.Find(dTO.FuncionarioId);
+            if (funcionario == null)
                 return NotFound();
-            funcionario.Endereco = dTO.endereco;
-            funcionario.Nome = dTO.nome;
-            funcionario.Sobrenome = dTO.sobrenome;
-            funcionario.Telefone = dTO.telefone;
-            funcionario.Tarefas = dTO.tarefas;
+            funcionario.Endereco = dTO.Endereco;
+            funcionario.Nome = dTO.Nome;
+            funcionario.Sobrenome = dTO.Sobrenome;
+            funcionario.Telefone = dTO.Telefone;
+            //funcionario.Tarefas = _context.Tarefas!.Find(dTO.Tarefas.TarefasId);
             _context.SaveChanges();
             return Ok();
         }
 
         [HttpDelete("/funcionario/{id}")]
-        public IActionResult remove(int id){
+        public IActionResult remove(int id)
+        {
             var funcionario = _context.Funcionario!.Find(id);
-            if(funcionario == null)
+            if (funcionario == null)
                 return NotFound();
             _context.Funcionario.Remove(funcionario);
             return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult Create(FuncionarioDTO dto)
+        {
+            var funcionario = new FuncionarioModel()
+            {
+                FuncionarioId = _context.Funcionario!.Max(table => table.FuncionarioId),
+                Endereco = dto.Endereco,
+                Nome = dto.Nome,
+                Sobrenome = dto.Sobrenome,
+                Telefone = dto.Telefone,
+                Tarefas = new List<TarefaModel>()
+            };
+            _context.Funcionario!.Add(funcionario);
+            return StatusCode(201);
         }
     }
 }

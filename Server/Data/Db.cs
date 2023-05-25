@@ -1,26 +1,26 @@
 
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-
+using Server.Models;
 
 public class Db : DbContext
 {
     // Defina suas entidades como DbSet
-    public DbSet<Cliente>? Cliente { get; set; }
-    public DbSet<Departamento>? Departamento { get; set; }
-    public DbSet<Empresa>? Empresa { get; set; }
-    public DbSet<Funcionario>? Funcionario { get; set; }    
-    public DbSet<Projeto>? Projeto { get; set; }
-    public DbSet<Tarefa>? Tarefa { get; set; }
+    public DbSet<ClienteModel>? Cliente { get; set; }
+    public DbSet<DepartamentoModel>? Departamento { get; set; }
+    public DbSet<EmpresaModel>? Empresa { get; set; }
+    public DbSet<FuncionarioModel>? Funcionario { get; set; }    
+    public DbSet<ProjetoModel>? Projeto { get; set; }
+    public DbSet<TarefaModel>? Tarefa { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-{
-    var serverVersion = new MySqlServerVersion(new Version(8, 0, 31)); // Especifique a versão correta do servidor MySQL aqui
+    {
+        var serverVersion = new MySqlServerVersion(new Version(8, 0, 31)); // Especifique a versão correta do servidor MySQL aqui
 
-    optionsBuilder.UseMySql("Server=database;Port=3306;Database=tarefas;User=root;Password=tarefas;",
-        serverVersion,
-        options => options.EnableRetryOnFailure());
-}
+        optionsBuilder.UseMySql("Server=database;Port=3306;Database=tarefas;User=root;Password=tarefas;",
+            serverVersion,
+            options => options.EnableRetryOnFailure());
+    }
 
     
     /*protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,9 +1,10 @@
 namespace Server.DTO;
 
-public class EmpresaDTO
+public class ClienteDTO
 {
-    public int? EmpresaId { get; set; }
+    public int? ClienteId { get; set; }
     public string? Nome { get; set; }
+    public string? Sobrenome { get; set; }
     public string? Endereco { get; set; }
     public string? Telefone { get; set; }
 }

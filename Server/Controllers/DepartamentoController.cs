@@ -1,51 +1,72 @@
 using Microsoft.AspNetCore.Mvc;
-
+using Server.DTO;
+using Server.Models;
 [ApiController]
 [Route("/departamento")]
 public class DepartamentoController : ControllerBase
 {
     private Db _context;
-    public DepartamentoController(Db context) {
+    public DepartamentoController(Db context)
+    {
         _context = context;
     }
 
     [HttpGet("/departamento/{id}")]
-    public IActionResult Find(int id){
+    public IActionResult Find(int id)
+    {
         return Ok(_context.Departamento!.Find(id));
     }
     [HttpGet]
-    public IActionResult GetAll(){
+    public IActionResult GetAll()
+    {
         return Ok(_context.Departamento!.ToList());
     }
 
     [HttpPost]
-    public IActionResult Create(DepartamentoDTO dto){
-        try{
-            var departamento = new Departamento(){
-                Descricao = dto.descricao,
-                Nome = dto.nome,
-                Id = _context.Departamento!.Max(table => table.Id)+1 
+    public IActionResult Create(DepartamentoDTO dto)
+    {
+        try
+        {
+            var departamento = new DepartamentoModel()
+            {
+                Descricao = dto.Descricao,
+                Nome = dto.Nome,
+                DepartamentoId = _context.Departamento!.Max(table => table.DepartamentoId) + 1
             };
             _context.Departamento!.Add(departamento);
             _context.SaveChanges();
             return Ok();
         }
-        catch(Exception e){
+        catch (Exception e)
+        {
             return BadRequest(e);
         }
     }
 
     [HttpPut]
-    public IActionResult Update(DepartamentoDTO dTO){
-        try{
-            var departamento = _context.Departamento!.Find(dTO.id)!;
-            departamento.Descricao = dTO.descricao;
-            departamento.Nome = dTO.nome;
+    public IActionResult Update(DepartamentoDTO dTO)
+    {
+        try
+        {
+            var departamento = _context.Departamento!.Find(dTO.DepartamentoId)!;
+            departamento.Descricao = dTO.Descricao;
+            departamento.Nome = dTO.Nome;
             _context.SaveChanges();
             return Ok();
         }
-        catch(Exception e){
+        catch (Exception e)
+        {
             return BadRequest(e);
         }
+    }
+
+    [HttpDelete("/departamento/{id}")]
+    public IActionResult Delete(int id)
+    {
+        var dapartamento = _context.Departamento!.Find(id);
+        if (dapartamento == null)
+            return NotFound();
+        _context.Departamento!.Remove(dapartamento);
+        return Ok();
     }
 }
