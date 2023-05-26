@@ -74,6 +74,8 @@ public class TarefaController : ControllerBase
                 Departamento = _context.Departamento!.Find(dto.Departamento!.DepartamentoId!),
                 Projeto = _context.Projeto!.Find(dto.Projeto!.ProjetoId!),
             };
+            _context.Tarefa!.Add(tarefa);
+            _context.SaveChanges();
             return Ok();
         }
         catch (Exception e)
