@@ -54,6 +54,7 @@ public class TarefaController : ControllerBase
         if (tarefa == null)
             return NotFound();
         _context.Tarefa.Remove(tarefa);
+        _context.SaveChanges();
         return Ok();
     }
 

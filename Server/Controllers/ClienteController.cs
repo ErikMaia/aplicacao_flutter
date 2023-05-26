@@ -69,6 +69,7 @@ public class ClienteController : ControllerBase
         if (cliente == null)
             return NotFound();
         _context.Cliente!.Remove(cliente);
+        _context.SaveChanges();
         return Ok();
     }
 }

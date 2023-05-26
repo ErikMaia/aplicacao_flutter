@@ -69,6 +69,7 @@ namespace Server.Controllers
                 Tarefas = new List<TarefaModel>()
             };
             _context.Funcionario!.Add(funcionario);
+            _context.SaveChanges();
             return StatusCode(201);
         }
     }

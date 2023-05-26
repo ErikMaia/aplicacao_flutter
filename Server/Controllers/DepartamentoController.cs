@@ -67,6 +67,7 @@ public class DepartamentoController : ControllerBase
         if (dapartamento == null)
             return NotFound();
         _context.Departamento!.Remove(dapartamento);
+        _context.SaveChanges();
         return Ok();
     }
 }

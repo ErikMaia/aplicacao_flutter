@@ -69,6 +69,7 @@ public class EmpresaController : ControllerBase
         if (empresa == null)
             return NotFound();
         _context.Empresa!.Remove(empresa);
+        _context.SaveChanges();
         return Ok();
     }
 }
