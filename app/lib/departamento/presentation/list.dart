@@ -20,7 +20,7 @@ class _DepartamentoPageState extends State<DepartamentoList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Funcionarios'),
+        title: const Text('Departamento'),
         centerTitle: true,
       ),
       body: Padding(
