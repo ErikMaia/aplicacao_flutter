@@ -49,6 +49,7 @@ public class DepartamentoController : ControllerBase
         try
         {
             var departamento = _context.Departamento!.Find(dTO.DepartamentoId)!;
+            departamento.DepartamentoId = dTO.DepartamentoId;
             departamento.Descricao = dTO.Descricao;
             departamento.Nome = dTO.Nome;
             _context.SaveChanges();
@@ -63,10 +64,17 @@ public class DepartamentoController : ControllerBase
     [HttpDelete("/departamento/{id}")]
     public IActionResult Delete(int id)
     {
+        try{
         var dapartamento = _context.Departamento!.Find(id);
         if (dapartamento == null)
             return NotFound();
         _context.Departamento!.Remove(dapartamento);
+        _context.SaveChanges();
         return Ok();
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e);
+        }
     }
 }

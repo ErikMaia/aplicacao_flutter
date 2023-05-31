@@ -1,4 +1,4 @@
-import 'package:aula5/departamento/data/datasources/delete.dart';
+import 'package:aula5/departamento/data/datasources/remote_api/delete.dart';
 import 'package:aula5/departamento/data/model/departamento.dart';
 import 'package:flutter/material.dart';
 
@@ -34,21 +34,21 @@ class _DepartamentoPageState extends State<DepartamentoList> {
                 return const CircularProgressIndicator();
               case ConnectionState.done:
                 final List<DepartamentoModel> departamentos = snapshot.data;
-                if (departamentos.isEmpty) {
+                /*if (departamentos.isEmpty) {
                   return const Center(
                     child:
                         Text('Ainda não foi registrado nenhum departamento.'),
                   );
-                }
+                }*/
                 return ListView.builder(
                   itemCount: departamentos.length,
                   itemBuilder: (BuildContext context, int index) {
                     final DepartamentoModel departamento = departamentos[index];
 
                     return Dismissible(
-                      onDismissed: (direction) {
-                        DepartamentoDeleteDataSource()
-                            .delete(id: departamento.departamentoID!);
+                      onDismissed: (direction) async {
+                        await DepartamentoDeleteDataSource()
+                            .deleteDepartamento(departamento.departamentoID!);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             showCloseIcon: true,
@@ -60,6 +60,7 @@ class _DepartamentoPageState extends State<DepartamentoList> {
                             ),
                           ),
                         );
+                        setState(() {});
                       },
                       confirmDismiss: (direction) async {
                         return showDialog(

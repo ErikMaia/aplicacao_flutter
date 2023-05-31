@@ -3,7 +3,7 @@ import 'package:aula5/funcionario/presentation/crud/widgets/botao_gravar.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/datasources/remote_api/insert.dart';
-import '../../data/datasources/update.dart';
+import '../../data/datasources/remote_api/update.dart';
 import 'widgets/descricao.dart';
 import 'widgets/nome.dart';
 
@@ -58,17 +58,18 @@ class _DepartamentoPageState extends State<DepartamentoForm> {
                     FocusScope.of(context).unfocus();
 
                     if (_formKey.currentState!.validate()) {
-                      if (widget.departamentoModel == null ||
-                          widget.departamentoModel!.departamentoID == null) {
+                      if (widget.departamentoModel == null) {
                         await DepartamentoInsertDataSource().createDepartamento(
                           departamento: DepartamentoModel(
+                            departamentoID:
+                                widget.departamentoModel!.departamentoID,
                             nome: _nomeController.text,
                             descricao: _descricaoController.text,
                           ),
                         );
                       } else {
-                        await DepartamentoUpdateDataSource().update(
-                          departamentoModel: DepartamentoModel(
+                        await DepartamentoUpdateDataSource().updateDepartamento(
+                          departamento: DepartamentoModel(
                             departamentoID:
                                 widget.departamentoModel!.departamentoID,
                             nome: _nomeController.text,
