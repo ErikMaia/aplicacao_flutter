@@ -1,9 +1,8 @@
 import 'package:aula5/cliente/presentation/crud/widgets/nome.dart';
+import 'package:aula5/empresa/data/datasources/remote_api/insert.dart';
+import 'package:aula5/empresa/data/datasources/remote_api/update.dart';
 import 'package:aula5/empresa/data/model/empresa.dart';
 import 'package:flutter/material.dart';
-
-import '../../data/datasources/insert.dart';
-import '../../data/datasources/update.dart';
 import 'widgets/botao_gravar.dart';
 import 'widgets/endereco.dart';
 import 'widgets/telefone.dart';
@@ -66,8 +65,8 @@ class _EmpresaPageState extends State<EmpresaForm> {
 
                     if (_formKey.currentState!.validate()) {
                       if (widget.empresaModel == null ||
-                          widget.empresaModel!.empresaID == null) {
-                        await EmpresaInsertDataSource().insert(
+                          widget.empresaModel!.empresaId == null) {
+                        await EmpresaInsertDataSource().createEmpresa(
                           empresa: EmpresaModel(
                             nome: _nomeController.text,
                             endereco: _enderecoController.text,
@@ -75,9 +74,9 @@ class _EmpresaPageState extends State<EmpresaForm> {
                           ),
                         );
                       } else {
-                        await EmpresaUpdateDataSource().update(
-                          empresaModel: EmpresaModel(
-                            empresaID: widget.empresaModel!.empresaID,
+                        await EmpresaUpdateDataSource().updateEmpresa(
+                          empresa: EmpresaModel(
+                            empresaId: widget.empresaModel!.empresaId,
                             nome: _nomeController.text,
                             endereco: _enderecoController.text,
                             telefone: _telefoneController.text,

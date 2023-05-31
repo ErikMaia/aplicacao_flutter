@@ -7,7 +7,7 @@ part of 'empresa.dart';
 // **************************************************************************
 
 EmpresaModel _$EmpresaModelFromJson(Map<String, dynamic> json) => EmpresaModel(
-      empresaID: json['empresaID'] as int?,
+      empresaId: json['empresaId'] as int?,
       nome: json['nome'] as String,
       endereco: json['endereco'] as String,
       telefone: json['telefone'] as String,
@@ -15,7 +15,7 @@ EmpresaModel _$EmpresaModelFromJson(Map<String, dynamic> json) => EmpresaModel(
 
 Map<String, dynamic> _$EmpresaModelToJson(EmpresaModel instance) =>
     <String, dynamic>{
-      'empresaID': instance.empresaID,
+      'empresaId': instance.empresaId,
       'nome': instance.nome,
       'endereco': instance.endereco,
       'telefone': instance.telefone,

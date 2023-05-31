@@ -3,7 +3,7 @@ namespace Server.Models;
 public class EmpresaModel
 {
     [Key]
-    public int? EmpresaId { get; set; }
+    public int? empresaId { get; set; }
 
     public string? Nome { get; set; }
 

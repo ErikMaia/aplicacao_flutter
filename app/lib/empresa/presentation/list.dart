@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';
-import '../data/datasources/list.dart';
+import '../data/datasources/remote_api/list.dart';
 import 'crud/crud.dart';
 
 class EmpresaList extends StatefulWidget {
@@ -28,7 +28,7 @@ class _EmpresaPageState extends State<EmpresaList> {
       body: Padding(
         padding: const EdgeInsets.only(top: 2),
         child: FutureBuilder<List<EmpresaModel>>(
-          future: EmpresaListDataSource().getAll(),
+          future: EmpresaListDataSource().getEmpresas(),
           initialData: const [],
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
@@ -49,7 +49,7 @@ class _EmpresaPageState extends State<EmpresaList> {
                     return Dismissible(
                       onDismissed: (direction) {
                         FuncionarioDeleteDataSource()
-                            .delete(id: empresa.empresaID!);
+                            .delete(id: empresa.empresaId!);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             showCloseIcon: true,

@@ -6,7 +6,7 @@ part 'empresa.g.dart';
 @JsonSerializable()
 class EmpresaModel extends EmpresaEntity {
   const EmpresaModel({
-    super.empresaID,
+    super.empresaId,
     required super.nome,
     required super.endereco,
     required super.telefone,

@@ -1,11 +1,11 @@
 class EmpresaEntity {
-  final int? empresaID;
+  final int? empresaId;
   final String nome;
   final String endereco;
   final String telefone;
 
   const EmpresaEntity({
-    this.empresaID,
+    this.empresaId,
     required this.nome,
     required this.endereco,
     required this.telefone,

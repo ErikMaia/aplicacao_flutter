@@ -7,8 +7,8 @@ class EmpresaUpdateDataSource {
     return await db.update(
       empresaTableName,
       empresaModel.toJson(),
-      where: 'empresaID = ?',
-      whereArgs: [empresaModel.empresaID],
+      where: 'empresaId = ?',
+      whereArgs: [empresaModel.empresaId],
     );
   }
 }

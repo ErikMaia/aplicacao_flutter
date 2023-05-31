@@ -32,7 +32,7 @@ public class EmpresaController : ControllerBase
                 Endereco = dto.Endereco,
                 Nome = dto.Nome,
                 Telefone = dto.Nome,
-                EmpresaId = _context.Empresa!.Max(table => table.EmpresaId) + 1
+                empresaId = _context.Empresa!.Max(table => table.empresaId) + 1
             };
             _context.Empresa!.Add(Empresa);
             _context.SaveChanges();
@@ -49,7 +49,7 @@ public class EmpresaController : ControllerBase
     {
         try
         {
-            var empresa = _context.Empresa!.Find(dTO.EmpresaId)!;
+            var empresa = _context.Empresa!.Find(dTO.empresaId)!;
             empresa.Nome = dTO.Nome;
             empresa.Endereco = dTO.Endereco;
             empresa.Telefone = dTO.Telefone;
