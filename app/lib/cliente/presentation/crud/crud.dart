@@ -1,8 +1,7 @@
+import 'package:aula5/cliente/data/datasources/remote_api/insert.dart';
+import 'package:aula5/cliente/data/datasources/remote_api/update.dart';
 import 'package:aula5/cliente/data/model/cliente.dart';
 import 'package:flutter/material.dart';
-
-import '../../data/datasources/insert.dart';
-import '../../data/datasources/update.dart';
 import 'widgets/botao_gravar.dart';
 import 'widgets/endereco.dart';
 import 'widgets/nome.dart';
@@ -71,8 +70,8 @@ class _ClientePageState extends State<ClienteForm> {
 
                     if (_formKey.currentState!.validate()) {
                       if (widget.clienteModel == null ||
-                          widget.clienteModel!.clienteID == null) {
-                        await ClienteInsertDataSource().insert(
+                          widget.clienteModel!.clienteId == null) {
+                        await ClienteInsertDataSource().createCliente(
                           cliente: ClienteModel(
                             nome: _nomeController.text,
                             sobrenome: _sobrenomeController.text,
@@ -81,9 +80,9 @@ class _ClientePageState extends State<ClienteForm> {
                           ),
                         );
                       } else {
-                        await ClienteUpdateDataSource().update(
-                          clienteModel: ClienteModel(
-                            clienteID: widget.clienteModel!.clienteID,
+                        await ClienteUpdateDataSource().updateCliente(
+                          cliente: ClienteModel(
+                            clienteId: widget.clienteModel!.clienteId,
                             nome: _nomeController.text,
                             sobrenome: _sobrenomeController.text,
                             endereco: _enderecoController.text,

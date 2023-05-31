@@ -1,5 +1,5 @@
 class ClienteEntity {
-  final int? clienteID;
+  final int? clienteId;
   final String nome;
   final String sobrenome;
   final String endereco;
@@ -7,7 +7,7 @@ class ClienteEntity {
   // List<Tarefa> tarefas;
 
   const ClienteEntity({
-    this.clienteID,
+    this.clienteId,
     required this.nome,
     required this.sobrenome,
     required this.endereco,

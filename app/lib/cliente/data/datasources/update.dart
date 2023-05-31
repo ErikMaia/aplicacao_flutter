@@ -7,8 +7,8 @@ class ClienteUpdateDataSource {
     return await db.update(
       clienteTableName,
       clienteModel.toJson(),
-      where: 'clienteID = ?',
-      whereArgs: [clienteModel.clienteID],
+      where: 'clienteId = ?',
+      whereArgs: [clienteModel.clienteId],
     );
   }
 }

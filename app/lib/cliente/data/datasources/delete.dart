@@ -5,7 +5,7 @@ class ClienteDeleteDataSource {
     final db = await SqfliteDatabase.openDb();
     return await db.delete(
       clienteTableName,
-      where: 'clienteID = ?',
+      where: 'clienteId = ?',
       whereArgs: [id],
     );
   }

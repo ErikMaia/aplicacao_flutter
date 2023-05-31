@@ -6,7 +6,7 @@ part 'cliente.g.dart';
 @JsonSerializable()
 class ClienteModel extends ClienteEntity {
   const ClienteModel({
-    super.clienteID,
+    super.clienteId,
     required super.nome,
     required super.sobrenome,
     required super.endereco,

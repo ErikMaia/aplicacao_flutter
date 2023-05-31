@@ -7,7 +7,7 @@ part of 'cliente.dart';
 // **************************************************************************
 
 ClienteModel _$ClienteModelFromJson(Map<String, dynamic> json) => ClienteModel(
-      clienteID: json['clienteID'] as int?,
+      clienteId: json['clienteId'] as int?,
       nome: json['nome'] as String,
       sobrenome: json['sobrenome'] as String,
       endereco: json['endereco'] as String,
@@ -16,7 +16,7 @@ ClienteModel _$ClienteModelFromJson(Map<String, dynamic> json) => ClienteModel(
 
 Map<String, dynamic> _$ClienteModelToJson(ClienteModel instance) =>
     <String, dynamic>{
-      'clienteID': instance.clienteID,
+      'clienteId': instance.clienteId,
       'nome': instance.nome,
       'sobrenome': instance.sobrenome,
       'endereco': instance.endereco,

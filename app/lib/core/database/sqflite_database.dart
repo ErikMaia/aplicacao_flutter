@@ -45,7 +45,7 @@ class SqfliteDatabase {
 
     await db.execute('''
       CREATE TABLE $clienteTableName (
-        clienteID INTEGER PRIMARY KEY AUTOINCREMENT,
+        clienteId INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT,
         sobrenome TEXT,
         endereco TEXT,

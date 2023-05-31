@@ -33,7 +33,7 @@ public class ClienteController : ControllerBase
             Sobrenome = dTO.Sobrenome,
             Endereco = dTO.Endereco,
             Telefone = dTO.Telefone,
-            ClienteId = _context.Cliente!.Max(table => table.ClienteId) + 1
+            clienteId = _context.Cliente!.Max(table => table.clienteId) + 1
         };
         try
         {
@@ -52,7 +52,7 @@ public class ClienteController : ControllerBase
     {
         try
         {
-            var cliente = _context.Cliente!.Find(dTO.ClienteId)!;
+            var cliente = _context.Cliente!.Find(dTO.clienteId)!;
             cliente.Endereco = dTO.Endereco;
             _context.SaveChanges();
             return Ok();

@@ -1,10 +1,9 @@
+import 'package:aula5/cliente/data/datasources/remote_api/delete.dart';
+import 'package:aula5/cliente/data/datasources/remote_api/list.dart';
 import 'package:aula5/cliente/data/model/cliente.dart';
-import 'package:aula5/funcionario/data/datasources/delete.dart';
 import 'package:flutter/material.dart';
-
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';
-import '../data/datasources/list.dart';
 import 'crud/crud.dart';
 
 class ClienteList extends StatefulWidget {
@@ -27,7 +26,7 @@ class _ClientePageState extends State<ClienteList> {
       body: Padding(
         padding: const EdgeInsets.only(top: 2),
         child: FutureBuilder<List<ClienteModel>>(
-          future: ClienteListDataSource().getAll(),
+          future: ClienteListDataSource().getClientes(),
           initialData: const [],
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
@@ -47,8 +46,8 @@ class _ClientePageState extends State<ClienteList> {
 
                     return Dismissible(
                       onDismissed: (direction) {
-                        FuncionarioDeleteDataSource()
-                            .delete(id: cliente.clienteID!);
+                        ClienteDeleteDataSource()
+                            .deleteCliente(cliente.clienteId!);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             showCloseIcon: true,

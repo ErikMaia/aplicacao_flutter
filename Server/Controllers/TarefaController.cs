@@ -40,7 +40,7 @@ public class TarefaController : ControllerBase
         tarefa.DataInicio = dTO.DataInicio;
         tarefa.DataTermino = dTO.DataTermino;
         tarefa.Status = dTO.Status;
-        tarefa.Cliente = _context.Cliente!.Find(dTO.Cliente!.ClienteId!);
+        tarefa.Cliente = _context.Cliente!.Find(dTO.Cliente!.clienteId!);
         tarefa.Departamento = _context.Departamento!.Find(dTO.Departamento!.departamentoId!)!;
         tarefa.Projeto = _context.Projeto!.Find(dTO.Projeto!.ProjetoId!)!;
         _context.SaveChanges();
@@ -65,7 +65,7 @@ public class TarefaController : ControllerBase
             var tarefa = new TarefaModel()
             {
                 TarefaId = _context.Tarefa!.Max(table => table.TarefaId) + 1,
-                Cliente = _context.Cliente!.Find(dto.Cliente!.ClienteId!),
+                Cliente = _context.Cliente!.Find(dto.Cliente!.clienteId!),
                 Descricao = dto.Descricao,
                 DataInicio = dto.DataInicio,
                 DataTermino = dto.DataTermino,
