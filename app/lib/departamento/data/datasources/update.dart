@@ -8,8 +8,8 @@ class DepartamentoUpdateDataSource2 {
     return await db.update(
       departamentoTableName,
       departamentoModel.toJson(),
-      where: 'departamentoID = ?',
-      whereArgs: [departamentoModel.departamentoID],
+      where: 'departamentoId = ?',
+      whereArgs: [departamentoModel.departamentoId],
     );
   }
 }

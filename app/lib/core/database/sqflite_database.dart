@@ -37,7 +37,7 @@ class SqfliteDatabase {
 
     await db.execute('''
       CREATE TABLE $departamentoTableName (
-        departamentoID INTEGER PRIMARY KEY AUTOINCREMENT,
+        departamentoId INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT,
         descricao TEXT
       )

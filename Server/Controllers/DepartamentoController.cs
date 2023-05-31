@@ -31,7 +31,7 @@ public class DepartamentoController : ControllerBase
             {
                 Descricao = dto.Descricao,
                 Nome = dto.Nome,
-                DepartamentoId = _context.Departamento!.Max(table => table.DepartamentoId) + 1
+                departamentoId = _context.Departamento!.Max(table => table.departamentoId) + 1
             };
             _context.Departamento!.Add(departamento);
             _context.SaveChanges();
@@ -43,13 +43,13 @@ public class DepartamentoController : ControllerBase
         }
     }
 
-    [HttpPut]
+    [HttpPut("/departamento/{id}")]
     public IActionResult Update(DepartamentoDTO dTO)
     {
         try
         {
-            var departamento = _context.Departamento!.Find(dTO.DepartamentoId)!;
-            departamento.DepartamentoId = dTO.DepartamentoId;
+            var departamento = _context.Departamento!.Find(dTO.departamentoId)!;
+            departamento.departamentoId = dTO.departamentoId;
             departamento.Descricao = dTO.Descricao;
             departamento.Nome = dTO.Nome;
             _context.SaveChanges();

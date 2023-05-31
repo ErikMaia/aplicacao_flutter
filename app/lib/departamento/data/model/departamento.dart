@@ -6,7 +6,7 @@ part 'departamento.g.dart';
 @JsonSerializable()
 class DepartamentoModel extends DepartamentoEntity {
   DepartamentoModel({
-    super.departamentoID,
+    super.departamentoId,
     required super.nome,
     required super.descricao,
   });

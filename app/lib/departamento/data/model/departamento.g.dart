@@ -8,14 +8,14 @@ part of 'departamento.dart';
 
 DepartamentoModel _$DepartamentoModelFromJson(Map<String, dynamic> json) =>
     DepartamentoModel(
-      departamentoID: json['departamentoID'] as int?,
+      departamentoId: json['departamentoId'] as int?,
       nome: json['nome'] as String,
       descricao: json['descricao'] as String,
     );
 
 Map<String, dynamic> _$DepartamentoModelToJson(DepartamentoModel instance) =>
     <String, dynamic>{
-      'departamentoID': instance.departamentoID,
+      'departamentoId': instance.departamentoId,
       'nome': instance.nome,
       'descricao': instance.descricao,
     };

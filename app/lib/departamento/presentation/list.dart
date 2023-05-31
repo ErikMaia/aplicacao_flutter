@@ -48,7 +48,7 @@ class _DepartamentoPageState extends State<DepartamentoList> {
                     return Dismissible(
                       onDismissed: (direction) async {
                         await DepartamentoDeleteDataSource()
-                            .deleteDepartamento(departamento.departamentoID!);
+                            .deleteDepartamento(departamento.departamentoId!);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             showCloseIcon: true,

@@ -3,7 +3,7 @@ namespace Server.Models;
 public class DepartamentoModel
 {
     [Key]
-    public int? DepartamentoId { get; set; }
+    public int? departamentoId { get; set; }
 
     public string? Nome { get; set; }
 

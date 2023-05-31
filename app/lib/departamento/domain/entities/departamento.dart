@@ -1,10 +1,10 @@
 class DepartamentoEntity {
-  final int? departamentoID;
+  final int? departamentoId;
   final String nome;
   final String descricao;
 
   DepartamentoEntity({
-    this.departamentoID,
+    this.departamentoId,
     required this.nome,
     required this.descricao,
   });

@@ -3,14 +3,14 @@ import 'package:http/http.dart' as http;
 import '../../model/departamento.dart';
 
 class DepartamentoUpdateDataSource {
-  final String baseUrl = 'http://10.0.2.2/Departamento';
+  final String baseUrl = 'http://10.0.2.2/departamento';
 
   Future<DepartamentoModel> updateDepartamento(
       {required DepartamentoModel departamento}) async {
-    final url = '$baseUrl/${departamento.departamentoID}';
+    final url = '$baseUrl/${departamento.departamentoId}';
     final response = await http.put(
       Uri.parse(url),
-      headers: {'Content-Type': 'application/json'},
+      headers: {'accept': '*/*', 'Content-Type': 'application/json'},
       body: jsonEncode(departamento.toJson()),
     );
 

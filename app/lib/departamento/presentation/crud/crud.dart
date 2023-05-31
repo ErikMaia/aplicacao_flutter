@@ -58,11 +58,10 @@ class _DepartamentoPageState extends State<DepartamentoForm> {
                     FocusScope.of(context).unfocus();
 
                     if (_formKey.currentState!.validate()) {
-                      if (widget.departamentoModel == null) {
+                      if (widget.departamentoModel == null ||
+                          widget.departamentoModel!.departamentoId == null) {
                         await DepartamentoInsertDataSource().createDepartamento(
                           departamento: DepartamentoModel(
-                            departamentoID:
-                                widget.departamentoModel!.departamentoID,
                             nome: _nomeController.text,
                             descricao: _descricaoController.text,
                           ),
@@ -70,8 +69,8 @@ class _DepartamentoPageState extends State<DepartamentoForm> {
                       } else {
                         await DepartamentoUpdateDataSource().updateDepartamento(
                           departamento: DepartamentoModel(
-                            departamentoID:
-                                widget.departamentoModel!.departamentoID,
+                            departamentoId:
+                                widget.departamentoModel!.departamentoId,
                             nome: _nomeController.text,
                             descricao: _descricaoController.text,
                           ),
