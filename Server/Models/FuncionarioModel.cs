@@ -5,7 +5,7 @@ namespace Server.Models;
 public class FuncionarioModel
 {
     [Key]
-    public int? FuncionarioId { get; set; }
+    public int? funcionarioId { get; set; }
 
     public string? Nome { get; set; }
 

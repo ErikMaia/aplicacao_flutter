@@ -8,8 +8,8 @@ class FuncionarioUpdateDataSource {
     return await db.update(
       funcionarioTableName,
       funcionarioModel.toJson(),
-      where: 'funcionarioID = ?',
-      whereArgs: [funcionarioModel.funcionarioID],
+      where: 'funcionarioId = ?',
+      whereArgs: [funcionarioModel.funcionarioId],
     );
   }
 }

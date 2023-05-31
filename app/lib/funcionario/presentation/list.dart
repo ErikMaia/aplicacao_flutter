@@ -1,10 +1,9 @@
-import 'package:aula5/funcionario/data/datasources/delete.dart';
+import 'package:aula5/funcionario/data/datasources/remote_api/delete.dart';
+import 'package:aula5/funcionario/data/datasources/remote_api/list.dart';
 import 'package:aula5/funcionario/data/model/funcionario.dart';
 import 'package:flutter/material.dart';
-
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';
-import '../data/datasources/list.dart';
 import 'crud/crud.dart';
 
 class FuncionarioList extends StatefulWidget {
@@ -26,7 +25,7 @@ class _FuncionarioPageState extends State<FuncionarioList> {
       body: Padding(
         padding: const EdgeInsets.only(top: 2),
         child: FutureBuilder<List<FuncionarioModel>>(
-          future: FuncionarioListDataSource().getAll(),
+          future: FuncionarioListDataSource().getFuncionarios(),
           initialData: const [],
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
@@ -47,7 +46,7 @@ class _FuncionarioPageState extends State<FuncionarioList> {
                     return Dismissible(
                       onDismissed: (direction) {
                         FuncionarioDeleteDataSource()
-                            .delete(id: funcionario.funcionarioID!);
+                            .deleteFuncionario(funcionario.funcionarioId!);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             showCloseIcon: true,

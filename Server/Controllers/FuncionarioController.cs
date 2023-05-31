@@ -34,7 +34,7 @@ namespace Server.Controllers
         [HttpPut]
         public IActionResult update(FuncionarioDTO dTO)
         {
-            var funcionario = _context.Funcionario!.Find(dTO.FuncionarioId);
+            var funcionario = _context.Funcionario!.Find(dTO.funcionarioId);
             if (funcionario == null)
                 return NotFound();
             funcionario.Endereco = dTO.Endereco;
@@ -61,7 +61,7 @@ namespace Server.Controllers
         {
             var funcionario = new FuncionarioModel()
             {
-                FuncionarioId = _context.Funcionario!.Max(table => table.FuncionarioId),
+                funcionarioId = _context.Funcionario!.Max(table => table.funcionarioId),
                 Endereco = dto.Endereco,
                 Nome = dto.Nome,
                 Sobrenome = dto.Sobrenome,

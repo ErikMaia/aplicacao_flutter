@@ -3,7 +3,7 @@ namespace Server.DTO;
 
 public class FuncionarioDTO
 {
-    public int? FuncionarioId { get; set; }
+    public int? funcionarioId { get; set; }
     public string? Nome { get; set; }
     public string? Sobrenome { get; set; }
     public string? Endereco { get; set; }

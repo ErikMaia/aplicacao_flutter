@@ -27,7 +27,7 @@ class SqfliteDatabase {
   static Future<void> createTables(Database db) async {
     await db.execute('''
       CREATE TABLE $funcionarioTableName (
-        funcionarioID INTEGER PRIMARY KEY AUTOINCREMENT,
+        funcionarioId INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT,
         sobrenome TEXT,
         endereco TEXT,

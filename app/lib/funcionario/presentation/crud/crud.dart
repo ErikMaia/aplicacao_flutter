@@ -1,11 +1,10 @@
+import 'package:aula5/funcionario/data/datasources/remote_api/insert.dart';
+import 'package:aula5/funcionario/data/datasources/remote_api/update.dart';
 import 'package:aula5/funcionario/data/model/funcionario.dart';
 import 'package:aula5/funcionario/presentation/crud/widgets/botao_gravar.dart';
 import 'package:aula5/funcionario/presentation/crud/widgets/sobrenome.dart';
 import 'package:aula5/funcionario/presentation/crud/widgets/telefone.dart';
 import 'package:flutter/material.dart';
-
-import '../../data/datasources/insert.dart';
-import '../../data/datasources/update.dart';
 import 'widgets/endereco.dart';
 import 'widgets/nome.dart';
 
@@ -71,8 +70,8 @@ class _FuncionarioPageState extends State<FuncionarioForm> {
 
                     if (_formKey.currentState!.validate()) {
                       if (widget.funcionarioModel == null ||
-                          widget.funcionarioModel!.funcionarioID == null) {
-                        await FuncionarioInsertDataSource().insert(
+                          widget.funcionarioModel!.funcionarioId == null) {
+                        await FuncionarioInsertDataSource().createFuncionario(
                           funcionario: FuncionarioModel(
                             nome: _nomeController.text,
                             sobrenome: _sobrenomeController.text,
@@ -81,10 +80,10 @@ class _FuncionarioPageState extends State<FuncionarioForm> {
                           ),
                         );
                       } else {
-                        await FuncionarioUpdateDataSource().update(
-                          funcionarioModel: FuncionarioModel(
-                            funcionarioID:
-                                widget.funcionarioModel!.funcionarioID,
+                        await FuncionarioUpdateDataSource().updateFuncionario(
+                          funcionario: FuncionarioModel(
+                            funcionarioId:
+                                widget.funcionarioModel!.funcionarioId,
                             nome: _nomeController.text,
                             sobrenome: _sobrenomeController.text,
                             endereco: _enderecoController.text,

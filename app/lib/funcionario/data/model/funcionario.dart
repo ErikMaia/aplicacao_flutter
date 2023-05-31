@@ -6,7 +6,7 @@ part 'funcionario.g.dart';
 @JsonSerializable()
 class FuncionarioModel extends FuncionarioEntity {
   const FuncionarioModel({
-    super.funcionarioID,
+    super.funcionarioId,
     required super.nome,
     required super.sobrenome,
     required super.endereco,

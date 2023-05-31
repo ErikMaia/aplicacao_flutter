@@ -8,7 +8,7 @@ part of 'funcionario.dart';
 
 FuncionarioModel _$FuncionarioModelFromJson(Map<String, dynamic> json) =>
     FuncionarioModel(
-      funcionarioID: json['funcionarioID'] as int?,
+      funcionarioId: json['funcionarioId'] as int?,
       nome: json['nome'] as String,
       sobrenome: json['sobrenome'] as String,
       endereco: json['endereco'] as String,
@@ -17,7 +17,7 @@ FuncionarioModel _$FuncionarioModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$FuncionarioModelToJson(FuncionarioModel instance) =>
     <String, dynamic>{
-      'funcionarioID': instance.funcionarioID,
+      'funcionarioId': instance.funcionarioId,
       'nome': instance.nome,
       'sobrenome': instance.sobrenome,
       'endereco': instance.endereco,
