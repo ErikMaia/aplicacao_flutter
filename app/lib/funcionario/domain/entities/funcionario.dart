@@ -1,11 +1,11 @@
 class FuncionarioEntity {
-  final int? funcionarioId;
+  int? funcionarioId;
   final String nome;
   final String sobrenome;
   final String endereco;
   final String telefone;
 
-  const FuncionarioEntity({
+  FuncionarioEntity({
     this.funcionarioId,
     required this.nome,
     required this.sobrenome,
