@@ -3,7 +3,7 @@ namespace Server.DTO;
 
 public class ProjetoDTO
 {
-    public int? ProjetoId { get; set; }
+    public int? projetoId { get; set; }
     public string? Nome { get; set; }
     public string? Descricao { get; set; }
     public DateTime? DataInicio { get; set; }

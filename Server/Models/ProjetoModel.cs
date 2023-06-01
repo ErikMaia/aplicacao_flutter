@@ -4,7 +4,7 @@ namespace Server.Models;
 public class ProjetoModel
 {
     [Key]
-    public int? ProjetoId { get; set; }
+    public int? projetoId { get; set; }
 
     public string? Nome { get; set; }
 

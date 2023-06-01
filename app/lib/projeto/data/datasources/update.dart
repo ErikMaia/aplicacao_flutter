@@ -7,8 +7,8 @@ class ProjetoUpdateDataSource {
     return await db.update(
       projetoTableName,
       projetoModel.toJson(),
-      where: 'projetoID = ?',
-      whereArgs: [projetoModel.projetoID],
+      where: 'projetoId = ?',
+      whereArgs: [projetoModel.projetoId],
     );
   }
 }

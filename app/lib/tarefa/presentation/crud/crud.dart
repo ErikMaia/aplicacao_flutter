@@ -1,10 +1,8 @@
 import 'package:aula5/funcionario/presentation/crud/widgets/botao_gravar.dart';
+import 'package:aula5/tarefa/data/datasources/remote_api/insert.dart';
+import 'package:aula5/tarefa/data/datasources/remote_api/update.dart';
 import 'package:aula5/tarefa/data/model/tarefa.dart';
 import 'package:flutter/material.dart';
-
-import '../../data/datasources/insert.dart';
-import '../../data/datasources/update.dart';
-
 import 'widgets/data.dart';
 import 'widgets/descricao.dart';
 import 'widgets/status.dart';
@@ -87,8 +85,8 @@ class _TarefaPageState extends State<TarefaForm> {
 
                     if (_formKey.currentState!.validate()) {
                       if (widget.tarefaModel == null ||
-                          widget.tarefaModel!.tarefaID == null) {
-                        await TarefaInsertDataSource().insert(
+                          widget.tarefaModel!.tarefaId == null) {
+                        await TarefaInsertDataSource().createTarefa(
                           tarefa: TarefaModel(
                             descricao: _descricaoController.text,
                             dataInicio: _dataInicioController.text,
@@ -97,9 +95,9 @@ class _TarefaPageState extends State<TarefaForm> {
                           ),
                         );
                       } else {
-                        await TarefaUpdateDataSource().update(
-                          tarefaModel: TarefaModel(
-                            tarefaID: widget.tarefaModel!.tarefaID,
+                        await TarefaUpdateDataSource().updateTarefa(
+                          tarefa: TarefaModel(
+                            tarefaId: widget.tarefaModel!.tarefaId,
                             descricao: _descricaoController.text,
                             dataInicio: _dataInicioController.text,
                             dataTermino: _dataTerminoController.text,

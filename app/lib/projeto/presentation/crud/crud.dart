@@ -1,10 +1,8 @@
 import 'package:aula5/funcionario/presentation/crud/widgets/botao_gravar.dart';
+import 'package:aula5/projeto/data/datasources/remote_api/insert.dart';
+import 'package:aula5/projeto/data/datasources/remote_api/update.dart';
 import 'package:aula5/projeto/data/model/projeto.dart';
-
 import 'package:flutter/material.dart';
-
-import '../../data/datasources/insert.dart';
-import '../../data/datasources/update.dart';
 import 'widgets/data.dart';
 import 'widgets/descricao.dart';
 import 'widgets/nome.dart';
@@ -85,8 +83,8 @@ class _ProjetoPageState extends State<ProjetoForm> {
 
                     if (_formKey.currentState!.validate()) {
                       if (widget.projetoModel == null ||
-                          widget.projetoModel!.projetoID == null) {
-                        await ProjetoInsertDataSource().insert(
+                          widget.projetoModel!.projetoId == null) {
+                        await ProjetoInsertDataSource().createProjeto(
                           projeto: ProjetoModel(
                               nome: _nomeController.text,
                               descricao: _descricaoController.text,
@@ -94,9 +92,9 @@ class _ProjetoPageState extends State<ProjetoForm> {
                               dataTermino: _dataTerminoController.text),
                         );
                       } else {
-                        await ProjetoUpdateDataSource().update(
-                          projetoModel: ProjetoModel(
-                              projetoID: widget.projetoModel!.projetoID,
+                        await ProjetoUpdateDataSource().updateProjeto(
+                          projeto: ProjetoModel(
+                              projetoId: widget.projetoModel!.projetoId,
                               nome: _nomeController.text,
                               descricao: _descricaoController.text,
                               dataInicio: _dataInicioController.text,

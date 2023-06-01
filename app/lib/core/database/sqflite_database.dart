@@ -64,7 +64,7 @@ class SqfliteDatabase {
 
     await db.execute('''
       CREATE TABLE $tarefaTableName (
-        tarefaID INTEGER PRIMARY KEY AUTOINCREMENT,
+        tarefaId INTEGER PRIMARY KEY AUTOINCREMENT,
         descricao TEXT,
         dataInicio TEXT,
         dataTermino TEXT,
@@ -74,7 +74,7 @@ class SqfliteDatabase {
 
     await db.execute('''
       CREATE TABLE $projetoTableName (
-        projetoID INTEGER PRIMARY KEY AUTOINCREMENT,
+        projetoId INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT,
         descricao TEXT,
         dataInicio TEXT,

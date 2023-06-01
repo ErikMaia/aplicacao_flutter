@@ -33,7 +33,7 @@ namespace Server.Controllers
         [HttpPut]
         public IActionResult update(ProjetoDTO dTO)
         {
-            var projeto = _context.Projeto!.Find(dTO.ProjetoId);
+            var projeto = _context.Projeto!.Find(dTO.projetoId);
             if (projeto == null)
                 return NotFound();
             projeto.Nome = dTO.Nome;
@@ -64,7 +64,7 @@ namespace Server.Controllers
                 DataTermino = dto.DataTermino,
                 Descricao = dto.Descricao,
                 Nome = dto.Nome,
-                ProjetoId = _context.Projeto!.Max(table => table.ProjetoId) + 1,
+                projetoId = _context.Projeto!.Max(table => table.projetoId) + 1,
             };
             _context.Projeto!.Add(projeto);
             _context.SaveChanges();

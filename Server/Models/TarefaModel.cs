@@ -5,7 +5,7 @@ namespace Server.Models;
 public class TarefaModel
 {
     [Key]
-    public int? TarefaId { get; set; }
+    public int? tarefaId { get; set; }
 
     public string? Descricao { get; set; }
 

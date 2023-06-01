@@ -1,10 +1,9 @@
-import 'package:aula5/projeto/data/datasources/delete.dart';
+import 'package:aula5/projeto/data/datasources/remote_api/delete.dart';
+import 'package:aula5/projeto/data/datasources/remote_api/list.dart';
 import 'package:aula5/projeto/data/model/projeto.dart';
 import 'package:flutter/material.dart';
-
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';
-import '../data/datasources/list.dart';
 import 'crud/crud.dart';
 
 class ProjetoList extends StatefulWidget {
@@ -26,7 +25,7 @@ class _ProjetoPageState extends State<ProjetoList> {
       body: Padding(
         padding: const EdgeInsets.only(top: 2),
         child: FutureBuilder<List<ProjetoModel>>(
-          future: ProjetoListDataSource().getAll(),
+          future: ProjetoListDataSource().getProjetos(),
           initialData: const [],
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
@@ -47,7 +46,7 @@ class _ProjetoPageState extends State<ProjetoList> {
                     return Dismissible(
                       onDismissed: (direction) {
                         ProjetoDeleteDataSource()
-                            .delete(id: projeto.projetoID!);
+                            .deleteProjeto(projeto.projetoId!);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             showCloseIcon: true,

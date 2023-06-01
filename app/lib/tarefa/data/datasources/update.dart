@@ -7,8 +7,8 @@ class TarefaUpdateDataSource {
     return await db.update(
       funcionarioTableName,
       tarefaModel.toJson(),
-      where: 'tarefaID = ?',
-      whereArgs: [tarefaModel.tarefaID],
+      where: 'tarefaId = ?',
+      whereArgs: [tarefaModel.tarefaId],
     );
   }
 }

@@ -7,7 +7,7 @@ part of 'projeto.dart';
 // **************************************************************************
 
 ProjetoModel _$ProjetoModelFromJson(Map<String, dynamic> json) => ProjetoModel(
-      projetoID: json['projetoID'] as int?,
+      projetoId: json['projetoId'] as int?,
       nome: json['nome'] as String,
       descricao: json['descricao'] as String,
       dataInicio: json['dataInicio'] as String,
@@ -16,7 +16,7 @@ ProjetoModel _$ProjetoModelFromJson(Map<String, dynamic> json) => ProjetoModel(
 
 Map<String, dynamic> _$ProjetoModelToJson(ProjetoModel instance) =>
     <String, dynamic>{
-      'projetoID': instance.projetoID,
+      'projetoId': instance.projetoId,
       'nome': instance.nome,
       'descricao': instance.descricao,
       'dataInicio': instance.dataInicio,

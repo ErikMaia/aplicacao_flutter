@@ -6,7 +6,7 @@ part of 'tarefa.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 TarefaModel _$TarefaModelFromJson(Map<String, dynamic> json) => TarefaModel(
-      tarefaID: json['tarefaID'] as int?,
+      tarefaId: json['tarefaId'] as int?,
       descricao: json['descricao'] as String,
       dataInicio: json['dataInicio'] as String,
       dataTermino: json['dataTermino'] as String,
@@ -15,7 +15,7 @@ TarefaModel _$TarefaModelFromJson(Map<String, dynamic> json) => TarefaModel(
 
 Map<String, dynamic> _$TarefaModelToJson(TarefaModel instance) =>
     <String, dynamic>{
-      'tarefaID': instance.tarefaID,
+      'tarefaId': instance.tarefaId,
       'descricao': instance.descricao,
       'dataInicio': instance.dataInicio,
       'dataTermino': instance.dataTermino,

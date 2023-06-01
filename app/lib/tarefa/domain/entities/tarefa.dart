@@ -1,12 +1,12 @@
 class TarefaEntity {
-  final int? tarefaID;
+  final int? tarefaId;
   final String descricao;
   final String dataInicio;
   final String dataTermino;
   final String status;
 
   const TarefaEntity({
-    this.tarefaID,
+    this.tarefaId,
     required this.descricao,
     required this.dataInicio,
     required this.dataTermino,

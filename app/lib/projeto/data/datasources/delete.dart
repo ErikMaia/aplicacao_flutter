@@ -5,7 +5,7 @@ class ProjetoDeleteDataSource {
     final db = await SqfliteDatabase.openDb();
     return await db.delete(
       projetoTableName,
-      where: 'projetoID = ?',
+      where: 'projetoId = ?',
       whereArgs: [id],
     );
   }

@@ -1,11 +1,9 @@
-import 'package:aula5/funcionario/data/datasources/delete.dart';
-
+import 'package:aula5/tarefa/data/datasources/remote_api/delete.dart';
+import 'package:aula5/tarefa/data/datasources/remote_api/list.dart';
 import 'package:aula5/tarefa/data/model/tarefa.dart';
 import 'package:flutter/material.dart';
-
 import '../../shared/widgets/app_listtile.dart';
 import '../../widgets/drawer_pages.dart';
-import '../data/datasources/list.dart';
 import 'crud/crud.dart';
 
 class TarefaList extends StatefulWidget {
@@ -28,7 +26,7 @@ class _TarefaPageState extends State<TarefaList> {
       body: Padding(
         padding: const EdgeInsets.only(top: 2),
         child: FutureBuilder<List<TarefaModel>>(
-          future: TarefaListDataSource().getAll(),
+          future: TarefaListDataSource().getTarefas(),
           initialData: const [],
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
@@ -48,8 +46,7 @@ class _TarefaPageState extends State<TarefaList> {
 
                     return Dismissible(
                       onDismissed: (direction) {
-                        FuncionarioDeleteDataSource()
-                            .delete(id: tarefa.tarefaID!);
+                        TarefaDeleteDataSource().deleteTarefa(tarefa.tarefaId!);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             showCloseIcon: true,

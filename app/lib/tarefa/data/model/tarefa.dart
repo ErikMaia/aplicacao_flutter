@@ -6,7 +6,7 @@ part 'tarefa.g.dart';
 @JsonSerializable()
 class TarefaModel extends TarefaEntity {
   const TarefaModel({
-    super.tarefaID,
+    super.tarefaId,
     required super.descricao,
     required super.dataInicio,
     required super.dataTermino,

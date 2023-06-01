@@ -7,13 +7,9 @@ class DepartamentoInsertDataSource {
 
   Future<DepartamentoModel> createDepartamento(
       {required DepartamentoModel departamento}) async {
-    var teste = jsonEncode(departamento.toJson());
-    //print(teste);
-    final response = await http.post(
-      Uri.parse(baseUrl),
-      headers: {'Content-Type': 'application/json'},
-      body: teste,
-    );
+    final response = await http.post(Uri.parse(baseUrl),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(departamento.toJson()));
 
     if (response.statusCode == 201) {
       return DepartamentoModel.fromJson(jsonDecode(response.body));

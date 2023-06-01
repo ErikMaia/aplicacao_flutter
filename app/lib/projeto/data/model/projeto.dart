@@ -6,7 +6,7 @@ part 'projeto.g.dart';
 @JsonSerializable()
 class ProjetoModel extends ProjetoEntity {
   ProjetoModel(
-      {super.projetoID,
+      {super.projetoId,
       required super.nome,
       required super.descricao,
       required super.dataInicio,

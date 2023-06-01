@@ -33,7 +33,7 @@ public class TarefaController : ControllerBase
     [HttpPut]
     public IActionResult Update(TarefaDTO dTO)
     {
-        var tarefa = _context.Tarefa!.Find(dTO.TarefaId);
+        var tarefa = _context.Tarefa!.Find(dTO.tarefaId);
         if (tarefa == null)
             return NotFound();
         tarefa.Descricao = dTO.Descricao;
@@ -42,7 +42,7 @@ public class TarefaController : ControllerBase
         tarefa.Status = dTO.Status;
         tarefa.Cliente = _context.Cliente!.Find(dTO.Cliente!.clienteId!);
         tarefa.Departamento = _context.Departamento!.Find(dTO.Departamento!.departamentoId!)!;
-        tarefa.Projeto = _context.Projeto!.Find(dTO.Projeto!.ProjetoId!)!;
+        tarefa.Projeto = _context.Projeto!.Find(dTO.Projeto!.projetoId!)!;
         _context.SaveChanges();
         return Ok();
     }
@@ -64,14 +64,14 @@ public class TarefaController : ControllerBase
         {
             var tarefa = new TarefaModel()
             {
-                TarefaId = _context.Tarefa!.Max(table => table.TarefaId) + 1,
+                tarefaId = _context.Tarefa!.Max(table => table.tarefaId) + 1,
                 Cliente = _context.Cliente!.Find(dto.Cliente!.clienteId!),
                 Descricao = dto.Descricao,
                 DataInicio = dto.DataInicio,
                 DataTermino = dto.DataTermino,
                 Status = dto.Status,
                 Departamento = _context.Departamento!.Find(dto.Departamento!.departamentoId!),
-                Projeto = _context.Projeto!.Find(dto.Projeto!.ProjetoId!),
+                Projeto = _context.Projeto!.Find(dto.Projeto!.projetoId!),
             };
             return Ok();
         }

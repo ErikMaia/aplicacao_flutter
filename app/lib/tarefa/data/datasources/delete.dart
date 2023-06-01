@@ -5,7 +5,7 @@ class TarefaDeleteDataSource {
     final db = await SqfliteDatabase.openDb();
     return await db.delete(
       tarefaTableName,
-      where: 'tarefaID = ?',
+      where: 'tarefaId = ?',
       whereArgs: [id],
     );
   }
