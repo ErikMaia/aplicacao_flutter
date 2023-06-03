@@ -32,12 +32,14 @@ class _ProjetoPageState extends State<ProjetoList> {
               case ConnectionState.waiting:
                 return const CircularProgressIndicator();
               case ConnectionState.done:
-                final List<ProjetoModel> projetos = snapshot.data;
+                final List<ProjetoModel> projetos = snapshot.data ?? [];
+
                 if (projetos.isEmpty) {
                   return const Center(
-                    child: Text('Ainda não foi registrado nenhum funcionário.'),
+                    child: Text('Ainda não foi registrado nenhum projeto.'),
                   );
                 }
+
                 return ListView.builder(
                   itemCount: projetos.length,
                   itemBuilder: (BuildContext context, int index) {

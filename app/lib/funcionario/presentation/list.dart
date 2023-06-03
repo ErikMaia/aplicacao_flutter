@@ -32,12 +32,14 @@ class _FuncionarioPageState extends State<FuncionarioList> {
               case ConnectionState.waiting:
                 return const CircularProgressIndicator();
               case ConnectionState.done:
-                final List<FuncionarioModel> funcionarios = snapshot.data;
+                final List<FuncionarioModel> funcionarios = snapshot.data ?? [];
+
                 if (funcionarios.isEmpty) {
                   return const Center(
                     child: Text('Ainda não foi registrado nenhum funcionário.'),
                   );
                 }
+
                 return ListView.builder(
                   itemCount: funcionarios.length,
                   itemBuilder: (BuildContext context, int index) {

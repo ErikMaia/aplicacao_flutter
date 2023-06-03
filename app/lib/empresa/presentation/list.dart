@@ -34,13 +34,16 @@ class _EmpresaPageState extends State<EmpresaList> {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
                 return const CircularProgressIndicator();
+
               case ConnectionState.done:
-                final List<EmpresaModel> empresas = snapshot.data;
+                final List<EmpresaModel> empresas = snapshot.data ?? [];
+
                 if (empresas.isEmpty) {
                   return const Center(
                     child: Text('Ainda não foi registrado nenhum Empresa.'),
                   );
                 }
+
                 return ListView.builder(
                   itemCount: empresas.length,
                   itemBuilder: (BuildContext context, int index) {

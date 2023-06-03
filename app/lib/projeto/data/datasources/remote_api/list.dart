@@ -6,7 +6,8 @@ class ProjetoListDataSource {
   final String baseUrl = 'http://10.0.2.2/projeto';
 
   Future<List<ProjetoModel>> getProjetos() async {
-    final response = await http.get(Uri.parse(baseUrl));
+    final response =
+        await http.get(Uri.parse(baseUrl)).timeout(const Duration(seconds: 5));
 
     if (response.statusCode == 200) {
       final List<dynamic> jsonResponse = jsonDecode(response.body);
@@ -18,7 +19,8 @@ class ProjetoListDataSource {
 
   Future<ProjetoModel> getProjetoById(int id) async {
     final url = '$baseUrl/$id';
-    final response = await http.get(Uri.parse(url));
+    final response =
+        await http.get(Uri.parse(url)).timeout(const Duration(seconds: 5));
 
     if (response.statusCode == 200) {
       return ProjetoModel.fromJson(jsonDecode(response.body));

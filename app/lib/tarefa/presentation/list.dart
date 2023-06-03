@@ -33,7 +33,8 @@ class _TarefaPageState extends State<TarefaList> {
               case ConnectionState.waiting:
                 return const CircularProgressIndicator();
               case ConnectionState.done:
-                final List<TarefaModel> tarefas = snapshot.data;
+                final List<TarefaModel> tarefas = snapshot.data ?? [];
+
                 if (tarefas.isEmpty) {
                   return const Center(
                     child: Text('Ainda não foi registrado nenhuma tarefa.'),

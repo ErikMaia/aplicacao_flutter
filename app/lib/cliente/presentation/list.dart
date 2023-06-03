@@ -33,12 +33,14 @@ class _ClientePageState extends State<ClienteList> {
               case ConnectionState.waiting:
                 return const CircularProgressIndicator();
               case ConnectionState.done:
-                final List<ClienteModel> clientes = snapshot.data;
+                final List<ClienteModel> clientes = snapshot.data ?? [];
+
                 if (clientes.isEmpty) {
                   return const Center(
                     child: Text('Ainda não foi registrado nenhum Cliente.'),
                   );
                 }
+
                 return ListView.builder(
                   itemCount: clientes.length,
                   itemBuilder: (BuildContext context, int index) {

@@ -33,13 +33,16 @@ class _DepartamentoPageState extends State<DepartamentoList> {
               case ConnectionState.waiting:
                 return const CircularProgressIndicator();
               case ConnectionState.done:
-                final List<DepartamentoModel> departamentos = snapshot.data;
-                /*if (departamentos.isEmpty) {
+                final List<DepartamentoModel> departamentos =
+                    snapshot.data ?? [];
+
+                if (departamentos.isEmpty) {
                   return const Center(
                     child:
                         Text('Ainda não foi registrado nenhum departamento.'),
                   );
-                }*/
+                }
+
                 return ListView.builder(
                   itemCount: departamentos.length,
                   itemBuilder: (BuildContext context, int index) {
