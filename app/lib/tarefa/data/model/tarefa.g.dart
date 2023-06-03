@@ -11,6 +11,12 @@ TarefaModel _$TarefaModelFromJson(Map<String, dynamic> json) => TarefaModel(
       dataInicio: json['dataInicio'] as String,
       dataTermino: json['dataTermino'] as String,
       status: json['status'] as String,
+      departamento: (json['departamento'] as List<dynamic>)
+          .map((e) => DepartamentoModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      projeto: (json['projeto'] as List<dynamic>)
+          .map((e) => ProjetoModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$TarefaModelToJson(TarefaModel instance) =>
@@ -20,4 +26,6 @@ Map<String, dynamic> _$TarefaModelToJson(TarefaModel instance) =>
       'dataInicio': instance.dataInicio,
       'dataTermino': instance.dataTermino,
       'status': instance.status,
+      'departamento': instance.departamento.map((e) => e.toJson()).toList(),
+      'projeto': instance.projeto.map((e) => e.toJson()).toList(),
     };

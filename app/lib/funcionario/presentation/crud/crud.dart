@@ -1,12 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:aula5/funcionario/data/datasources/remote_api/insert.dart';
 import 'package:aula5/funcionario/data/datasources/remote_api/update.dart';
 import 'package:aula5/funcionario/data/model/funcionario.dart';
-
 import 'package:aula5/funcionario/presentation/crud/widgets/botao_gravar.dart';
 import 'package:aula5/funcionario/presentation/crud/widgets/sobrenome.dart';
 import 'package:aula5/funcionario/presentation/crud/widgets/telefone.dart';
-import 'package:flutter/material.dart';
-import '../../../tarefa/data/model/tarefa.dart';
+import 'package:aula5/tarefa/data/model/tarefa.dart';
+import '../../../tarefa/data/datasources/list.dart';
 import 'widgets/endereco.dart';
 import 'widgets/nome.dart';
 
@@ -30,6 +30,7 @@ class _FuncionarioFormState extends State<FuncionarioForm> {
   final TextEditingController _enderecoController = TextEditingController();
   final TextEditingController _telefoneController = TextEditingController();
   List<TarefaModel> _tarefas = [];
+  List<TarefaModel> _tarefasCarregadas = [];
 
   @override
   void initState() {
@@ -40,7 +41,20 @@ class _FuncionarioFormState extends State<FuncionarioForm> {
       _telefoneController.text = widget.funcionarioModel!.telefone;
       _tarefas = widget.funcionarioModel!.tarefas;
     }
+
+    _carregarTarefas();
+
     super.initState();
+  }
+
+  Future<void> _carregarTarefas() async {
+    try {
+      final tarefas = await TarefaListDataSource().getAll();
+
+      setState(() {
+        _tarefasCarregadas = tarefas;
+      });
+    } catch (error) {}
   }
 
   @override
@@ -61,30 +75,31 @@ class _FuncionarioFormState extends State<FuncionarioForm> {
                   SobrenomeFuncionarioField(controller: _sobrenomeController),
                   EnderecoFuncionarioField(controller: _enderecoController),
                   TelefoneFuncionarioField(controller: _telefoneController),
+
                   // Renderizar a lista de tarefas
                   ListView.builder(
                     shrinkWrap: true,
-                    itemCount: _tarefas.length,
+                    itemCount: _tarefasCarregadas.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final TarefaModel tarefa = _tarefas[index];
+                      final TarefaModel tarefa = _tarefasCarregadas[index];
+                      final bool isSelected = _tarefas.contains(tarefa);
                       return ListTile(
                         title: Text(tarefa.descricao),
                         onTap: () {
-                          // Adicionara tarefa à lista de tarefas
-                          final TarefaModel updatedTarefa = TarefaModel(
-                            tarefaId: tarefa.tarefaId,
-                            descricao: tarefa.descricao,
-                            dataInicio: tarefa.dataInicio,
-                            dataTermino: tarefa.dataTermino,
-                            status: tarefa.status,
-                          );
                           setState(() {
-                            _tarefas[index] = updatedTarefa;
+                            if (isSelected) {
+                              _tarefas.remove(tarefa);
+                            } else {
+                              _tarefas.add(tarefa);
+                            }
                           });
                         },
+                        tileColor:
+                            isSelected ? Colors.blue.withOpacity(0.5) : null,
                       );
                     },
                   ),
+
                   FuncionarioBotaoGravar(
                     onPressedNovo: () {
                       _nomeController.clear();
