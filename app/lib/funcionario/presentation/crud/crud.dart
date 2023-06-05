@@ -1,3 +1,4 @@
+import 'package:aula5/tarefa/data/datasources/remote_api/list.dart';
 import 'package:flutter/material.dart';
 import 'package:aula5/funcionario/data/datasources/remote_api/insert.dart';
 import 'package:aula5/funcionario/data/datasources/remote_api/update.dart';
@@ -6,7 +7,7 @@ import 'package:aula5/funcionario/presentation/crud/widgets/botao_gravar.dart';
 import 'package:aula5/funcionario/presentation/crud/widgets/sobrenome.dart';
 import 'package:aula5/funcionario/presentation/crud/widgets/telefone.dart';
 import 'package:aula5/tarefa/data/model/tarefa.dart';
-import '../../../tarefa/data/datasources/list.dart';
+
 import 'widgets/endereco.dart';
 import 'widgets/nome.dart';
 
@@ -29,7 +30,7 @@ class _FuncionarioFormState extends State<FuncionarioForm> {
   final TextEditingController _sobrenomeController = TextEditingController();
   final TextEditingController _enderecoController = TextEditingController();
   final TextEditingController _telefoneController = TextEditingController();
-  List<TarefaModel> _tarefas = [];
+  List _tarefas = [];
   List<TarefaModel> _tarefasCarregadas = [];
 
   @override
@@ -49,10 +50,10 @@ class _FuncionarioFormState extends State<FuncionarioForm> {
 
   Future<void> _carregarTarefas() async {
     try {
-      final tarefas = await TarefaListDataSource().getAll();
+      final dados = await TarefaListDataSource().getTarefas();
 
       setState(() {
-        _tarefasCarregadas = tarefas;
+        _tarefasCarregadas = dados;
       });
     } catch (error) {}
   }
@@ -82,15 +83,17 @@ class _FuncionarioFormState extends State<FuncionarioForm> {
                     itemCount: _tarefasCarregadas.length,
                     itemBuilder: (BuildContext context, int index) {
                       final TarefaModel tarefa = _tarefasCarregadas[index];
-                      final bool isSelected = _tarefas.contains(tarefa);
+                      final bool isSelected =
+                          _tarefas.contains(tarefa.tarefaId);
+
                       return ListTile(
                         title: Text(tarefa.descricao),
                         onTap: () {
                           setState(() {
                             if (isSelected) {
-                              _tarefas.remove(tarefa);
+                              _tarefas.remove(tarefa.tarefaId);
                             } else {
-                              _tarefas.add(tarefa);
+                              _tarefas.add(tarefa.tarefaId);
                             }
                           });
                         },
@@ -106,7 +109,6 @@ class _FuncionarioFormState extends State<FuncionarioForm> {
                       _sobrenomeController.clear();
                       _enderecoController.clear();
                       _telefoneController.clear();
-                      _tarefas.clear();
                     },
                     onPressed: () async {
                       FocusScope.of(context).unfocus();

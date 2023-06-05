@@ -1,6 +1,8 @@
 import 'package:aula5/cliente/data/datasources/remote_api/insert.dart';
 import 'package:aula5/cliente/data/datasources/remote_api/update.dart';
 import 'package:aula5/cliente/data/model/cliente.dart';
+import 'package:aula5/tarefa/data/datasources/remote_api/list.dart';
+import 'package:aula5/tarefa/data/model/tarefa.dart';
 import 'package:flutter/material.dart';
 import 'widgets/botao_gravar.dart';
 import 'widgets/endereco.dart';
@@ -28,6 +30,8 @@ class _ClientePageState extends State<ClienteForm> {
   final TextEditingController _sobrenomeController = TextEditingController();
   final TextEditingController _enderecoController = TextEditingController();
   final TextEditingController _telefoneController = TextEditingController();
+  List _tarefas = [];
+  List<TarefaModel> _tarefasCarregadas = [];
 
   @override
   void initState() {
@@ -36,8 +40,22 @@ class _ClientePageState extends State<ClienteForm> {
       _sobrenomeController.text = widget.clienteModel!.sobrenome;
       _enderecoController.text = widget.clienteModel!.endereco;
       _telefoneController.text = widget.clienteModel!.telefone;
+      _tarefas = widget.clienteModel!.tarefas;
     }
+
+    _carregarTarefas();
+
     super.initState();
+  }
+
+  Future<void> _carregarTarefas() async {
+    try {
+      final dados = await TarefaListDataSource().getTarefas();
+
+      setState(() {
+        _tarefasCarregadas = dados;
+      });
+    } catch (error) {}
   }
 
   @override
@@ -60,6 +78,33 @@ class _ClientePageState extends State<ClienteForm> {
                     controller: _enderecoController,
                   ),
                   TelefoneClienteField(controller: _telefoneController),
+
+                  // Renderizar a lista de tarefas
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: _tarefasCarregadas.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final TarefaModel tarefa = _tarefasCarregadas[index];
+                      final bool isSelected =
+                          _tarefas.contains(tarefa.tarefaId);
+
+                      return ListTile(
+                        title: Text(tarefa.descricao),
+                        onTap: () {
+                          setState(() {
+                            if (isSelected) {
+                              _tarefas.remove(tarefa.tarefaId);
+                            } else {
+                              _tarefas.add(tarefa.tarefaId);
+                            }
+                          });
+                        },
+                        tileColor:
+                            isSelected ? Colors.blue.withOpacity(0.5) : null,
+                      );
+                    },
+                  ),
+
                   ClienteBotaoGravar(onPressedNovo: () {
                     _nomeController.clear();
                     _sobrenomeController.clear();
@@ -73,21 +118,21 @@ class _ClientePageState extends State<ClienteForm> {
                           widget.clienteModel!.clienteId == null) {
                         await ClienteInsertDataSource().createCliente(
                           cliente: ClienteModel(
-                            nome: _nomeController.text,
-                            sobrenome: _sobrenomeController.text,
-                            endereco: _enderecoController.text,
-                            telefone: _telefoneController.text,
-                          ),
+                              nome: _nomeController.text,
+                              sobrenome: _sobrenomeController.text,
+                              endereco: _enderecoController.text,
+                              telefone: _telefoneController.text,
+                              tarefas: _tarefas),
                         );
                       } else {
                         await ClienteUpdateDataSource().updateCliente(
                           cliente: ClienteModel(
-                            clienteId: widget.clienteModel!.clienteId,
-                            nome: _nomeController.text,
-                            sobrenome: _sobrenomeController.text,
-                            endereco: _enderecoController.text,
-                            telefone: _telefoneController.text,
-                          ),
+                              clienteId: widget.clienteModel!.clienteId,
+                              nome: _nomeController.text,
+                              sobrenome: _sobrenomeController.text,
+                              endereco: _enderecoController.text,
+                              telefone: _telefoneController.text,
+                              tarefas: _tarefas),
                         );
                       }
                     }

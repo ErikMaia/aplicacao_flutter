@@ -7,8 +7,8 @@ part 'tarefa.g.dart';
 
 @JsonSerializable()
 class TarefaModel extends TarefaEntity {
-  final List<DepartamentoModel> departamento;
-  final List<ProjetoModel> projeto;
+  final List departamento;
+  final List projeto;
 
   const TarefaModel({
     int? tarefaId,

@@ -1,3 +1,4 @@
+import 'package:aula5/departamento/data/datasources/remote_api/list.dart';
 import 'package:aula5/departamento/data/model/departamento.dart';
 
 import 'package:aula5/funcionario/presentation/crud/widgets/botao_gravar.dart';
@@ -33,9 +34,9 @@ class _TarefaPageState extends State<TarefaForm> {
   final TextEditingController _dataInicioController = TextEditingController();
   final TextEditingController _dataTerminoController = TextEditingController();
   final TextEditingController _statusController = TextEditingController();
-  List<DepartamentoModel> _departamento = [];
+  List _departamento = [];
   List<DepartamentoModel> _departamentosCarregados = [];
-  List<ProjetoModel> _projeto = [];
+  List _projeto = [];
   List<ProjetoModel> _projetoCarregados = [];
 
   @override
@@ -69,20 +70,20 @@ class _TarefaPageState extends State<TarefaForm> {
 
   Future<void> _carregarDepartamentos() async {
     try {
-      final projetos = await ProjetoListDataSource().getProjetos();
+      final dados = await DepartamentoListDataSource().getDepartamentos();
 
       setState(() {
-        _projetoCarregados = projetos;
+        _departamentosCarregados = dados;
       });
     } catch (error) {}
   }
 
   Future<void> _carregarProjetos() async {
     try {
-      final projetos = await ProjetoListDataSource().getProjetos();
+      final dados = await ProjetoListDataSource().getProjetos();
 
       setState(() {
-        _projetoCarregados = projetos;
+        _projetoCarregados = dados;
       });
     } catch (error) {}
   }
@@ -115,15 +116,16 @@ class _TarefaPageState extends State<TarefaForm> {
                     shrinkWrap: true,
                     itemCount: _projetoCarregados.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final ProjetoModel projeto = _projetoCarregados[index];
+                      final projeto = _projetoCarregados[index];
+
                       final bool isSelected =
-                          _projetoCarregados.contains(projeto);
+                          _projetoCarregados.contains(projeto.projetoId);
 
                       return ListTile(
                         title: Text(projeto.descricao),
                         onTap: () {
                           setState(() {
-                            _projeto[0] = projeto;
+                            _projeto[0] = projeto.projetoId;
                           });
                         },
                         tileColor:
@@ -135,18 +137,17 @@ class _TarefaPageState extends State<TarefaForm> {
                     shrinkWrap: true,
                     itemCount: _departamentosCarregados.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final DepartamentoModel departamento =
-                          _departamentosCarregados[index];
+                      final departamento = _departamentosCarregados[index];
 
-                      final bool isSelected =
-                          _departamentosCarregados.contains(departamento);
+                      final bool isSelected = _departamentosCarregados
+                          .contains(departamento.departamentoId);
 
                       return ListTile(
                         title: Text(departamento.descricao),
                         onTap: () {
                           setState(() {
                             setState(() {
-                              _departamento[0] = departamento;
+                              _departamento[0] = departamento.departamentoId;
                             });
                           });
                         },

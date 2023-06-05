@@ -6,7 +6,7 @@ part 'funcionario.g.dart';
 
 @JsonSerializable()
 class FuncionarioModel extends FuncionarioEntity {
-  final List<TarefaModel> tarefas;
+  final List tarefas;
 
   FuncionarioModel({
     int? funcionarioId,
