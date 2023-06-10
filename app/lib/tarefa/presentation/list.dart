@@ -31,7 +31,9 @@ class _TarefaPageState extends State<TarefaList> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
-                return const CircularProgressIndicator();
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               case ConnectionState.done:
                 final List<TarefaModel> tarefas = snapshot.data ?? [];
 

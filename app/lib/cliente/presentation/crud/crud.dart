@@ -49,13 +49,11 @@ class _ClientePageState extends State<ClienteForm> {
   }
 
   Future<void> _carregarTarefas() async {
-    try {
-      final dados = await TarefaListDataSource().getTarefas();
+    final dados = await TarefaListDataSource().getTarefas();
 
-      setState(() {
-        _tarefasCarregadas = dados;
-      });
-    } catch (error) {}
+    setState(() {
+      _tarefasCarregadas = dados;
+    });
   }
 
   @override
@@ -78,32 +76,89 @@ class _ClientePageState extends State<ClienteForm> {
                     controller: _enderecoController,
                   ),
                   TelefoneClienteField(controller: _telefoneController),
+                  const SizedBox(
+                    height: 10,
+                  ),
 
-                  // Renderizar a lista de tarefas
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: _tarefasCarregadas.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final TarefaModel tarefa = _tarefasCarregadas[index];
+                  const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Selecione as tarefas:',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 18,
+                        ),
+                      )),
 
-                      final bool isSelected =
-                          _tarefas.contains(tarefa.tarefaId);
+                  const SizedBox(
+                    height: 10,
+                  ),
 
-                      return ListTile(
-                        title: Text(tarefa.descricao),
-                        onTap: () {
-                          setState(() {
-                            if (isSelected) {
-                              _tarefas.remove(tarefa.tarefaId);
-                            } else {
-                              _tarefas.add(tarefa.tarefaId);
-                            }
-                          });
-                        },
-                        tileColor:
-                            isSelected ? Colors.blue.withOpacity(0.5) : null,
-                      );
-                    },
+                  // ignore: sized_box_for_whitespace
+                  Container(
+                    height: 200,
+                    child: _tarefasCarregadas.isEmpty
+                        ? const Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Nenhuma tarefa cadastrada',
+                                ),
+                              ],
+                            ),
+                          )
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: _tarefasCarregadas.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final TarefaModel tarefa =
+                                  _tarefasCarregadas[index];
+                              final bool isSelected =
+                                  _tarefas.contains(tarefa.tarefaId);
+
+                              return Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.grey,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  child: ListTile(
+                                    title: Text(
+                                      tarefa.descricao,
+                                      style: TextStyle(
+                                        fontWeight: isSelected
+                                            ? FontWeight.bold
+                                            : FontWeight.normal,
+                                        color: isSelected ? Colors.blue : null,
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      setState(() {
+                                        if (isSelected) {
+                                          _tarefas.remove(tarefa.tarefaId);
+                                        } else {
+                                          _tarefas.add(tarefa.tarefaId);
+                                        }
+                                      });
+                                    },
+                                    tileColor: isSelected
+                                        ? Colors.blue.withOpacity(0.5)
+                                        : null,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                  ),
+
+                  const Divider(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    thickness: 1.0,
                   ),
 
                   ClienteBotaoGravar(onPressedNovo: () {

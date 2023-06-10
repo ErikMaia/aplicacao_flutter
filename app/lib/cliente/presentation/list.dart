@@ -31,7 +31,9 @@ class _ClientePageState extends State<ClienteList> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
-                return const CircularProgressIndicator();
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               case ConnectionState.done:
                 final List<ClienteModel> clientes = snapshot.data ?? [];
 

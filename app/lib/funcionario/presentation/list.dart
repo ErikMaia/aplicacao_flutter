@@ -30,7 +30,9 @@ class _FuncionarioPageState extends State<FuncionarioList> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
-                return const CircularProgressIndicator();
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               case ConnectionState.done:
                 final List<FuncionarioModel> funcionarios = snapshot.data ?? [];
 

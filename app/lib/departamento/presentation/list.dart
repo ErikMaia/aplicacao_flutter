@@ -31,7 +31,9 @@ class _DepartamentoPageState extends State<DepartamentoList> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
-                return const CircularProgressIndicator();
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               case ConnectionState.done:
                 final List<DepartamentoModel> departamentos =
                     snapshot.data ?? [];

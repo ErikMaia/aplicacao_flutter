@@ -69,23 +69,19 @@ class _TarefaPageState extends State<TarefaForm> {
   }
 
   Future<void> _carregarDepartamentos() async {
-    try {
-      final dados = await DepartamentoListDataSource().getDepartamentos();
+    final dados = await DepartamentoListDataSource().getDepartamentos();
 
-      setState(() {
-        _departamentosCarregados = dados;
-      });
-    } catch (error) {}
+    setState(() {
+      _departamentosCarregados = dados;
+    });
   }
 
   Future<void> _carregarProjetos() async {
-    try {
-      final dados = await ProjetoListDataSource().getProjetos();
+    final dados = await ProjetoListDataSource().getProjetos();
 
-      setState(() {
-        _projetoCarregados = dados;
-      });
-    } catch (error) {}
+    setState(() {
+      _projetoCarregados = dados;
+    });
   }
 
   @override
@@ -112,49 +108,145 @@ class _TarefaPageState extends State<TarefaForm> {
                       dateInput: _dataTerminoController,
                       salvarDateInicio: _salvarDateTermino,
                       text: 'Data Termino'),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: _projetoCarregados.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final projeto = _projetoCarregados[index];
+                  const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Selecione os projetos:',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 18,
+                        ),
+                      )),
+                  SizedBox(
+                    height: 150,
+                    child: _projetoCarregados.isEmpty
+                        ? const Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Nenhum projeto cadastrado',
+                                ),
+                              ],
+                            ),
+                          )
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: _projetoCarregados.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final projeto = _projetoCarregados[index];
 
-                      final bool isSelected =
-                          _projetoCarregados.contains(projeto.projetoId);
+                              final bool isSelected = _projetoCarregados
+                                  .contains(projeto.projetoId);
 
-                      return ListTile(
-                        title: Text(projeto.descricao),
-                        onTap: () {
-                          setState(() {
-                            _projeto[0] = projeto.projetoId;
-                          });
-                        },
-                        tileColor:
-                            isSelected ? Colors.blue.withOpacity(0.5) : null,
-                      );
-                    },
+                              return Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.grey,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  child: ListTile(
+                                    title: Text(
+                                      projeto.descricao,
+                                      style: TextStyle(
+                                        fontWeight: isSelected
+                                            ? FontWeight.bold
+                                            : FontWeight.normal,
+                                        color: isSelected ? Colors.blue : null,
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      setState(() {
+                                        _projeto[0] = projeto.projetoId;
+                                      });
+                                    },
+                                    tileColor: isSelected
+                                        ? Colors.blue.withOpacity(0.5)
+                                        : null,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
                   ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: _departamentosCarregados.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final departamento = _departamentosCarregados[index];
+                  const Divider(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    thickness: 1.0,
+                  ),
+                  const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Selecione os departamentos:',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 18,
+                        ),
+                      )),
+                  SizedBox(
+                    height: 150,
+                    child: _projetoCarregados.isEmpty
+                        ? const Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Nenhum departamento cadastrado',
+                                ),
+                              ],
+                            ),
+                          )
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: _departamentosCarregados.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final departamento =
+                                  _departamentosCarregados[index];
 
-                      final bool isSelected = _departamentosCarregados
-                          .contains(departamento.departamentoId);
+                              final bool isSelected = _departamentosCarregados
+                                  .contains(departamento.departamentoId);
 
-                      return ListTile(
-                        title: Text(departamento.descricao),
-                        onTap: () {
-                          setState(() {
-                            setState(() {
-                              _departamento[0] = departamento.departamentoId;
-                            });
-                          });
-                        },
-                        tileColor:
-                            isSelected ? Colors.blue.withOpacity(0.5) : null,
-                      );
-                    },
+                              return Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.grey,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  child: ListTile(
+                                    title: Text(
+                                      departamento.descricao,
+                                      style: TextStyle(
+                                        fontWeight: isSelected
+                                            ? FontWeight.bold
+                                            : FontWeight.normal,
+                                        color: isSelected ? Colors.blue : null,
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      setState(() {
+                                        _departamento[0] =
+                                            departamento.departamentoId;
+                                      });
+                                    },
+                                    tileColor: isSelected
+                                        ? Colors.blue.withOpacity(0.5)
+                                        : null,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                  ),
+                  const Divider(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    thickness: 1.0,
                   ),
                   FuncionarioBotaoGravar(onPressedNovo: () {
                     _descricaoController.clear();

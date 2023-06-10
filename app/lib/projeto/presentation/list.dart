@@ -30,7 +30,9 @@ class _ProjetoPageState extends State<ProjetoList> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
-                return const CircularProgressIndicator();
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               case ConnectionState.done:
                 final List<ProjetoModel> projetos = snapshot.data ?? [];
 

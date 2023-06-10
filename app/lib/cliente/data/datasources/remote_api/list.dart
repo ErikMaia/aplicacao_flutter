@@ -7,7 +7,7 @@ class ClienteListDataSource {
 
   Future<List<ClienteModel>> getClientes() async {
     final response =
-        await http.get(Uri.parse(baseUrl)).timeout(const Duration(seconds: 5));
+        await http.get(Uri.parse(baseUrl)).timeout(const Duration(seconds: 2));
 
     if (response.statusCode == 200) {
       final List<dynamic> jsonResponse = jsonDecode(response.body);
@@ -20,7 +20,7 @@ class ClienteListDataSource {
   Future<ClienteModel> getClienteById(int id) async {
     final url = '$baseUrl/$id';
     final response =
-        await http.get(Uri.parse(url)).timeout(const Duration(seconds: 5));
+        await http.get(Uri.parse(url)).timeout(const Duration(seconds: 2));
 
     if (response.statusCode == 200) {
       return ClienteModel.fromJson(jsonDecode(response.body));
