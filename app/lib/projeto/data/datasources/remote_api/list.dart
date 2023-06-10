@@ -13,7 +13,7 @@ class ProjetoListDataSource {
       final List<dynamic> jsonResponse = jsonDecode(response.body);
       return jsonResponse.map((json) => ProjetoModel.fromJson(json)).toList();
     } else {
-      throw Exception('Falha ao carregar projeto.');
+      return [];
     }
   }
 

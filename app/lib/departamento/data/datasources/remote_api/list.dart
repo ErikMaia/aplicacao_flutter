@@ -14,11 +14,8 @@ class DepartamentoListDataSource {
       return jsonResponse
           .map((json) => DepartamentoModel.fromJson(json))
           .toList();
-      /*return List.generate(jsonResponse.length, (i) {
-        return DepartamentoModel.fromJson(jsonResponse[i]);
-      });*/
     } else {
-      throw Exception('Falha ao carregar departamentos.');
+      return [];
     }
   }
 

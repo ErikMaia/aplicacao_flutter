@@ -85,6 +85,7 @@ class _ClientePageState extends State<ClienteForm> {
                     itemCount: _tarefasCarregadas.length,
                     itemBuilder: (BuildContext context, int index) {
                       final TarefaModel tarefa = _tarefasCarregadas[index];
+
                       final bool isSelected =
                           _tarefas.contains(tarefa.tarefaId);
 

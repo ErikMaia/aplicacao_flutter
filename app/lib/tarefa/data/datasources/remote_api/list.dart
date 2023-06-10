@@ -13,7 +13,7 @@ class TarefaListDataSource {
       final List<dynamic> jsonResponse = jsonDecode(response.body);
       return jsonResponse.map((json) => TarefaModel.fromJson(json)).toList();
     } else {
-      throw Exception('Falha ao carregar tarefa.');
+      return [];
     }
   }
 
